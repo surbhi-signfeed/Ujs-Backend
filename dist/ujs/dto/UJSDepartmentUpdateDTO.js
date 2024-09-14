@@ -9,21 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminAddUserDTO = void 0;
+exports.UJSDepartmentUpdateDTO = void 0;
 const class_validator_1 = require("class-validator");
-class AdminAddUserDTO {
+class UJSDepartmentUpdateDTO {
 }
-exports.AdminAddUserDTO = AdminAddUserDTO;
+exports.UJSDepartmentUpdateDTO = UJSDepartmentUpdateDTO;
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], UJSDepartmentUpdateDTO.prototype, "ID", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], AdminAddUserDTO.prototype, "user_name", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], AdminAddUserDTO.prototype, "user_password", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], AdminAddUserDTO.prototype, "email", void 0);
-//# sourceMappingURL=AdminAddUserDTO.js.map
+], UJSDepartmentUpdateDTO.prototype, "department_name", void 0);
+//# sourceMappingURL=UJSDepartmentUpdateDTO.js.map

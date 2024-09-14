@@ -29,8 +29,6 @@ export class AuthService {
         // If the user is active, return user details
         return {
           id: user.UserID,
-          organizationId: user.OrganizationId,
-          UserType: user.UserType,
           UserID: user.UserID,
         };
       }

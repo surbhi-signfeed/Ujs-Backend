@@ -12,13 +12,12 @@ const adminlogin_controller_1 = require("./adminlogin.controller");
 const adminlogin_service_1 = require("./adminlogin.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const AdminUserInfoEntity_1 = require("./Entity/AdminUserInfoEntity");
-const AdminUserOrganizationEntity_1 = require("./Entity/AdminUserOrganizationEntity");
 let AdminloginModule = class AdminloginModule {
 };
 exports.AdminloginModule = AdminloginModule;
 exports.AdminloginModule = AdminloginModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([AdminUserInfoEntity_1.AdminUserInfoEntity, AdminUserOrganizationEntity_1.AdminUserOrganizationEntity
+        imports: [typeorm_1.TypeOrmModule.forFeature([AdminUserInfoEntity_1.AdminUserInfoEntity
             ]),
         ],
         controllers: [adminlogin_controller_1.AdminloginController],

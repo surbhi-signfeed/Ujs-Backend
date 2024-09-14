@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminUserDetailDTO = void 0;
+exports.UJSDepartmentDTO = void 0;
 const class_validator_1 = require("class-validator");
-class AdminUserDetailDTO {
+class UJSDepartmentDTO {
 }
-exports.AdminUserDetailDTO = AdminUserDetailDTO;
+exports.UJSDepartmentDTO = UJSDepartmentDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], AdminUserDetailDTO.prototype, "user_id", void 0);
-//# sourceMappingURL=AdminUserDetailDTO.js.map
+    __metadata("design:type", String)
+], UJSDepartmentDTO.prototype, "ID", void 0);
+//# sourceMappingURL=UJSDepartmentDTO.js.map

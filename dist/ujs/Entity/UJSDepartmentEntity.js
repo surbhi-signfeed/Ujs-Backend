@@ -9,13 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminEditUserPermissionDTO = void 0;
-const class_validator_1 = require("class-validator");
-class AdminEditUserPermissionDTO {
-}
-exports.AdminEditUserPermissionDTO = AdminEditUserPermissionDTO;
+exports.UJSDepartmentEntity = void 0;
+const typeorm_1 = require("typeorm");
+let UJSDepartmentEntity = class UJSDepartmentEntity {
+};
+exports.UJSDepartmentEntity = UJSDepartmentEntity;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], AdminEditUserPermissionDTO.prototype, "UserID", void 0);
-//# sourceMappingURL=AdminEditUserPermissionDTO.js.map
+], UJSDepartmentEntity.prototype, "ID", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'department_name', type: 'varchar' }),
+    __metadata("design:type", String)
+], UJSDepartmentEntity.prototype, "department_name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'status', type: 'boolean' }),
+    __metadata("design:type", Boolean)
+], UJSDepartmentEntity.prototype, "status", void 0);
+exports.UJSDepartmentEntity = UJSDepartmentEntity = __decorate([
+    (0, typeorm_1.Entity)('Department')
+], UJSDepartmentEntity);
+//# sourceMappingURL=UJSDepartmentEntity.js.map

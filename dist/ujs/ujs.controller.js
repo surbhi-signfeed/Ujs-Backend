@@ -16,63 +16,63 @@ exports.UjsController = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_auth_guard_1 = require("../admin/auth/jwt-auth.guard");
 const ujs_service_1 = require("./ujs.service");
-const CMSResolutionDTO_1 = require("./dto/CMSResolutionDTO");
-const CMSResolutionUpdateDTO_1 = require("./dto/CMSResolutionUpdateDTO");
-const CMSResolutionDeleteDTO_1 = require("./dto/CMSResolutionDeleteDTO");
+const UJSDepartmentDTO_1 = require("./dto/UJSDepartmentDTO");
+const UJSDepartmentUpdateDTO_1 = require("./dto/UJSDepartmentUpdateDTO");
+const UJSDepartmentDeleteDTO_1 = require("./dto/UJSDepartmentDeleteDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
         this.logger = logger;
     }
-    async listResolutions(request) {
-        return this.ujsService.SignfeedCMSResolutionList(request);
+    async UJSDepartmentAdd(request, ujsDepartmentDTO) {
+        return this.ujsService.UJSDepartmentAdd(request, ujsDepartmentDTO);
     }
-    async SignfeedCMSResolutionAdd(request, cmsResolutionDTO) {
-        return this.ujsService.SignfeedCMSResolutionAdd(request, cmsResolutionDTO);
+    async listDepartment(request) {
+        return this.ujsService.UJSDepartmentList(request);
     }
-    async SignfeedCMSResolutionUpdate(request, cmsResolutionUpdateDTO) {
-        return this.ujsService.SignfeedCMSResolutionUpdate(request, cmsResolutionUpdateDTO);
+    async UJSDepartmentUpdate(request, ujsDepartmentUpdateDTO) {
+        return this.ujsService.UJSDepartmentUpdate(request, ujsDepartmentUpdateDTO);
     }
-    async SignfeedCMSResolutionDelete(request, cmsResolutionDeleteDTO) {
-        return this.ujsService.SignfeedCMSResolutionDelete(request, cmsResolutionDeleteDTO);
+    async UJSDepartmentDelete(request, ujsDepartmentDeleteDTO) {
+        return this.ujsService.UJSDepartmentDelete(request, ujsDepartmentDeleteDTO);
     }
 };
 exports.UjsController = UjsController;
 __decorate([
-    (0, common_1.Get)('ListResolution'),
+    (0, common_1.Post)("AddDepartment"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSDepartmentDTO_1.UJSDepartmentDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSDepartmentAdd", null);
+__decorate([
+    (0, common_1.Get)('ListDepartment'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UjsController.prototype, "listResolutions", null);
+], UjsController.prototype, "listDepartment", null);
 __decorate([
-    (0, common_1.Post)("AddResolution"),
+    (0, common_1.Post)("UpdateDepartment"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, CMSResolutionDTO_1.CMSResolutionDTO]),
+    __metadata("design:paramtypes", [Object, UJSDepartmentUpdateDTO_1.UJSDepartmentUpdateDTO]),
     __metadata("design:returntype", Promise)
-], UjsController.prototype, "SignfeedCMSResolutionAdd", null);
+], UjsController.prototype, "UJSDepartmentUpdate", null);
 __decorate([
-    (0, common_1.Post)("UpdateResolution"),
+    (0, common_1.Post)("DeleteDepartment"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, CMSResolutionUpdateDTO_1.CMSResolutionUpdateDTO]),
+    __metadata("design:paramtypes", [Object, UJSDepartmentDeleteDTO_1.UJSDepartmentDeleteDTO]),
     __metadata("design:returntype", Promise)
-], UjsController.prototype, "SignfeedCMSResolutionUpdate", null);
-__decorate([
-    (0, common_1.Post)("DeleteResolution"),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, CMSResolutionDeleteDTO_1.CMSResolutionDeleteDTO]),
-    __metadata("design:returntype", Promise)
-], UjsController.prototype, "SignfeedCMSResolutionDelete", null);
+], UjsController.prototype, "UJSDepartmentDelete", null);
 exports.UjsController = UjsController = __decorate([
     (0, common_1.Controller)("ujs"),
     __param(1, (0, common_1.Inject)(common_1.Logger)),

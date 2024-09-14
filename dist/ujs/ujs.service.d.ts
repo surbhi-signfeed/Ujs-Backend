@@ -1,39 +1,39 @@
 import { Logger } from "@nestjs/common";
 import { Connection } from "mysql2";
 import { Repository } from "typeorm";
-import { SignFeedCMSResolutionEntity } from "./Entity/SignFeedCMSResolutionEntity";
-import { CMSResolutionDTO } from "./dto/CMSResolutionDTO";
-import { CMSResolutionUpdateDTO } from "./dto/CMSResolutionUpdateDTO";
-import { CMSResolutionDeleteDTO } from "./dto/CMSResolutionDeleteDTO";
+import { UJSDepartmentDTO } from "./dto/UJSDepartmentDTO";
+import { UJSDepartmentEntity } from "./Entity/UJSDepartmentEntity";
+import { UJSDepartmentUpdateDTO } from "./dto/UJSDepartmentUpdateDTO";
+import { UJSDepartmentDeleteDTO } from "./dto/UJSDepartmentDeleteDTO";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
-    private readonly SignFeedCMSResolutionEntityRepository;
-    constructor(logger: Logger, connection: Connection, SignFeedCMSResolutionEntityRepository: Repository<SignFeedCMSResolutionEntity>);
-    SignfeedCMSResolutionList(request: any): Promise<{
-        resolution: SignFeedCMSResolutionEntity[];
+    private readonly UJSDepartmentRepository;
+    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>);
+    UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
         status: number;
-    }>;
-    SignfeedCMSResolutionAdd(request: any, cmsResolutionDTO: CMSResolutionDTO): Promise<{
-        message: string;
-        status: number;
-        resolution?: undefined;
+        departmentList?: undefined;
     } | {
-        resolution: SignFeedCMSResolutionEntity;
+        departmentList: UJSDepartmentEntity;
         message: string;
         status: number;
     }>;
-    SignfeedCMSResolutionUpdate(request: any, cmsResolutionUpdateDTO: CMSResolutionUpdateDTO): Promise<{
-        resolution: SignFeedCMSResolutionEntity;
+    UJSDepartmentList(request: any): Promise<{
+        department: UJSDepartmentEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSDepartmentUpdate(request: any, ujsDepartmentUpdateDTO: UJSDepartmentUpdateDTO): Promise<{
+        department: UJSDepartmentEntity;
         message: string;
         status: number;
     } | {
         message: string;
         status: number;
-        resolution?: undefined;
+        department?: undefined;
     }>;
-    SignfeedCMSResolutionDelete(request: any, cmsResolutionDeleteDTO: CMSResolutionDeleteDTO): Promise<{
+    UJSDepartmentDelete(request: any, ujsDepartmentDeleteDTO: UJSDepartmentDeleteDTO): Promise<{
         message: string;
         status: number;
     }>;

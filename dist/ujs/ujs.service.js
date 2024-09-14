@@ -16,87 +16,76 @@ exports.UjsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const SignFeedCMSResolutionEntity_1 = require("./Entity/SignFeedCMSResolutionEntity");
+const UJSDepartmentEntity_1 = require("./Entity/UJSDepartmentEntity");
 let UjsService = class UjsService {
-    constructor(logger, connection, SignFeedCMSResolutionEntityRepository) {
+    constructor(logger, connection, UJSDepartmentRepository) {
         this.logger = logger;
         this.connection = connection;
-        this.SignFeedCMSResolutionEntityRepository = SignFeedCMSResolutionEntityRepository;
+        this.UJSDepartmentRepository = UJSDepartmentRepository;
     }
-    async SignfeedCMSResolutionList(request) {
-        let resolutionList = await this.SignFeedCMSResolutionEntityRepository.find({});
-        return { resolution: resolutionList, message: "success", status: 200 };
-    }
-    async SignfeedCMSResolutionAdd(request, cmsResolutionDTO) {
+    async UJSDepartmentAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         const currentDateTime = new Date();
         const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
-        let checkResolution = await this.SignFeedCMSResolutionEntityRepository.findOne({
+        let checkDepartment = await this.UJSDepartmentRepository.findOne({
             where: {
-                intended_width: cmsResolutionDTO.width,
-                intended_height: cmsResolutionDTO.height,
+                department_name: ujsDepartmentDTO.department_name,
             },
         });
-        if (checkResolution) {
+        if (checkDepartment) {
             return {
-                message: "Resolution with Height & Width Already Exist",
+                message: "Department Already Exist",
                 status: 400,
             };
         }
         else {
-            const addCMSResolution = new SignFeedCMSResolutionEntity_1.SignFeedCMSResolutionEntity();
-            addCMSResolution.resolution = cmsResolutionDTO.name;
-            addCMSResolution.organization = cmsResolutionDTO.organization;
-            addCMSResolution.width = cmsResolutionDTO.width;
-            addCMSResolution.height = cmsResolutionDTO.height;
-            addCMSResolution.intended_width = cmsResolutionDTO.width;
-            addCMSResolution.intended_height = cmsResolutionDTO.height;
-            addCMSResolution.version = 2;
-            addCMSResolution.enabled = cmsResolutionDTO.enabled;
-            await this.SignFeedCMSResolutionEntityRepository.save(addCMSResolution);
-            return { resolution: addCMSResolution, message: "success", status: 200 };
+            const addUJSDepartment = new UJSDepartmentEntity_1.UJSDepartmentEntity();
+            addUJSDepartment.department_name = ujsDepartmentDTO.department_name;
+            addUJSDepartment.status = ujsDepartmentDTO.status;
+            await this.UJSDepartmentRepository.save(addUJSDepartment);
+            return { departmentList: addUJSDepartment, message: "success", status: 200 };
         }
     }
-    async SignfeedCMSResolutionUpdate(request, cmsResolutionUpdateDTO) {
+    async UJSDepartmentList(request) {
+        let departmentList = await this.UJSDepartmentRepository.find({});
+        return { department: departmentList, message: "success", status: 200 };
+    }
+    async UJSDepartmentUpdate(request, ujsDepartmentUpdateDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         const currentDateTime = new Date();
         const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
-        let checkResolution = await this.SignFeedCMSResolutionEntityRepository.findOne({
+        let checkDepartment = await this.UJSDepartmentRepository.findOne({
             where: {
-                resolutionID: cmsResolutionUpdateDTO.id,
+                ID: ujsDepartmentUpdateDTO.ID,
             },
         });
-        if (checkResolution) {
-            checkResolution.resolution = cmsResolutionUpdateDTO.name;
-            checkResolution.width = cmsResolutionUpdateDTO.width;
-            checkResolution.height = cmsResolutionUpdateDTO.height;
-            checkResolution.intended_width = cmsResolutionUpdateDTO.width;
-            checkResolution.intended_height = cmsResolutionUpdateDTO.height;
-            checkResolution.enabled = cmsResolutionUpdateDTO.enabled;
-            await this.SignFeedCMSResolutionEntityRepository.save(checkResolution);
-            return { resolution: checkResolution, message: "success", status: 200 };
+        if (checkDepartment) {
+            checkDepartment.department_name = ujsDepartmentUpdateDTO.department_name;
+            checkDepartment.status = ujsDepartmentUpdateDTO.status;
+            await this.UJSDepartmentRepository.save(checkDepartment);
+            return { department: checkDepartment, message: "success", status: 200 };
         }
         else {
-            return { message: "Resolution ID Does Not Exist", status: 400 };
+            return { message: "Department ID Does Not Exist", status: 400 };
         }
     }
-    async SignfeedCMSResolutionDelete(request, cmsResolutionDeleteDTO) {
+    async UJSDepartmentDelete(request, ujsDepartmentDeleteDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         const currentDateTime = new Date();
         const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
-        let checkResolution = await this.SignFeedCMSResolutionEntityRepository.findOne({
+        let checkDepartment = await this.UJSDepartmentRepository.findOne({
             where: {
-                resolutionID: cmsResolutionDeleteDTO.resolutionID,
+                ID: ujsDepartmentDeleteDTO.ID,
             },
         });
-        if (checkResolution) {
-            let checkLayouCampaign;
-            checkLayouCampaign = this.connection.query(`delete from resolution where resolutionID='${cmsResolutionDeleteDTO.resolutionID}'`);
-            await this.SignFeedCMSResolutionEntityRepository.delete(checkResolution);
+        if (checkDepartment) {
+            let checkUjsDepartment;
+            checkUjsDepartment = this.connection.query(`delete from department where ID='${ujsDepartmentDeleteDTO.ID}'`);
+            await this.UJSDepartmentRepository.delete(checkDepartment);
             return { message: "success", status: 200 };
         }
         else {
-            return { message: "Resolution Does Not Exist", status: 400 };
+            return { message: "Department Does Not Exist", status: 400 };
         }
     }
 };
@@ -105,7 +94,7 @@ exports.UjsService = UjsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)(common_1.Logger)),
     __param(1, (0, typeorm_1.InjectDataSource)()),
-    __param(2, (0, typeorm_1.InjectRepository)(SignFeedCMSResolutionEntity_1.SignFeedCMSResolutionEntity)),
+    __param(2, (0, typeorm_1.InjectRepository)(UJSDepartmentEntity_1.UJSDepartmentEntity)),
     __metadata("design:paramtypes", [common_1.Logger, Object, typeorm_2.Repository])
 ], UjsService);
 //# sourceMappingURL=ujs.service.js.map

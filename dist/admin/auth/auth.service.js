@@ -35,8 +35,6 @@ let AuthService = class AuthService {
             else {
                 return {
                     id: user.UserID,
-                    organizationId: user.OrganizationId,
-                    UserType: user.UserType,
                     UserID: user.UserID,
                 };
             }

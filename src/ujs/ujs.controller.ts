@@ -4,22 +4,16 @@ import {
   Get,
   Inject,
   Logger,
-  Param,
   Post,
-  Query,
   Req,
-  Res,
-  UploadedFiles,
   UseGuards,
-  UseInterceptors,
 } from "@nestjs/common";
 import { JwtAuthGuard } from "src/admin/auth/jwt-auth.guard";
 import { UjsService } from "./ujs.service";
 import { Request } from "express";
-import { CMSResolutionDTO } from "./dto/CMSResolutionDTO";
-import { CMSResolutionUpdateDTO } from "./dto/CMSResolutionUpdateDTO";
-
-import { CMSResolutionDeleteDTO } from "./dto/CMSResolutionDeleteDTO";
+import { UJSDepartmentDTO } from "./dto/UJSDepartmentDTO";
+import { UJSDepartmentUpdateDTO } from "./dto/UJSDepartmentUpdateDTO";
+import { UJSDepartmentDeleteDTO } from "./dto/UJSDepartmentDeleteDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -27,46 +21,44 @@ export class UjsController {
     @Inject(Logger) private readonly logger: Logger
   ) {}
 
-
-
-
-  @Get('ListResolution')
+// add department
+@Post("AddDepartment")
   @UseGuards(JwtAuthGuard)
-  async listResolutions(@Req() request: Request) {
-  
-    return this.ujsService.SignfeedCMSResolutionList(request);
-  }
-
-  @Post("AddResolution")
-  @UseGuards(JwtAuthGuard)
-  async SignfeedCMSResolutionAdd(
+  async UJSDepartmentAdd(
     @Req() request: Request,
-    @Body() cmsResolutionDTO: CMSResolutionDTO
+    @Body() ujsDepartmentDTO: UJSDepartmentDTO
   ) {
-    return this.ujsService.SignfeedCMSResolutionAdd(request, cmsResolutionDTO);
+    return this.ujsService.UJSDepartmentAdd(request, ujsDepartmentDTO);
   }
-
-  @Post("UpdateResolution")
+// list department
+@Get('ListDepartment')
+@UseGuards(JwtAuthGuard)
+async listDepartment(@Req() request: Request) {
+return this.ujsService.UJSDepartmentList(request);
+}
+// update department
+  @Post("UpdateDepartment")
   @UseGuards(JwtAuthGuard)
-  async SignfeedCMSResolutionUpdate(
+  async UJSDepartmentUpdate(
     @Req() request: Request,
-    @Body() cmsResolutionUpdateDTO: CMSResolutionUpdateDTO
+    @Body() ujsDepartmentUpdateDTO: UJSDepartmentUpdateDTO
   ) {
-    return this.ujsService.SignfeedCMSResolutionUpdate(
+    return this.ujsService.UJSDepartmentUpdate(
       request,
-      cmsResolutionUpdateDTO
+      ujsDepartmentUpdateDTO
     );
   }
-  // delete resolution by surbhi
-  @Post("DeleteResolution")
-  @UseGuards(JwtAuthGuard)
-  async SignfeedCMSResolutionDelete(
-    @Req() request: Request,
-    @Body() cmsResolutionDeleteDTO: CMSResolutionDeleteDTO
-  ) {
-    return this.ujsService.SignfeedCMSResolutionDelete(
-      request,
-      cmsResolutionDeleteDTO
-    );
-  }
+// delete department
+@Post("DeleteDepartment")
+@UseGuards(JwtAuthGuard)
+async UJSDepartmentDelete(
+  @Req() request: Request,
+  @Body() ujsDepartmentDeleteDTO: UJSDepartmentDeleteDTO
+) {
+  return this.ujsService.UJSDepartmentDelete(
+    request,
+    ujsDepartmentDeleteDTO
+  );
+}
+
  }

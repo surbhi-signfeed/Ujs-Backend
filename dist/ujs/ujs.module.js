@@ -12,12 +12,13 @@ const typeorm_1 = require("@nestjs/typeorm");
 const ujs_controller_1 = require("./ujs.controller");
 const ujs_service_1 = require("./ujs.service");
 const SignFeedCMSResolutionEntity_1 = require("./Entity/SignFeedCMSResolutionEntity");
+const UJSDepartmentEntity_1 = require("./Entity/UJSDepartmentEntity");
 let CmsModule = class CmsModule {
 };
 exports.CmsModule = CmsModule;
 exports.CmsModule = CmsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([SignFeedCMSResolutionEntity_1.SignFeedCMSResolutionEntity,])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([SignFeedCMSResolutionEntity_1.SignFeedCMSResolutionEntity, UJSDepartmentEntity_1.UJSDepartmentEntity])],
         controllers: [ujs_controller_1.UjsController],
         providers: [ujs_service_1.UjsService, common_1.Logger]
     })

@@ -31,7 +31,7 @@ import { AdminloginModule } from './admin/adminlogin/adminlogin.module';
                 port: 3306,
                 username: 'root',
                 password: '1234',
-                database: 'suru',
+                database: 'ujs_india',
                 entities: [join(__dirname, '**', '*Entity.{ts,js}')],
                 synchronize: false,
                 logging: true,
