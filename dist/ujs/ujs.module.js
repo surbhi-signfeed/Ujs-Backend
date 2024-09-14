@@ -6,15 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
+exports.CmsModule = void 0;
 const common_1 = require("@nestjs/common");
-let AppService = class AppService {
-    getHello() {
-        return 'UJS India!';
-    }
+const typeorm_1 = require("@nestjs/typeorm");
+const ujs_controller_1 = require("./ujs.controller");
+const ujs_service_1 = require("./ujs.service");
+const SignFeedCMSResolutionEntity_1 = require("./Entity/SignFeedCMSResolutionEntity");
+let CmsModule = class CmsModule {
 };
-exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
-    (0, common_1.Injectable)()
-], AppService);
-//# sourceMappingURL=app.service.js.map
+exports.CmsModule = CmsModule;
+exports.CmsModule = CmsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([SignFeedCMSResolutionEntity_1.SignFeedCMSResolutionEntity,])],
+        controllers: [ujs_controller_1.UjsController],
+        providers: [ujs_service_1.UjsService, common_1.Logger]
+    })
+], CmsModule);
+//# sourceMappingURL=ujs.module.js.map

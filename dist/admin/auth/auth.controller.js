@@ -29,10 +29,7 @@ let AuthController = class AuthController {
         }
         const accessToken = await this.authService.generateToken(user);
         return {
-            accessToken,
-            organizationId: user.organizationId,
-            UserType: user.UserType,
-            UserID: user.UserID,
+            accessToken
         };
     }
 };

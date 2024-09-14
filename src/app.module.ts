@@ -8,19 +8,10 @@ import {ConfigModule} from "@nestjs/config";
 import {ServeStaticModule} from "@nestjs/serve-static";
 import {LoggingInterceptor} from "./LoggingInterceptor";
 import {APP_INTERCEPTOR} from "@nestjs/core";
-import { PlayerController } from './player/player.controller';
-import { PlayerModule } from './player/player.module';
-import { CmsController } from './cms/cms.controller';
-import { CmsModule } from './cms/cms.module';
-import { ApiController } from './api/api.controller';
-import { ApiModule } from './api/api.module';
+import { CmsModule } from './ujs/ujs.module';
 import { AuthModule } from './admin/auth/auth.module';
 import { AdminloginModule } from './admin/adminlogin/adminlogin.module';
 
-import { MenuBoardEntity } from './api/Entity/MenuBoardEntity'
-import { MediaController } from './media/media.controller';
-import { MediaService } from './media/media.service';
-import { MediaModule } from './media/media.module';
 
 @Module({
     imports: [
@@ -50,20 +41,18 @@ import { MediaModule } from './media/media.module';
         }),
 
 
-        PlayerModule,
+       
         ScheduleModule.forRoot(),
         CmsModule,
-        ApiModule,
         AuthModule,
         AdminloginModule,
-        MediaModule,
 
     ],
-    controllers: [AppController, MediaController],
+    controllers: [AppController,],
     providers: [AppService, Logger, {
         provide: APP_INTERCEPTOR,
         useClass: LoggingInterceptor,
-    }, MediaService, ],
+    } ],
 })
 export class AppModule {
 }

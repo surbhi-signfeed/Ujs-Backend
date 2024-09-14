@@ -13,7 +13,6 @@ const adminlogin_service_1 = require("./adminlogin.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const AdminUserInfoEntity_1 = require("./Entity/AdminUserInfoEntity");
 const AdminUserOrganizationEntity_1 = require("./Entity/AdminUserOrganizationEntity");
-const mailer_1 = require("@nestjs-modules/mailer");
 let AdminloginModule = class AdminloginModule {
 };
 exports.AdminloginModule = AdminloginModule;
@@ -21,15 +20,6 @@ exports.AdminloginModule = AdminloginModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([AdminUserInfoEntity_1.AdminUserInfoEntity, AdminUserOrganizationEntity_1.AdminUserOrganizationEntity
             ]),
-            mailer_1.MailerModule.forRoot({
-                transport: {
-                    host: 'smtp.gmail.com',
-                    auth: {
-                        user: 'surbhigulhana3@gmail.com',
-                        pass: 'pavfahmioaedlbkv',
-                    },
-                },
-            }),
         ],
         controllers: [adminlogin_controller_1.AdminloginController],
         providers: [adminlogin_service_1.AdminloginService, common_1.Logger]

@@ -7,8 +7,5 @@ export declare class AuthController {
         password: string;
     }): Promise<{
         accessToken?: string;
-        organizationId?: string;
-        UserType?: string;
-        UserID?: number;
     }>;
 }

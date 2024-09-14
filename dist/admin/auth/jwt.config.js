@@ -3,6 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.jwtConfig = void 0;
 exports.jwtConfig = {
     secret: 'process.env.JWT_SECRET_KEY',
-    signOptions: { expiresIn: '10m' },
+    signOptions: { expiresIn: '1h' },
 };
 //# sourceMappingURL=jwt.config.js.map
