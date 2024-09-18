@@ -30,6 +30,7 @@ const UJSBackupShgGroupDataUploadMonthDTO_1 = require("./dto/UJSBackupShgGroupDa
 const UJSPersonalAccessTokenDTO_1 = require("./dto/UJSPersonalAccessTokenDTO");
 const UJSSHGExpansesDTO_1 = require("./dto/UJSSHGExpansesDTO");
 const UJSSHGLoanRepaymentDTO_1 = require("./dto/UJSSHGLoanRepaymentDTO");
+const UJSStateDTO_1 = require("./dto/UJSStateDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -112,6 +113,12 @@ let UjsController = class UjsController {
     }
     async listShgLoanRepayment(request) {
         return this.ujsService.UJSShgLoanRepaymentList(request);
+    }
+    async UJSStateAdd(request, ujsStateDTO) {
+        return this.ujsService.UJSStateAdd(request, ujsStateDTO);
+    }
+    async listState(request) {
+        return this.ujsService.UJSStateList(request);
     }
 };
 exports.UjsController = UjsController;
@@ -338,6 +345,23 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgLoanRepayment", null);
+__decorate([
+    (0, common_1.Post)("AddState"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSStateDTO_1.UJSStateDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSStateAdd", null);
+__decorate([
+    (0, common_1.Get)('ListState'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listState", null);
 exports.UjsController = UjsController = __decorate([
     (0, common_1.Controller)("ujs"),
     __param(1, (0, common_1.Inject)(common_1.Logger)),

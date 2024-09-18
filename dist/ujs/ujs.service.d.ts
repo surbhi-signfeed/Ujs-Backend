@@ -29,6 +29,8 @@ import { UJSBackupShgGroupDataUploadMonthDTO } from "./dto/UJSBackupShgGroupData
 import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
 import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
+import { UJSStateEntity } from "./Entity/UJSStateEntity";
+import { UJSStateDTO } from "./dto/UJSStateDTO";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
@@ -45,7 +47,8 @@ export declare class UjsService {
     private readonly UJSPersonalAccessTokenRepository;
     private readonly UJSSHGExpansesRepository;
     private readonly UJSSHGLoanRepaymentRepository;
-    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>);
+    private readonly UJSStateRepository;
+    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>, UJSStateRepository: Repository<UJSStateEntity>);
     UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
         status: number;
@@ -224,6 +227,20 @@ export declare class UjsService {
     }>;
     UJSShgLoanRepaymentList(request: any): Promise<{
         SHGLoanRepayment: UJSSHGLoanRepaymentEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSStateAdd(request: any, ujsStateDTO: UJSStateDTO): Promise<{
+        message: string;
+        status: number;
+        stateList?: undefined;
+    } | {
+        stateList: UJSStateEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSStateList(request: any): Promise<{
+        state: UJSStateEntity[];
         message: string;
         status: number;
     }>;

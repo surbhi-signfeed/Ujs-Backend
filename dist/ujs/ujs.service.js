@@ -29,8 +29,9 @@ const UJSMigrationEntity_1 = require("./Entity/UJSMigrationEntity");
 const UJSPersonalAccessTokenEntity_1 = require("./Entity/UJSPersonalAccessTokenEntity");
 const UJSSHGExpansesEntity_1 = require("./Entity/UJSSHGExpansesEntity");
 const UJSSHGLoanRepaymentEntity_1 = require("./Entity/UJSSHGLoanRepaymentEntity");
+const UJSStateEntity_1 = require("./Entity/UJSStateEntity");
 let UjsService = class UjsService {
-    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository) {
+    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository, UJSStateRepository) {
         this.logger = logger;
         this.connection = connection;
         this.UJSDepartmentRepository = UJSDepartmentRepository;
@@ -46,6 +47,7 @@ let UjsService = class UjsService {
         this.UJSPersonalAccessTokenRepository = UJSPersonalAccessTokenRepository;
         this.UJSSHGExpansesRepository = UJSSHGExpansesRepository;
         this.UJSSHGLoanRepaymentRepository = UJSSHGLoanRepaymentRepository;
+        this.UJSStateRepository = UJSStateRepository;
     }
     async UJSDepartmentAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
@@ -528,6 +530,31 @@ let UjsService = class UjsService {
         let SHGLoanRepaymentList = await this.UJSSHGLoanRepaymentRepository.find({});
         return { SHGLoanRepayment: SHGLoanRepaymentList, message: "success", status: 200 };
     }
+    async UJSStateAdd(request, ujsStateDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkState = await this.UJSStateRepository.findOne({
+            where: {
+                district: ujsStateDTO.district,
+            },
+        });
+        if (checkState) {
+            return {
+                message: "State Already Exist",
+                status: 400,
+            };
+        }
+        else {
+            const addUJSState = new UJSStateEntity_1.UJSStateEntity();
+            addUJSState.state = ujsStateDTO.state;
+            addUJSState.district = ujsStateDTO.district;
+            await this.UJSStateRepository.save(addUJSState);
+            return { stateList: addUJSState, message: "success", status: 200 };
+        }
+    }
+    async UJSStateList(request) {
+        let stateList = await this.UJSStateRepository.find({});
+        return { state: stateList, message: "success", status: 200 };
+    }
 };
 exports.UjsService = UjsService;
 exports.UjsService = UjsService = __decorate([
@@ -547,7 +574,9 @@ exports.UjsService = UjsService = __decorate([
     __param(12, (0, typeorm_1.InjectRepository)(UJSPersonalAccessTokenEntity_1.UJSPersonalAccessTokenEntity)),
     __param(13, (0, typeorm_1.InjectRepository)(UJSSHGExpansesEntity_1.UJSSHGExpansesEntity)),
     __param(14, (0, typeorm_1.InjectRepository)(UJSSHGLoanRepaymentEntity_1.UJSSHGLoanRepaymentEntity)),
+    __param(15, (0, typeorm_1.InjectRepository)(UJSStateEntity_1.UJSStateEntity)),
     __metadata("design:paramtypes", [common_1.Logger, Object, typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,

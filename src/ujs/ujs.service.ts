@@ -35,6 +35,8 @@ import { UJSBackupShgGroupDataUploadMonthDTO } from "./dto/UJSBackupShgGroupData
 import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
 import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
+import { UJSStateEntity } from "./Entity/UJSStateEntity";
+import { UJSStateDTO } from "./dto/UJSStateDTO";
 @Injectable()
 export class UjsService {
   
@@ -68,7 +70,8 @@ export class UjsService {
     private readonly UJSSHGExpansesRepository :Repository<UJSSHGExpansesEntity>,
     @InjectRepository(UJSSHGLoanRepaymentEntity)
     private readonly UJSSHGLoanRepaymentRepository :Repository<UJSSHGLoanRepaymentEntity>,
-
+    @InjectRepository(UJSStateEntity)
+    private readonly UJSStateRepository :Repository<UJSStateEntity>,
   ) {
     
   }
@@ -730,6 +733,42 @@ async UJSRoleList(request) {
       {}
     );
     return { SHGLoanRepayment: SHGLoanRepaymentList, message: "success", status: 200 };
+  }
+   // -----------------------------state-----------------------------------
+   // add state
+   async UJSStateAdd(request, ujsStateDTO: UJSStateDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkState =
+      await this.UJSStateRepository.findOne({
+        where: {
+          district: ujsStateDTO.district,
+          
+        },
+      });
+    if (checkState) {
+      return {
+        message: "State Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSState: UJSStateEntity =
+        new UJSStateEntity();
+      addUJSState.state = ujsStateDTO.state;
+      addUJSState.district = ujsStateDTO.district;
+     
+    
+    
+      await this.UJSStateRepository.save(addUJSState);
+      return { stateList: addUJSState, message: "success", status: 200 };
+    }
+  }
+  // list state
+  async UJSStateList(request) {
+    let stateList = await this.UJSStateRepository.find(
+      {}
+    );
+    return { state: stateList, message: "success", status: 200 };
   }
 }
 

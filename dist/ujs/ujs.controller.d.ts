@@ -16,6 +16,7 @@ import { UJSBackupShgGroupDataUploadMonthDTO } from "./dto/UJSBackupShgGroupData
 import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
 import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
+import { UJSStateDTO } from "./dto/UJSStateDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -198,6 +199,20 @@ export declare class UjsController {
     }>;
     listShgLoanRepayment(request: Request): Promise<{
         SHGLoanRepayment: import("./Entity/UJSSHGLoanRepaymentEntity").UJSSHGLoanRepaymentEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSStateAdd(request: Request, ujsStateDTO: UJSStateDTO): Promise<{
+        message: string;
+        status: number;
+        stateList?: undefined;
+    } | {
+        stateList: import("./Entity/UJSStateEntity").UJSStateEntity;
+        message: string;
+        status: number;
+    }>;
+    listState(request: Request): Promise<{
+        state: import("./Entity/UJSStateEntity").UJSStateEntity[];
         message: string;
         status: number;
     }>;
