@@ -15,6 +15,20 @@ import { UJSRoleEntity } from "./Entity/UJSRoleEntity";
 import { UJSRolePermissionEntity } from "./Entity/UJSRolePermissionEntity";
 import { UJSRoleDTO } from "./dto/UJSRoleDTO";
 import { UJSRolePermissionDTO } from "./dto/UJSRolePermissionDTO";
+import { UJSBackupShgGroupDataUploadMonthEntity } from "./Entity/UJSBackupShgGroupDataUploadEntity";
+import { UJSBranchEntity } from "./Entity/UJSBranchEntity";
+import { UJSFailedJobEntity } from "./Entity/UJSFailedJobsEntity";
+import { UJSMigrationEntity } from "./Entity/UJSMigrationEntity";
+import { UJSPersonalAccessTokenEntity } from "./Entity/UJSPersonalAccessTokenEntity";
+import { UJSSHGExpansesEntity } from "./Entity/UJSSHGExpansesEntity";
+import { UJSSHGLoanRepaymentEntity } from "./Entity/UJSSHGLoanRepaymentEntity";
+import { UJSMigrationDTO } from "./dto/UJSMigrationDTO";
+import { UJSFailedJobDTO } from "./dto/UJSFailedJobsDTO";
+import { UJSBranchDTO } from "./dto/UJSBranchDTO";
+import { UJSBackupShgGroupDataUploadMonthDTO } from "./dto/UJSBackupShgGroupDataUploadMonthDTO";
+import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
+import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
+import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
@@ -24,7 +38,14 @@ export declare class UjsService {
     private readonly UJSUserRepository;
     private readonly UJSRoleRepository;
     private readonly UJSRolePermissionRepository;
-    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>);
+    private readonly UJSBackupShgGroupDataUploadMonthRepository;
+    private readonly UJSBranchRepository;
+    private readonly UJSFailedJobRepository;
+    private readonly UJSMigrationRepository;
+    private readonly UJSPersonalAccessTokenRepository;
+    private readonly UJSSHGExpansesRepository;
+    private readonly UJSSHGLoanRepaymentRepository;
+    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>);
     UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
         status: number;
@@ -105,6 +126,104 @@ export declare class UjsService {
     }>;
     UJSRoleList(request: any): Promise<{
         shgRole: UJSRoleEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSMigrationAdd(request: any, ujsDepartmentDTO: UJSMigrationDTO): Promise<{
+        message: string;
+        status: number;
+        migrationList?: undefined;
+    } | {
+        migrationList: UJSMigrationEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSMigrationList(request: any): Promise<{
+        migration: UJSMigrationEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSFailedJobsAdd(request: any, ujsFailedJobsDTO: UJSFailedJobDTO): Promise<{
+        message: string;
+        status: number;
+        FailedJobsList?: undefined;
+    } | {
+        FailedJobsList: UJSFailedJobEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSFailedJobsList(request: any): Promise<{
+        failedJobs: UJSFailedJobEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSBranchAdd(request: any, ujsBranchDTO: UJSBranchDTO): Promise<{
+        message: string;
+        status: number;
+        BranchList?: undefined;
+    } | {
+        BranchList: UJSBranchEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSBranchList(request: any): Promise<{
+        Branch: UJSBranchEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSBackupShgGroupAdd(request: any, ujsBackupShgGroupDataUploadMonthDTO: UJSBackupShgGroupDataUploadMonthDTO): Promise<{
+        message: string;
+        status: number;
+        BackupShgGroupList?: undefined;
+    } | {
+        BackupShgGroupList: UJSBackupShgGroupDataUploadMonthEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSBackupShgGroupList(request: any): Promise<{
+        UJSBackupShgGroup: UJSBackupShgGroupDataUploadMonthEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSPersonalAccessTokenAdd(request: any, ujsPersonalAccessTokenDTO: UJSPersonalAccessTokenDTO): Promise<{
+        message: string;
+        status: number;
+        PersonalAccessTokenList?: undefined;
+    } | {
+        PersonalAccessTokenList: UJSPersonalAccessTokenEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSPersonalAccessTokenList(request: any): Promise<{
+        PersonalAccessToken: UJSFailedJobEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSSHGExpensesAdd(request: any, ujsSHGExpansesDTO: UJSSHGExpansesDTO): Promise<{
+        message: string;
+        status: number;
+        ShgExpensesList?: undefined;
+    } | {
+        ShgExpensesList: UJSSHGExpansesEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSSHGExpensesList(request: any): Promise<{
+        SHGExpenses: UJSSHGExpansesEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgLoanRepaymentAdd(request: any, ujsSHGLoanRepaymentDTO: UJSSHGLoanRepaymentDTO): Promise<{
+        message: string;
+        status: number;
+        ShgExpensesList?: undefined;
+    } | {
+        ShgExpensesList: UJSSHGLoanRepaymentEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgLoanRepaymentList(request: any): Promise<{
+        SHGLoanRepayment: UJSSHGLoanRepaymentEntity[];
         message: string;
         status: number;
     }>;

@@ -1,0 +1,34 @@
+export declare class UJSBranchEntity {
+    id: number;
+    branch_name: string;
+    branch_code: string;
+    director_name: string;
+    father_name: string;
+    qualification: string;
+    village: string;
+    block: string;
+    state: string;
+    district: string;
+    po: string;
+    pincode: string;
+    mobile: string;
+    email: string;
+    centerType: string;
+    center_timing: string;
+    no_of_computer: string;
+    center_area: string;
+    toilet: string;
+    scanner: string;
+    printer_color: string;
+    internetconnectivity: string;
+    ups_inverter: string;
+    no_of_chairs: string;
+    no_of_white_boards: string;
+    cctv: string;
+    projecter: string;
+    status: number;
+    created_at: number;
+    created_by: number;
+    updated_at: number;
+    updated_by: number;
+}

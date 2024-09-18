@@ -19,6 +19,13 @@ import { UJSShgMemberDTO } from "./dto/UJSShgMemberDTO";
 import { UJSUsersDTO } from "./dto/UJSUsersDTO";
 import { UJSRoleDTO } from "./dto/UJSRoleDTO";
 import { UJSRolePermissionDTO } from "./dto/UJSRolePermissionDTO";
+import { UJSMigrationDTO } from "./dto/UJSMigrationDTO";
+import { UJSFailedJobDTO } from "./dto/UJSFailedJobsDTO";
+import { UJSBranchDTO } from "./dto/UJSBranchDTO";
+import { UJSBackupShgGroupDataUploadMonthDTO } from "./dto/UJSBackupShgGroupDataUploadMonthDTO";
+import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
+import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
+import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -129,5 +136,117 @@ return this.ujsService.UJSUserList(request);
 @UseGuards(JwtAuthGuard)
 async listRole(@Req() request: Request) {
 return this.ujsService.UJSRoleList(request);
+}
+// ------------------------migration -----------------------------------------
+// add migration
+@Post("AddMigration")
+  @UseGuards(JwtAuthGuard)
+  async UJSMigrationAdd(
+    @Req() request: Request,
+    @Body() ujsMigrationDTO: UJSMigrationDTO
+  ) {
+    return this.ujsService.UJSMigrationAdd(request, ujsMigrationDTO);
+  }
+  // list Migration
+@Get('ListMigration')
+@UseGuards(JwtAuthGuard)
+async listMigration(@Req() request: Request) {
+return this.ujsService.UJSMigrationList(request);
+}
+// ------------------------ failed job-----------------------------------------
+// add failed job
+@Post("AddFailedJobs")
+  @UseGuards(JwtAuthGuard)
+  async UJSFailedJobsAdd(
+    @Req() request: Request,
+    @Body() ujsFailedJobDTO: UJSFailedJobDTO
+  ) {
+    return this.ujsService.UJSFailedJobsAdd(request, ujsFailedJobDTO);
+  }
+  // list failed job
+@Get('ListFailedJobs')
+@UseGuards(JwtAuthGuard)
+async listFailedJobs(@Req() request: Request) {
+return this.ujsService.UJSFailedJobsList(request);
+}
+// ------------------------ Branch-----------------------------------------
+// add branch
+@Post("AddBranch")
+  @UseGuards(JwtAuthGuard)
+  async UJSBranchAdd(
+    @Req() request: Request,
+    @Body() ujsBranchDTO: UJSBranchDTO
+  ) {
+    return this.ujsService.UJSBranchAdd(request, ujsBranchDTO);
+  }
+  // list branch
+@Get('ListBranch')
+@UseGuards(JwtAuthGuard)
+async listBranch(@Req() request: Request) {
+return this.ujsService.UJSBranchList(request);
+}
+// ------------------------ Back shg grp-----------------------------------------
+// add backup shg grp
+@Post("AddBackupShgGroup")
+  @UseGuards(JwtAuthGuard)
+  async UJSBackupShgGroupAdd(
+    @Req() request: Request,
+    @Body() ujsBackupShgGroupDataUploadMonthDTO: UJSBackupShgGroupDataUploadMonthDTO
+  ) {
+    return this.ujsService.UJSBackupShgGroupAdd(request, ujsBackupShgGroupDataUploadMonthDTO);
+  }
+  // list backup shg grp
+@Get('ListBackupShgGroup')
+@UseGuards(JwtAuthGuard)
+async listBackupShgGroup(@Req() request: Request) {
+return this.ujsService.UJSBackupShgGroupList(request);
+}
+// ------------------------ personal access token-----------------------------------------
+// add personal access token
+@Post("AddPersonalAccessToken")
+  @UseGuards(JwtAuthGuard)
+  async UJSPersonalAccessTokenAdd(
+    @Req() request: Request,
+    @Body() ujsPersonalAccessTokenDTO: UJSPersonalAccessTokenDTO
+  ) {
+    return this.ujsService.UJSPersonalAccessTokenAdd(request, ujsPersonalAccessTokenDTO);
+  }
+  // list personal access token
+@Get('ListPersonalAccessToken')
+@UseGuards(JwtAuthGuard)
+async lisPersonalAccessToken(@Req() request: Request) {
+return this.ujsService.UJSPersonalAccessTokenList(request);
+}
+// ------------------------ shg exp-----------------------------------------
+// add shg exp
+@Post("AddShgExpenses")
+  @UseGuards(JwtAuthGuard)
+  async UJSSHGExpensesAdd(
+    @Req() request: Request,
+    @Body() ujsShgExpensesDTO: UJSSHGExpansesDTO
+  ) {
+    return this.ujsService.UJSSHGExpensesAdd(request, ujsShgExpensesDTO);
+  }
+  // list shg exp
+@Get('ListShgExpenses')
+@UseGuards(JwtAuthGuard)
+async listSHGExpenses(@Req() request: Request) {
+return this.ujsService.UJSSHGExpensesList(request);
+}
+// ------------------------ shg loan repayment-----------------------------------------
+// add shg loan repayment
+@Post("AddShgLoanRepayment")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgLoanRepaymentAdd(
+    @Req() request: Request,
+    @Body() ujsShgLoanRepaymentDTO: UJSSHGLoanRepaymentDTO
+  ) {
+    return this.ujsService.UJSShgLoanRepaymentAdd(request, ujsShgLoanRepaymentDTO);
+  }
+  // list shg loan repayment
+@Get('ListShgLoanRepayment')
+@UseGuards(JwtAuthGuard)
+async listShgLoanRepayment(@Req() request: Request) {
+return this.ujsService.UJSShgLoanRepaymentList(request);
 }
  }

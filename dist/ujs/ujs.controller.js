@@ -23,6 +23,13 @@ const UJSShgGroupDTO_1 = require("./dto/UJSShgGroupDTO");
 const UJSShgMemberDTO_1 = require("./dto/UJSShgMemberDTO");
 const UJSUsersDTO_1 = require("./dto/UJSUsersDTO");
 const UJSRoleDTO_1 = require("./dto/UJSRoleDTO");
+const UJSMigrationDTO_1 = require("./dto/UJSMigrationDTO");
+const UJSFailedJobsDTO_1 = require("./dto/UJSFailedJobsDTO");
+const UJSBranchDTO_1 = require("./dto/UJSBranchDTO");
+const UJSBackupShgGroupDataUploadMonthDTO_1 = require("./dto/UJSBackupShgGroupDataUploadMonthDTO");
+const UJSPersonalAccessTokenDTO_1 = require("./dto/UJSPersonalAccessTokenDTO");
+const UJSSHGExpansesDTO_1 = require("./dto/UJSSHGExpansesDTO");
+const UJSSHGLoanRepaymentDTO_1 = require("./dto/UJSSHGLoanRepaymentDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -63,6 +70,48 @@ let UjsController = class UjsController {
     }
     async listRole(request) {
         return this.ujsService.UJSRoleList(request);
+    }
+    async UJSMigrationAdd(request, ujsMigrationDTO) {
+        return this.ujsService.UJSMigrationAdd(request, ujsMigrationDTO);
+    }
+    async listMigration(request) {
+        return this.ujsService.UJSMigrationList(request);
+    }
+    async UJSFailedJobsAdd(request, ujsFailedJobDTO) {
+        return this.ujsService.UJSFailedJobsAdd(request, ujsFailedJobDTO);
+    }
+    async listFailedJobs(request) {
+        return this.ujsService.UJSFailedJobsList(request);
+    }
+    async UJSBranchAdd(request, ujsBranchDTO) {
+        return this.ujsService.UJSBranchAdd(request, ujsBranchDTO);
+    }
+    async listBranch(request) {
+        return this.ujsService.UJSBranchList(request);
+    }
+    async UJSBackupShgGroupAdd(request, ujsBackupShgGroupDataUploadMonthDTO) {
+        return this.ujsService.UJSBackupShgGroupAdd(request, ujsBackupShgGroupDataUploadMonthDTO);
+    }
+    async listBackupShgGroup(request) {
+        return this.ujsService.UJSBackupShgGroupList(request);
+    }
+    async UJSPersonalAccessTokenAdd(request, ujsPersonalAccessTokenDTO) {
+        return this.ujsService.UJSPersonalAccessTokenAdd(request, ujsPersonalAccessTokenDTO);
+    }
+    async lisPersonalAccessToken(request) {
+        return this.ujsService.UJSPersonalAccessTokenList(request);
+    }
+    async UJSSHGExpensesAdd(request, ujsShgExpensesDTO) {
+        return this.ujsService.UJSSHGExpensesAdd(request, ujsShgExpensesDTO);
+    }
+    async listSHGExpenses(request) {
+        return this.ujsService.UJSSHGExpensesList(request);
+    }
+    async UJSShgLoanRepaymentAdd(request, ujsShgLoanRepaymentDTO) {
+        return this.ujsService.UJSShgLoanRepaymentAdd(request, ujsShgLoanRepaymentDTO);
+    }
+    async listShgLoanRepayment(request) {
+        return this.ujsService.UJSShgLoanRepaymentList(request);
     }
 };
 exports.UjsController = UjsController;
@@ -170,6 +219,125 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listRole", null);
+__decorate([
+    (0, common_1.Post)("AddMigration"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSMigrationDTO_1.UJSMigrationDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSMigrationAdd", null);
+__decorate([
+    (0, common_1.Get)('ListMigration'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listMigration", null);
+__decorate([
+    (0, common_1.Post)("AddFailedJobs"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSFailedJobsDTO_1.UJSFailedJobDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSFailedJobsAdd", null);
+__decorate([
+    (0, common_1.Get)('ListFailedJobs'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listFailedJobs", null);
+__decorate([
+    (0, common_1.Post)("AddBranch"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSBranchDTO_1.UJSBranchDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSBranchAdd", null);
+__decorate([
+    (0, common_1.Get)('ListBranch'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listBranch", null);
+__decorate([
+    (0, common_1.Post)("AddBackupShgGroup"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSBackupShgGroupDataUploadMonthDTO_1.UJSBackupShgGroupDataUploadMonthDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSBackupShgGroupAdd", null);
+__decorate([
+    (0, common_1.Get)('ListBackupShgGroup'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listBackupShgGroup", null);
+__decorate([
+    (0, common_1.Post)("AddPersonalAccessToken"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSPersonalAccessTokenDTO_1.UJSPersonalAccessTokenDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSPersonalAccessTokenAdd", null);
+__decorate([
+    (0, common_1.Get)('ListPersonalAccessToken'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "lisPersonalAccessToken", null);
+__decorate([
+    (0, common_1.Post)("AddShgExpenses"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSHGExpansesDTO_1.UJSSHGExpansesDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSSHGExpensesAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgExpenses'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listSHGExpenses", null);
+__decorate([
+    (0, common_1.Post)("AddShgLoanRepayment"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSHGLoanRepaymentDTO_1.UJSSHGLoanRepaymentDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgLoanRepaymentAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgLoanRepayment'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgLoanRepayment", null);
 exports.UjsController = UjsController = __decorate([
     (0, common_1.Controller)("ujs"),
     __param(1, (0, common_1.Inject)(common_1.Logger)),
