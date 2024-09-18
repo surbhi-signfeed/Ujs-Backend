@@ -9,32 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminUserInfoEntity = void 0;
+exports.UJSRolePermissionEntity = void 0;
 const typeorm_1 = require("typeorm");
-let AdminUserInfoEntity = class AdminUserInfoEntity {
+let UJSRolePermissionEntity = class UJSRolePermissionEntity {
 };
-exports.AdminUserInfoEntity = AdminUserInfoEntity;
+exports.UJSRolePermissionEntity = UJSRolePermissionEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], AdminUserInfoEntity.prototype, "id", void 0);
+], UJSRolePermissionEntity.prototype, "per_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'active', type: 'boolean' }),
-    __metadata("design:type", Boolean)
-], AdminUserInfoEntity.prototype, "active", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'email', type: 'varchar' }),
-    __metadata("design:type", String)
-], AdminUserInfoEntity.prototype, "email", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'password', type: 'varchar' }),
-    __metadata("design:type", String)
-], AdminUserInfoEntity.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'role', type: 'int' }),
+    (0, typeorm_1.Column)({ name: 'roll_id', type: 'int' }),
     __metadata("design:type", Number)
-], AdminUserInfoEntity.prototype, "role", void 0);
-exports.AdminUserInfoEntity = AdminUserInfoEntity = __decorate([
-    (0, typeorm_1.Entity)('users')
-], AdminUserInfoEntity);
-//# sourceMappingURL=AdminUserInfoEntity.js.map
+], UJSRolePermissionEntity.prototype, "roll_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'permission_name', type: 'varchar' }),
+    __metadata("design:type", String)
+], UJSRolePermissionEntity.prototype, "permission_name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'active', type: 'varchar' }),
+    __metadata("design:type", String)
+], UJSRolePermissionEntity.prototype, "active", void 0);
+exports.UJSRolePermissionEntity = UJSRolePermissionEntity = __decorate([
+    (0, typeorm_1.Entity)('permission_detail')
+], UJSRolePermissionEntity);
+//# sourceMappingURL=UJSRolePermissionEntity.js.map

@@ -24,18 +24,18 @@ let AuthService = class AuthService {
         this.connection = connection;
         this.AdminUserInfoEntityRepository = AdminUserInfoEntityRepository;
     }
-    async validateUser(username, password) {
+    async validateUser(email, password) {
         const user = await this.AdminUserInfoEntityRepository.findOne({
-            where: { UserName: username, UserPassword: password },
+            where: { email: email, password: password },
         });
         if (user) {
-            if (user.is_active === false) {
+            if (user.active === false) {
                 throw new common_1.UnauthorizedException("User account is not active. You cannot login.");
             }
             else {
                 return {
-                    id: user.UserID,
-                    UserID: user.UserID,
+                    id: user.id,
+                    role: user.role
                 };
             }
         }
@@ -45,7 +45,7 @@ let AuthService = class AuthService {
     }
     async generateToken(user) {
         if (user) {
-            const payload = { username: user.username, sub: user.userId };
+            const payload = { email: user.email, sub: user.userId };
             return this.jwtService.signAsync(payload);
         }
         return null;

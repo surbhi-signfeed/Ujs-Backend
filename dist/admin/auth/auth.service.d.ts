@@ -7,6 +7,6 @@ export declare class AuthService {
     private readonly connection;
     private readonly AdminUserInfoEntityRepository;
     constructor(jwtService: JwtService, connection: Connection, AdminUserInfoEntityRepository: Repository<AdminUserInfoEntity>);
-    validateUser(username: string, password: string): Promise<any>;
+    validateUser(email: string, password: string): Promise<any>;
     generateToken(user: any): Promise<string>;
 }

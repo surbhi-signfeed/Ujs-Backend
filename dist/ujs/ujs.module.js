@@ -14,12 +14,15 @@ const ujs_service_1 = require("./ujs.service");
 const UJSDepartmentEntity_1 = require("./Entity/UJSDepartmentEntity");
 const UJSShgGroupEntity_1 = require("./Entity/UJSShgGroupEntity");
 const UJSShgMemberEntity_1 = require("./Entity/UJSShgMemberEntity");
+const UJSUsersEntity_1 = require("./Entity/UJSUsersEntity");
+const UJSRoleEntity_1 = require("./Entity/UJSRoleEntity");
+const UJSRolePermissionEntity_1 = require("./Entity/UJSRolePermissionEntity");
 let CmsModule = class CmsModule {
 };
 exports.CmsModule = CmsModule;
 exports.CmsModule = CmsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([UJSDepartmentEntity_1.UJSDepartmentEntity, UJSShgGroupEntity_1.UJSShgGroupEntity, UJSShgMemberEntity_1.UJSShgMemberEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([UJSDepartmentEntity_1.UJSDepartmentEntity, UJSShgGroupEntity_1.UJSShgGroupEntity, UJSShgMemberEntity_1.UJSShgMemberEntity, UJSUsersEntity_1.UJSUsersEntity, UJSRoleEntity_1.UJSRoleEntity, UJSRolePermissionEntity_1.UJSRolePermissionEntity])],
         controllers: [ujs_controller_1.UjsController],
         providers: [ujs_service_1.UjsService, common_1.Logger]
     })

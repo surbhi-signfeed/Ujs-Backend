@@ -5,8 +5,8 @@ import { AuthService } from './auth.service';
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
     @Post('login')
-    async login(@Body() body: { username: string; password: string }): Promise<{ accessToken?: string;  }> {
-        const user = await this.authService.validateUser(body.username, body.password);
+    async login(@Body() body: { email: string; password: string }): Promise<{ accessToken?: string; id:number;role:number;  }> {
+        const user = await this.authService.validateUser(body.email, body.password);
         if (!user) {
             throw new UnauthorizedException('Invalid credentials');
         }
@@ -19,7 +19,9 @@ export class AuthController {
         const accessToken = await this.authService.generateToken(user);
 
         return { 
-            accessToken 
+            accessToken ,
+            id:user.id,
+            role:user.role
         };
     }
 }

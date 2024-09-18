@@ -9,21 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CMSResolutionDTO = void 0;
+exports.UJSRoleDTO = void 0;
 const class_validator_1 = require("class-validator");
-class CMSResolutionDTO {
+class UJSRoleDTO {
 }
-exports.CMSResolutionDTO = CMSResolutionDTO;
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CMSResolutionDTO.prototype, "name", void 0);
+exports.UJSRoleDTO = UJSRoleDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], CMSResolutionDTO.prototype, "width", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CMSResolutionDTO.prototype, "height", void 0);
-//# sourceMappingURL=CMSResolutionDTO.js.map
+], UJSRoleDTO.prototype, "roll_id", void 0);
+//# sourceMappingURL=UJSRoleDTO.js.map

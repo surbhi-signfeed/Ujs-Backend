@@ -9,13 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CMSResolutionDeleteDTO = void 0;
-const class_validator_1 = require("class-validator");
-class CMSResolutionDeleteDTO {
-}
-exports.CMSResolutionDeleteDTO = CMSResolutionDeleteDTO;
+exports.UJSRoleEntity = void 0;
+const typeorm_1 = require("typeorm");
+let UJSRoleEntity = class UJSRoleEntity {
+};
+exports.UJSRoleEntity = UJSRoleEntity;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], CMSResolutionDeleteDTO.prototype, "resolutionID", void 0);
-//# sourceMappingURL=CMSResolutionDeleteDTO.js.map
+], UJSRoleEntity.prototype, "roll_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'role_name', type: 'varchar' }),
+    __metadata("design:type", String)
+], UJSRoleEntity.prototype, "role_name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'status', type: 'varchar' }),
+    __metadata("design:type", String)
+], UJSRoleEntity.prototype, "status", void 0);
+exports.UJSRoleEntity = UJSRoleEntity = __decorate([
+    (0, typeorm_1.Entity)('role')
+], UJSRoleEntity);
+//# sourceMappingURL=UJSRoleEntity.js.map

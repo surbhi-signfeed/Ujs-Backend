@@ -1,4 +1,4 @@
 export declare class AdminUserLoginDTO {
-    username: string;
+    email: string;
     password: string;
 }

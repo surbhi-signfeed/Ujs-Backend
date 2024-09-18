@@ -20,7 +20,7 @@ let AuthController = class AuthController {
         this.authService = authService;
     }
     async login(body) {
-        const user = await this.authService.validateUser(body.username, body.password);
+        const user = await this.authService.validateUser(body.email, body.password);
         if (!user) {
             throw new common_1.UnauthorizedException('Invalid credentials');
         }
@@ -29,7 +29,9 @@ let AuthController = class AuthController {
         }
         const accessToken = await this.authService.generateToken(user);
         return {
-            accessToken
+            accessToken,
+            id: user.id,
+            role: user.role
         };
     }
 };

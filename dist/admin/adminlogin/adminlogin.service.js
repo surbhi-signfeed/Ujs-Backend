@@ -20,16 +20,14 @@ let AdminloginService = class AdminloginService {
         this.connection = connection;
     }
     async AdminUserLogin(adminUserLogindto) {
-        const userList = await this.connection.query(`SELECT id, concat(first_name, last_name) as fullName, 
-       username, email, mobile, user_role as role, '' as avatar, 
-       is_active as status FROM admin_users where username = "${adminUserLogindto.username}" 
+        const userList = await this.connection.query(`SELECT id, email,  role, status FROM admin_users where email = "${adminUserLogindto.email}" 
        and password = "${adminUserLogindto.password}"`);
         return { user: userList, accessToken: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', status: 200 };
     }
     async AdminValidateUserLogin() {
         const userList = await this.connection.query(`SELECT id, concat(first_name, last_name) as fullName, 
-       username, email, mobile, user_role as role, '' as avatar, 
-       is_active as status FROM admin_users where username = "govind@harij.in" 
+       email, email, mobile, user_role as role, '' as avatar, 
+       is_active as status FROM admin_users where email = "govind@harij.in" 
        and password = "123456"`);
         return { user: userList, accessToken: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', status: 200 };
     }

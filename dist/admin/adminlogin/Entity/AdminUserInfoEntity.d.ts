@@ -1,6 +1,7 @@
 export declare class AdminUserInfoEntity {
-    UserID: number;
-    is_active: boolean;
-    UserName: string;
-    UserPassword: string;
+    id: number;
+    active: boolean;
+    email: string;
+    password: string;
+    role: number;
 }

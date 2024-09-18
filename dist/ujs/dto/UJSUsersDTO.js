@@ -9,17 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminUserLoginDTO = void 0;
+exports.UJSUsersDTO = void 0;
 const class_validator_1 = require("class-validator");
-class AdminUserLoginDTO {
+class UJSUsersDTO {
 }
-exports.AdminUserLoginDTO = AdminUserLoginDTO;
+exports.UJSUsersDTO = UJSUsersDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], AdminUserLoginDTO.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], AdminUserLoginDTO.prototype, "password", void 0);
-//# sourceMappingURL=AdminUserLoginDTO.js.map
+], UJSUsersDTO.prototype, "ID", void 0);
+//# sourceMappingURL=UJSUsersDTO.js.map

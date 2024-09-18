@@ -9,25 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CMSResolutionUpdateDTO = void 0;
+exports.UJSRolePermissionDTO = void 0;
 const class_validator_1 = require("class-validator");
-class CMSResolutionUpdateDTO {
+class UJSRolePermissionDTO {
 }
-exports.CMSResolutionUpdateDTO = CMSResolutionUpdateDTO;
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CMSResolutionUpdateDTO.prototype, "id", void 0);
+exports.UJSRolePermissionDTO = UJSRolePermissionDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CMSResolutionUpdateDTO.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CMSResolutionUpdateDTO.prototype, "width", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CMSResolutionUpdateDTO.prototype, "height", void 0);
-//# sourceMappingURL=CMSResolutionUpdateDTO.js.map
+], UJSRolePermissionDTO.prototype, "per_id", void 0);
+//# sourceMappingURL=UJSRolePermissionDTO.js.map

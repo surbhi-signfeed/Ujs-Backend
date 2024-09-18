@@ -16,6 +16,9 @@ import { UJSDepartmentUpdateDTO } from "./dto/UJSDepartmentUpdateDTO";
 import { UJSDepartmentDeleteDTO } from "./dto/UJSDepartmentDeleteDTO";
 import { UJSShgGroupDTO } from "./dto/UJSShgGroupDTO";
 import { UJSShgMemberDTO } from "./dto/UJSShgMemberDTO";
+import { UJSUsersDTO } from "./dto/UJSUsersDTO";
+import { UJSRoleDTO } from "./dto/UJSRoleDTO";
+import { UJSRolePermissionDTO } from "./dto/UJSRolePermissionDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -93,5 +96,38 @@ return this.ujsService.UJSShgGroupList(request);
 @UseGuards(JwtAuthGuard)
 async listShgMember(@Req() request: Request) {
 return this.ujsService.UJSShgMemberList(request);
+}
+// ------------------------Users -----------------------------------------
+// add Users
+@Post("AddUsers")
+  @UseGuards(JwtAuthGuard)
+  async UJSUserAdd(
+    @Req() request: Request,
+    @Body() ujsUserDTO: UJSUsersDTO
+  ) {
+    return this.ujsService.UJSUserAdd(request, ujsUserDTO);
+  }
+  // list user
+@Get('ListUser')
+@UseGuards(JwtAuthGuard)
+async listUser(@Req() request: Request) {
+return this.ujsService.UJSUserList(request);
+}
+  // --------------------role------------------------------------------
+  // add create
+  @Post("AddRole")
+  @UseGuards(JwtAuthGuard)
+  async UJSRoleAdd(
+    @Req() request: Request,
+    @Body() ujsRoleDTO: UJSRoleDTO,
+    @Body('permissions') ujsRolePermissionDTOs: UJSRolePermissionDTO[]
+  ) {
+    return this.ujsService.UJSRoleAdd(request, ujsRoleDTO, ujsRolePermissionDTOs);
+  }
+  // list role
+@Get('ListRole')
+@UseGuards(JwtAuthGuard)
+async listRole(@Req() request: Request) {
+return this.ujsService.UJSRoleList(request);
 }
  }

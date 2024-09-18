@@ -21,6 +21,8 @@ const UJSDepartmentUpdateDTO_1 = require("./dto/UJSDepartmentUpdateDTO");
 const UJSDepartmentDeleteDTO_1 = require("./dto/UJSDepartmentDeleteDTO");
 const UJSShgGroupDTO_1 = require("./dto/UJSShgGroupDTO");
 const UJSShgMemberDTO_1 = require("./dto/UJSShgMemberDTO");
+const UJSUsersDTO_1 = require("./dto/UJSUsersDTO");
+const UJSRoleDTO_1 = require("./dto/UJSRoleDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -49,6 +51,18 @@ let UjsController = class UjsController {
     }
     async listShgMember(request) {
         return this.ujsService.UJSShgMemberList(request);
+    }
+    async UJSUserAdd(request, ujsUserDTO) {
+        return this.ujsService.UJSUserAdd(request, ujsUserDTO);
+    }
+    async listUser(request) {
+        return this.ujsService.UJSUserList(request);
+    }
+    async UJSRoleAdd(request, ujsRoleDTO, ujsRolePermissionDTOs) {
+        return this.ujsService.UJSRoleAdd(request, ujsRoleDTO, ujsRolePermissionDTOs);
+    }
+    async listRole(request) {
+        return this.ujsService.UJSRoleList(request);
     }
 };
 exports.UjsController = UjsController;
@@ -121,6 +135,41 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgMember", null);
+__decorate([
+    (0, common_1.Post)("AddUsers"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSUsersDTO_1.UJSUsersDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSUserAdd", null);
+__decorate([
+    (0, common_1.Get)('ListUser'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listUser", null);
+__decorate([
+    (0, common_1.Post)("AddRole"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)('permissions')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSRoleDTO_1.UJSRoleDTO, Array]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSRoleAdd", null);
+__decorate([
+    (0, common_1.Get)('ListRole'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listRole", null);
 exports.UjsController = UjsController = __decorate([
     (0, common_1.Controller)("ujs"),
     __param(1, (0, common_1.Inject)(common_1.Logger)),

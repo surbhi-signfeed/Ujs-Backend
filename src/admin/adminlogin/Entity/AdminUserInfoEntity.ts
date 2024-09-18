@@ -1,16 +1,19 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-@Entity('user')
+@Entity('users')
 export class AdminUserInfoEntity {
   @PrimaryGeneratedColumn()
-  UserID: number;
-  @Column({name: 'is_active',type: 'boolean' })
-  is_active: boolean;
+  id: number;
+  @Column({name: 'active',type: 'boolean' })
+  active: boolean;
 
 
-  @Column({name: 'UserName',type: 'varchar' })
-  UserName: string;
-  @Column({name: 'UserPassword',type: 'varchar' })
-  UserPassword: string;
+  @Column({name: 'email',type: 'varchar' })
+  email: string;
+  @Column({name: 'password',type: 'varchar' })
+  password: string;
+  
+  @Column({name: 'role',type: 'int' })
+  role: number;
   
 
 }

@@ -3,9 +3,11 @@ export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(body: {
-        username: string;
+        email: string;
         password: string;
     }): Promise<{
         accessToken?: string;
+        id: number;
+        role: number;
     }>;
 }

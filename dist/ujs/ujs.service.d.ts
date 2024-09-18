@@ -9,13 +9,22 @@ import { UJSShgGroupEntity } from "./Entity/UJSShgGroupEntity";
 import { UJSShgMemberEntity } from "./Entity/UJSShgMemberEntity";
 import { UJSShgGroupDTO } from "./dto/UJSShgGroupDTO";
 import { UJSShgMemberDTO } from "./dto/UJSShgMemberDTO";
+import { UJSUsersDTO } from "./dto/UJSUsersDTO";
+import { UJSUsersEntity } from "./Entity/UJSUsersEntity";
+import { UJSRoleEntity } from "./Entity/UJSRoleEntity";
+import { UJSRolePermissionEntity } from "./Entity/UJSRolePermissionEntity";
+import { UJSRoleDTO } from "./dto/UJSRoleDTO";
+import { UJSRolePermissionDTO } from "./dto/UJSRolePermissionDTO";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
     private readonly UJSDepartmentRepository;
     private readonly UJSSghGroupRepository;
     private readonly UJSShgMemberRepository;
-    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>);
+    private readonly UJSUserRepository;
+    private readonly UJSRoleRepository;
+    private readonly UJSRolePermissionRepository;
+    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>);
     UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
         status: number;
@@ -68,6 +77,34 @@ export declare class UjsService {
     }>;
     UJSShgMemberList(request: any): Promise<{
         shgMember: UJSShgMemberEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSUserAdd(request: any, ujsUserDTO: UJSUsersDTO): Promise<{
+        message: string;
+        status: number;
+        UserList?: undefined;
+    } | {
+        UserList: UJSUsersEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSUserList(request: any): Promise<{
+        shgUser: UJSUsersEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSRoleAdd(request: any, ujsRoleDTO: UJSRoleDTO, permissionDTOs: UJSRolePermissionDTO[]): Promise<{
+        message: string;
+        status: number;
+        role?: undefined;
+    } | {
+        message: string;
+        status: number;
+        role: UJSRoleEntity;
+    }>;
+    UJSRoleList(request: any): Promise<{
+        shgRole: UJSRoleEntity[];
         message: string;
         status: number;
     }>;

@@ -19,13 +19,19 @@ const typeorm_2 = require("typeorm");
 const UJSDepartmentEntity_1 = require("./Entity/UJSDepartmentEntity");
 const UJSShgGroupEntity_1 = require("./Entity/UJSShgGroupEntity");
 const UJSShgMemberEntity_1 = require("./Entity/UJSShgMemberEntity");
+const UJSUsersEntity_1 = require("./Entity/UJSUsersEntity");
+const UJSRoleEntity_1 = require("./Entity/UJSRoleEntity");
+const UJSRolePermissionEntity_1 = require("./Entity/UJSRolePermissionEntity");
 let UjsService = class UjsService {
-    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository) {
+    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository) {
         this.logger = logger;
         this.connection = connection;
         this.UJSDepartmentRepository = UJSDepartmentRepository;
         this.UJSSghGroupRepository = UJSSghGroupRepository;
         this.UJSShgMemberRepository = UJSShgMemberRepository;
+        this.UJSUserRepository = UJSUserRepository;
+        this.UJSRoleRepository = UJSRoleRepository;
+        this.UJSRolePermissionRepository = UJSRolePermissionRepository;
     }
     async UJSDepartmentAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
@@ -199,6 +205,79 @@ let UjsService = class UjsService {
         let shgMemberList = await this.UJSShgMemberRepository.find({});
         return { shgMember: shgMemberList, message: "success", status: 200 };
     }
+    async UJSUserAdd(request, ujsUserDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        const currentDateTime = new Date();
+        const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
+        let checkUser = await this.UJSUserRepository.findOne({
+            where: {
+                name: ujsUserDTO.name,
+            },
+        });
+        if (checkUser) {
+            return {
+                message: "User Already Exist",
+                status: 400,
+            };
+        }
+        else {
+            const addUJSUser = new UJSUsersEntity_1.UJSUsersEntity();
+            addUJSUser.name = ujsUserDTO.name;
+            addUJSUser.email = ujsUserDTO.email;
+            addUJSUser.password = ujsUserDTO.password;
+            addUJSUser.shg_grp = ujsUserDTO.shg_grp;
+            addUJSUser.active = ujsUserDTO.active;
+            addUJSUser.role = ujsUserDTO.role;
+            addUJSUser.emp_code = ujsUserDTO.emp_code;
+            addUJSUser.mobile = ujsUserDTO.mobile;
+            addUJSUser.admin_app = ujsUserDTO.admin_app;
+            await this.UJSUserRepository.save(addUJSUser);
+            return { UserList: addUJSUser, message: "success", status: 200 };
+        }
+    }
+    async UJSUserList(request) {
+        let shgUserList = await this.UJSUserRepository.find({});
+        return { shgUser: shgUserList, message: "success", status: 200 };
+    }
+    async UJSRoleAdd(request, ujsRoleDTO, permissionDTOs) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        const currentDateTime = new Date();
+        const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
+        let checkRole = await this.UJSRoleRepository.findOne({
+            where: { role_name: ujsRoleDTO.role_name },
+        });
+        if (checkRole) {
+            return { message: "Role Already Exists", status: 400 };
+        }
+        const addUJSRole = new UJSRoleEntity_1.UJSRoleEntity();
+        addUJSRole.role_name = ujsRoleDTO.role_name;
+        addUJSRole.status = ujsRoleDTO.status;
+        await this.UJSRoleRepository.save(addUJSRole);
+        let getRole = await this.UJSRoleRepository.findOne({
+            where: { role_name: ujsRoleDTO.role_name },
+        });
+        if (!getRole) {
+            return { message: "Failed to retrieve the created role", status: 500 };
+        }
+        for (const permissionDTO of permissionDTOs) {
+            const checkPermission = await this.UJSRolePermissionRepository.findOne({
+                where: { permission_name: permissionDTO.permission_name, roll_id: getRole.roll_id },
+            });
+            if (checkPermission) {
+                return { message: `Permission '${permissionDTO.permission_name}' Already Exists for this Role`, status: 400 };
+            }
+            const addRolePermission = new UJSRolePermissionEntity_1.UJSRolePermissionEntity();
+            addRolePermission.roll_id = getRole.roll_id;
+            addRolePermission.permission_name = permissionDTO.permission_name;
+            addRolePermission.active = permissionDTO.active;
+            await this.UJSRolePermissionRepository.save(addRolePermission);
+        }
+        return { message: "Role and Permissions created successfully", status: 200, role: getRole };
+    }
+    async UJSRoleList(request) {
+        let shgRoleList = await this.UJSRoleRepository.find({});
+        return { shgRole: shgRoleList, message: "success", status: 200 };
+    }
 };
 exports.UjsService = UjsService;
 exports.UjsService = UjsService = __decorate([
@@ -208,7 +287,13 @@ exports.UjsService = UjsService = __decorate([
     __param(2, (0, typeorm_1.InjectRepository)(UJSDepartmentEntity_1.UJSDepartmentEntity)),
     __param(3, (0, typeorm_1.InjectRepository)(UJSShgGroupEntity_1.UJSShgGroupEntity)),
     __param(4, (0, typeorm_1.InjectRepository)(UJSShgMemberEntity_1.UJSShgMemberEntity)),
+    __param(5, (0, typeorm_1.InjectRepository)(UJSUsersEntity_1.UJSUsersEntity)),
+    __param(6, (0, typeorm_1.InjectRepository)(UJSRoleEntity_1.UJSRoleEntity)),
+    __param(7, (0, typeorm_1.InjectRepository)(UJSRolePermissionEntity_1.UJSRolePermissionEntity)),
     __metadata("design:paramtypes", [common_1.Logger, Object, typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository])
 ], UjsService);

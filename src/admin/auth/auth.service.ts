@@ -14,22 +14,22 @@ export class AuthService {
     private readonly AdminUserInfoEntityRepository: Repository<AdminUserInfoEntity>,
   ) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
-    // Find user by username and password
+  async validateUser(email: string, password: string): Promise<any> {
+    // Find user by email and password
     const user = await this.AdminUserInfoEntityRepository.findOne({
-      where: { UserName: username, UserPassword: password },
+      where: { email: email, password: password },
     });
 
     if (user) {
       // Check if the user is active
-      if (user.is_active === false) {
+      if (user.active === false) {
         // If the user is not active, return an error message
         throw new UnauthorizedException("User account is not active. You cannot login.");
       } else {
         // If the user is active, return user details
         return {
-          id: user.UserID,
-          UserID: user.UserID,
+          id: user.id,
+          role:user.role
         };
       }
     } else {
@@ -41,7 +41,7 @@ export class AuthService {
   async generateToken(user: any): Promise<string> {
     // Generate token only if the user is not null (i.e., found and active)
     if (user) {
-      const payload = { username: user.username, sub: user.userId };
+      const payload = { email: user.email, sub: user.userId };
       return this.jwtService.signAsync(payload);
     }
     return null; // Return null if user is not found or not active

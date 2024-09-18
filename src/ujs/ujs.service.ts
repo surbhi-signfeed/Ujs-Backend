@@ -15,6 +15,12 @@ import { UJSShgGroupEntity } from "./Entity/UJSShgGroupEntity";
 import { UJSShgMemberEntity } from "./Entity/UJSShgMemberEntity";
 import { UJSShgGroupDTO } from "./dto/UJSShgGroupDTO";
 import { UJSShgMemberDTO } from "./dto/UJSShgMemberDTO";
+import { UJSUsersDTO } from "./dto/UJSUsersDTO";
+import { UJSUsersEntity } from "./Entity/UJSUsersEntity";
+import { UJSRoleEntity } from "./Entity/UJSRoleEntity";
+import { UJSRolePermissionEntity } from "./Entity/UJSRolePermissionEntity";
+import { UJSRoleDTO } from "./dto/UJSRoleDTO";
+import { UJSRolePermissionDTO } from "./dto/UJSRolePermissionDTO";
 @Injectable()
 export class UjsService {
   
@@ -27,6 +33,12 @@ export class UjsService {
     private readonly UJSSghGroupRepository :Repository<UJSShgGroupEntity>,
      @InjectRepository(UJSShgMemberEntity)
     private readonly UJSShgMemberRepository :Repository<UJSShgMemberEntity>,
+    @InjectRepository(UJSUsersEntity)
+    private readonly UJSUserRepository :Repository<UJSUsersEntity>,
+    @InjectRepository(UJSRoleEntity)
+    private readonly UJSRoleRepository :Repository<UJSRoleEntity>,
+    @InjectRepository(UJSRolePermissionEntity)
+    private readonly UJSRolePermissionRepository :Repository<UJSRolePermissionEntity>
   ) {
     
   }
@@ -249,4 +261,112 @@ export class UjsService {
     );
     return { shgMember: shgMemberList, message: "success", status: 200 };
   }
+  // --------------------------user--------------------------------
+  // add user
+  async UJSUserAdd(request, ujsUserDTO: UJSUsersDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+   
+    const currentDateTime = new Date();
+    const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
+    let checkUser =
+      await this.UJSUserRepository.findOne({
+        where: {
+          name: ujsUserDTO.name,
+          
+        },
+      });
+    if (checkUser) {
+      return {
+        message: "User Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSUser: UJSUsersEntity =
+        new UJSUsersEntity();
+        addUJSUser.name = ujsUserDTO.name;
+        addUJSUser.email = ujsUserDTO.email;
+        addUJSUser.password = ujsUserDTO.password;
+        addUJSUser.shg_grp = ujsUserDTO.shg_grp;
+        addUJSUser.active = ujsUserDTO.active;
+        addUJSUser.role = ujsUserDTO.role;
+        addUJSUser.emp_code = ujsUserDTO.emp_code;
+        addUJSUser.mobile = ujsUserDTO.mobile;
+      addUJSUser.admin_app=ujsUserDTO.admin_app;
+    
+      await this.UJSUserRepository.save(addUJSUser);
+      return { UserList: addUJSUser, message: "success", status: 200 };
+    }
+  }
+  // list user
+
+  async UJSUserList(request) {
+    let shgUserList = await this.UJSUserRepository.find(
+      {}
+    );
+    return { shgUser: shgUserList, message: "success", status: 200 };
+  }
+  // ---------------------------role permission--------------------
+  // create role
+  async UJSRoleAdd(request, ujsRoleDTO: UJSRoleDTO, permissionDTOs: UJSRolePermissionDTO[]) {
+    const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    const currentDateTime = new Date();
+    const unixTimestamp = Math.floor(currentDateTime.getTime() / 1000);
+  
+    // Check if the role already exists by role_name
+    let checkRole = await this.UJSRoleRepository.findOne({
+      where: { role_name: ujsRoleDTO.role_name },
+    });
+  
+    if (checkRole) {
+      return { message: "Role Already Exists", status: 400 };
+    } 
+  
+    // Create new role if it does not exist
+    const addUJSRole: UJSRoleEntity = new UJSRoleEntity();
+    addUJSRole.role_name = ujsRoleDTO.role_name;
+    addUJSRole.status = ujsRoleDTO.status;
+    await this.UJSRoleRepository.save(addUJSRole);
+  
+    // After saving, retrieve the created role by role_name (to get the newly created role's ID)
+    let getRole = await this.UJSRoleRepository.findOne({
+      where: { role_name: ujsRoleDTO.role_name },
+    });
+  
+    if (!getRole) {
+      return { message: "Failed to retrieve the created role", status: 500 };
+    }
+  
+    // Iterate over the array of permissionDTOs and save each permission with the same role_id
+    for (const permissionDTO of permissionDTOs) {
+      // Check if the permission exists by permission_name in the permission repository
+      const checkPermission = await this.UJSRolePermissionRepository.findOne({
+        where: { permission_name: permissionDTO.permission_name, roll_id: getRole.roll_id },
+      });
+  
+      if (checkPermission) {
+        return { message: `Permission '${permissionDTO.permission_name}' Already Exists for this Role`, status: 400 };
+      }
+  
+      // If permission does not exist, create a new permission associated with the role
+      const addRolePermission: UJSRolePermissionEntity = new UJSRolePermissionEntity();
+      addRolePermission.roll_id = getRole.roll_id;  // Use roll_id from the newly created role
+      addRolePermission.permission_name = permissionDTO.permission_name;
+      addRolePermission.active = permissionDTO.active;
+  
+      await this.UJSRolePermissionRepository.save(addRolePermission);
+    }
+  
+    return { message: "Role and Permissions created successfully", status: 200, role: getRole };
+  }
+  
+// list role
+
+async UJSRoleList(request) {
+  let shgRoleList = await this.UJSRoleRepository.find(
+    {}
+  );
+  return { shgRole: shgRoleList, message: "success", status: 200 };
 }
+}
+
