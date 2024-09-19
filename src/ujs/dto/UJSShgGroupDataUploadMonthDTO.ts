@@ -4,7 +4,7 @@ export class UJSShgGroupDataUploadMonthDTO {
     id?: number;
     group_id?: number;
     meeting_id?: number;
-    meeting_date?: string;
+    meeting_date?: Date;
     last_remaining?: number;
   tot_saving?: number;
     internal_loan?: number;

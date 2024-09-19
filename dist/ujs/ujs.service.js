@@ -45,8 +45,11 @@ const UJSShgFpoEntity_1 = require("./Entity/UJSShgFpoEntity");
 const UJSShgFedrationReportEntity_1 = require("./Entity/UJSShgFedrationReportEntity");
 const UJSShgFedrationEntity_1 = require("./Entity/UJSShgFedrationEntity");
 const UJSShgMomEntity_1 = require("./Entity/UJSShgMomEntity");
+const UJSShgGroupDataUploadMonthEntity_1 = require("./Entity/UJSShgGroupDataUploadMonthEntity");
+const UJSShgMemberSavingEntity_1 = require("./Entity/UJSShgMemberSavingEntity");
+const UJSShgGroupDetailsInfoEntity_1 = require("./Entity/UJSShgGroupDetailsInfoEntity");
 let UjsService = class UjsService {
-    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository, UJSStateRepository, UJSShgTraningRepository, UJSShgActiveModelFarmerRepository, UJSShgAttendanceRepository, UJSShgContactRepository, UJSShgDataLockRepository, UJSShgBankLoanAllotmentRepository, UJSShgBankLoanRepository, UJSShgBankRepository, UJSShgAuditingRepository, UJSShgDataUploadRepository, UJSShgDigiSakhiRepository, UJSShgFpoRepository, UJSShgFedrationReportRepository, UJSShgFedrationRepository, UJSShgMomRepository) {
+    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository, UJSStateRepository, UJSShgTraningRepository, UJSShgActiveModelFarmerRepository, UJSShgAttendanceRepository, UJSShgContactRepository, UJSShgDataLockRepository, UJSShgBankLoanAllotmentRepository, UJSShgBankLoanRepository, UJSShgBankRepository, UJSShgAuditingRepository, UJSShgDataUploadRepository, UJSShgDigiSakhiRepository, UJSShgFpoRepository, UJSShgFedrationReportRepository, UJSShgFedrationRepository, UJSShgMomRepository, UJSShgGroupDataUploadMonthERepository, UJSShgMemberSavingRepository, UJSShgGroupDetailsInfoRepository) {
         this.logger = logger;
         this.connection = connection;
         this.UJSDepartmentRepository = UJSDepartmentRepository;
@@ -78,6 +81,9 @@ let UjsService = class UjsService {
         this.UJSShgFedrationReportRepository = UJSShgFedrationReportRepository;
         this.UJSShgFedrationRepository = UJSShgFedrationRepository;
         this.UJSShgMomRepository = UJSShgMomRepository;
+        this.UJSShgGroupDataUploadMonthERepository = UJSShgGroupDataUploadMonthERepository;
+        this.UJSShgMemberSavingRepository = UJSShgMemberSavingRepository;
+        this.UJSShgGroupDetailsInfoRepository = UJSShgGroupDetailsInfoRepository;
     }
     async UJSDepartmentAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
@@ -1086,6 +1092,140 @@ let UjsService = class UjsService {
         let momList = await this.UJSShgMomRepository.find({});
         return { mom: momList, message: "success", status: 200 };
     }
+    async UJSShgGroupDataUploadMonthAdd(request, ujsShgGroupDataUploadMonthDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkGroupDataUploadMonth = await this.UJSShgGroupDataUploadMonthERepository.findOne({
+            where: {
+                group_id: ujsShgGroupDataUploadMonthDTO.group_id
+            },
+        });
+        if (checkGroupDataUploadMonth) {
+            return {
+                message: "Already Exist",
+                status: 400,
+            };
+        }
+        else {
+            const addUJSShgGroupDataUploadMonth = new UJSShgGroupDataUploadMonthEntity_1.UJSShgGroupDataUploadMonthEntity();
+            addUJSShgGroupDataUploadMonth.meeting_id = ujsShgGroupDataUploadMonthDTO.meeting_id;
+            addUJSShgGroupDataUploadMonth.group_id = ujsShgGroupDataUploadMonthDTO.group_id;
+            addUJSShgGroupDataUploadMonth.meeting_date = ujsShgGroupDataUploadMonthDTO.meeting_date;
+            addUJSShgGroupDataUploadMonth.last_remaining = ujsShgGroupDataUploadMonthDTO.last_remaining;
+            addUJSShgGroupDataUploadMonth.tot_saving = ujsShgGroupDataUploadMonthDTO.tot_saving;
+            addUJSShgGroupDataUploadMonth.internal_loan = ujsShgGroupDataUploadMonthDTO.internal_loan;
+            addUJSShgGroupDataUploadMonth.internal_loan_int = ujsShgGroupDataUploadMonthDTO.internal_loan_int;
+            addUJSShgGroupDataUploadMonth.bank_loan_amt = ujsShgGroupDataUploadMonthDTO.bank_loan_amt;
+            addUJSShgGroupDataUploadMonth.penalt_other = ujsShgGroupDataUploadMonthDTO.penalt_other;
+            addUJSShgGroupDataUploadMonth.fix_loan1 = ujsShgGroupDataUploadMonthDTO.fix_loan1;
+            addUJSShgGroupDataUploadMonth.bank_loan_amt1 = ujsShgGroupDataUploadMonthDTO.bank_loan_amt1;
+            addUJSShgGroupDataUploadMonth.special_amt = ujsShgGroupDataUploadMonthDTO.special_amt;
+            addUJSShgGroupDataUploadMonth.internal_amt = ujsShgGroupDataUploadMonthDTO.internal_amt;
+            addUJSShgGroupDataUploadMonth.grp_exp = ujsShgGroupDataUploadMonthDTO.grp_exp;
+            addUJSShgGroupDataUploadMonth.tot_expanse = ujsShgGroupDataUploadMonthDTO.tot_expanse;
+            addUJSShgGroupDataUploadMonth.bank_loan_amt_sub = ujsShgGroupDataUploadMonthDTO.bank_loan_amt_sub;
+            addUJSShgGroupDataUploadMonth.bank_saving = ujsShgGroupDataUploadMonthDTO.bank_saving;
+            addUJSShgGroupDataUploadMonth.cash_inhand = ujsShgGroupDataUploadMonthDTO.cash_inhand;
+            addUJSShgGroupDataUploadMonth.federation = ujsShgGroupDataUploadMonthDTO.federation;
+            addUJSShgGroupDataUploadMonth.others = ujsShgGroupDataUploadMonthDTO.others;
+            await this.UJSShgGroupDataUploadMonthERepository.save(addUJSShgGroupDataUploadMonth);
+            return { GroupDataUploadMonth: addUJSShgGroupDataUploadMonth, message: "success", status: 200 };
+        }
+    }
+    async UJSShgGroupDataUploadMonthList(request) {
+        let GroupDataUploadMonthList = await this.UJSShgGroupDataUploadMonthERepository.find({});
+        return { GroupDataUploadMonth: GroupDataUploadMonthList, message: "success", status: 200 };
+    }
+    async UJSShgMemberSavingAdd(request, ujsShgMemberSavingDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkMemberSaving = await this.UJSShgMemberSavingRepository.findOne({
+            where: {
+                group_id: ujsShgMemberSavingDTO.group_id
+            },
+        });
+        if (checkMemberSaving) {
+            return {
+                message: "Already Exist",
+                status: 400,
+            };
+        }
+        else {
+            const addUJSShgMemberSaving = new UJSShgMemberSavingEntity_1.UJSShgMemeberSavingEntity();
+            addUJSShgMemberSaving.meeting_id = ujsShgMemberSavingDTO.meeting_id;
+            addUJSShgMemberSaving.group_id = ujsShgMemberSavingDTO.group_id;
+            addUJSShgMemberSaving.animator_id = ujsShgMemberSavingDTO.animator_id;
+            addUJSShgMemberSaving.member_id = ujsShgMemberSavingDTO.member_id;
+            addUJSShgMemberSaving.amount = ujsShgMemberSavingDTO.amount;
+            addUJSShgMemberSaving.collectionDate = ujsShgMemberSavingDTO.collectionDate;
+            addUJSShgMemberSaving.federation_amount = ujsShgMemberSavingDTO.federation_amount;
+            addUJSShgMemberSaving.meetingDate = ujsShgMemberSavingDTO.meetingDate;
+            await this.UJSShgMemberSavingRepository.save(addUJSShgMemberSaving);
+            return { GroupDataUploadMonth: addUJSShgMemberSaving, message: "success", status: 200 };
+        }
+    }
+    async UJSShgMemberSavingList(request) {
+        let MemberSavingList = await this.UJSShgMemberSavingRepository.find({});
+        return { MemberSaving: MemberSavingList, message: "success", status: 200 };
+    }
+    async UJSShgGroupDetailInfoAdd(request, ujsShgGroupDetailInfoDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkGroupDetailsInfo = await this.UJSShgGroupDetailsInfoRepository.findOne({
+            where: {
+                NameOfSHG: ujsShgGroupDetailInfoDTO.NameOfSHG
+            },
+        });
+        if (checkGroupDetailsInfo) {
+            return {
+                message: "Already Exist",
+                status: 400,
+            };
+        }
+        else {
+            const addUJSShgGroupDetailsInfo = new UJSShgGroupDetailsInfoEntity_1.UJSShgGroupDetailsInfoEntity();
+            addUJSShgGroupDetailsInfo.NameOfSHG = ujsShgGroupDetailInfoDTO.NameOfSHG;
+            addUJSShgGroupDetailsInfo.NameOfDhani = ujsShgGroupDetailInfoDTO.NameOfDhani;
+            addUJSShgGroupDetailsInfo.NameOfVillage = ujsShgGroupDetailInfoDTO.NameOfVillage;
+            addUJSShgGroupDetailsInfo.NameOfGramPanchayat = ujsShgGroupDetailInfoDTO.NameOfGramPanchayat;
+            addUJSShgGroupDetailsInfo.DateOfFormation = ujsShgGroupDetailInfoDTO.DateOfFormation;
+            addUJSShgGroupDetailsInfo.CordinatorName = ujsShgGroupDetailInfoDTO.CordinatorName;
+            addUJSShgGroupDetailsInfo.Date = ujsShgGroupDetailInfoDTO.Date;
+            addUJSShgGroupDetailsInfo.Month = ujsShgGroupDetailInfoDTO.Month;
+            addUJSShgGroupDetailsInfo.Time = ujsShgGroupDetailInfoDTO.Time;
+            addUJSShgGroupDetailsInfo.ProjectIstandIInd = ujsShgGroupDetailInfoDTO.ProjectIstandIInd;
+            addUJSShgGroupDetailsInfo.BankLinkedge = ujsShgGroupDetailInfoDTO.BankLinkedge;
+            addUJSShgGroupDetailsInfo.BankName = ujsShgGroupDetailInfoDTO.BankName;
+            addUJSShgGroupDetailsInfo.BankBranch = ujsShgGroupDetailInfoDTO.BankBranch;
+            addUJSShgGroupDetailsInfo.BankAcNo = ujsShgGroupDetailInfoDTO.BankAcNo;
+            addUJSShgGroupDetailsInfo.LOANSTATUS = ujsShgGroupDetailInfoDTO.LOANSTATUS;
+            addUJSShgGroupDetailsInfo.LoanEmiLastMonth = ujsShgGroupDetailInfoDTO.LoanEmiLastMonth;
+            addUJSShgGroupDetailsInfo.Totalmeeting = ujsShgGroupDetailInfoDTO.Totalmeeting;
+            addUJSShgGroupDetailsInfo.TotalmemberOfSHG = ujsShgGroupDetailInfoDTO.TotalmemberOfSHG;
+            addUJSShgGroupDetailsInfo.ThisMonthSaving = ujsShgGroupDetailInfoDTO.ThisMonthSaving;
+            addUJSShgGroupDetailsInfo.Regularsavings = ujsShgGroupDetailInfoDTO.Regularsavings;
+            addUJSShgGroupDetailsInfo.Interestincome = ujsShgGroupDetailInfoDTO.Interestincome;
+            addUJSShgGroupDetailsInfo.Groupfund = ujsShgGroupDetailInfoDTO.Groupfund;
+            addUJSShgGroupDetailsInfo.Penalty = ujsShgGroupDetailInfoDTO.Penalty;
+            addUJSShgGroupDetailsInfo.fedretioncharge = ujsShgGroupDetailInfoDTO.fedretioncharge;
+            addUJSShgGroupDetailsInfo.fadretionThisMonth = ujsShgGroupDetailInfoDTO.fadretionThisMonth;
+            addUJSShgGroupDetailsInfo.fedretion = ujsShgGroupDetailInfoDTO.fedretion;
+            addUJSShgGroupDetailsInfo.Total = ujsShgGroupDetailInfoDTO.Total;
+            addUJSShgGroupDetailsInfo.interloanLoan = ujsShgGroupDetailInfoDTO.interloanLoan;
+            addUJSShgGroupDetailsInfo.GroupExpenses = ujsShgGroupDetailInfoDTO.GroupExpenses;
+            addUJSShgGroupDetailsInfo.SHGfixloan = ujsShgGroupDetailInfoDTO.SHGfixloan;
+            addUJSShgGroupDetailsInfo.Bank = ujsShgGroupDetailInfoDTO.Bank;
+            addUJSShgGroupDetailsInfo.Manch = ujsShgGroupDetailInfoDTO.Manch;
+            addUJSShgGroupDetailsInfo.fadretion1 = ujsShgGroupDetailInfoDTO.fadretion1;
+            addUJSShgGroupDetailsInfo.Cashinhand = ujsShgGroupDetailInfoDTO.Cashinhand;
+            addUJSShgGroupDetailsInfo.Total1 = ujsShgGroupDetailInfoDTO.Total1;
+            addUJSShgGroupDetailsInfo.Different = ujsShgGroupDetailInfoDTO.Different;
+            addUJSShgGroupDetailsInfo.attendanceExpected = ujsShgGroupDetailInfoDTO.attendanceExpected;
+            await this.UJSShgGroupDetailsInfoRepository.save(addUJSShgGroupDetailsInfo);
+            return { GroupDataUploadMonth: addUJSShgGroupDetailsInfo, message: "success", status: 200 };
+        }
+    }
+    async UJSShgGroupDetailInfoList(request) {
+        let GroupDetailsInfoList = await this.UJSShgGroupDetailsInfoRepository.find({});
+        return { GroupDetailsInfo: GroupDetailsInfoList, message: "success", status: 200 };
+    }
 };
 exports.UjsService = UjsService;
 exports.UjsService = UjsService = __decorate([
@@ -1121,7 +1261,13 @@ exports.UjsService = UjsService = __decorate([
     __param(28, (0, typeorm_1.InjectRepository)(UJSShgFedrationReportEntity_1.UJSSHGFedrationReportEntity)),
     __param(29, (0, typeorm_1.InjectRepository)(UJSShgFedrationEntity_1.UJSSHGFedrationEntity)),
     __param(30, (0, typeorm_1.InjectRepository)(UJSShgMomEntity_1.UJSShgMomEntity)),
+    __param(31, (0, typeorm_1.InjectRepository)(UJSShgGroupDataUploadMonthEntity_1.UJSShgGroupDataUploadMonthEntity)),
+    __param(32, (0, typeorm_1.InjectRepository)(UJSShgMemberSavingEntity_1.UJSShgMemeberSavingEntity)),
+    __param(33, (0, typeorm_1.InjectRepository)(UJSShgGroupDetailsInfoEntity_1.UJSShgGroupDetailsInfoEntity)),
     __metadata("design:paramtypes", [common_1.Logger, Object, typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,

@@ -61,6 +61,12 @@ import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
 import { UJSSHGFedrationEntity } from "./Entity/UJSShgFedrationEntity";
 import { UJSShgMomEntity } from "./Entity/UJSShgMomEntity";
 import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
+import { UJSShgGroupDataUploadMonthEntity } from "./Entity/UJSShgGroupDataUploadMonthEntity";
+import { UJSShgGroupDataUploadMonthDTO } from "./dto/UJSShgGroupDataUploadMonthDTO";
+import { UJSShgMemeberSavingEntity } from "./Entity/UJSShgMemberSavingEntity";
+import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
+import { UJSShgGroupDetailsInfoEntity } from "./Entity/UJSShgGroupDetailsInfoEntity";
+import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
@@ -93,7 +99,10 @@ export declare class UjsService {
     private readonly UJSShgFedrationReportRepository;
     private readonly UJSShgFedrationRepository;
     private readonly UJSShgMomRepository;
-    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>, UJSStateRepository: Repository<UJSStateEntity>, UJSShgTraningRepository: Repository<UJSShgTraningEntity>, UJSShgActiveModelFarmerRepository: Repository<UJSShgActiveModelFarmerEntity>, UJSShgAttendanceRepository: Repository<UJSShgAttendanceEntity>, UJSShgContactRepository: Repository<UJSShgContactEntity>, UJSShgDataLockRepository: Repository<UJSShgDataLockEntity>, UJSShgBankLoanAllotmentRepository: Repository<UJSBankLoanAllotmentEntity>, UJSShgBankLoanRepository: Repository<UJSBankLoanEntity>, UJSShgBankRepository: Repository<UJSBankEntity>, UJSShgAuditingRepository: Repository<UJSShgAuditingEntity>, UJSShgDataUploadRepository: Repository<UJSShgDataUploadEntity>, UJSShgDigiSakhiRepository: Repository<UJSShgDigiSakhiEntity>, UJSShgFpoRepository: Repository<UJSShgFpoEntity>, UJSShgFedrationReportRepository: Repository<UJSSHGFedrationReportEntity>, UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>, UJSShgMomRepository: Repository<UJSShgMomEntity>);
+    private readonly UJSShgGroupDataUploadMonthERepository;
+    private readonly UJSShgMemberSavingRepository;
+    private readonly UJSShgGroupDetailsInfoRepository;
+    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>, UJSStateRepository: Repository<UJSStateEntity>, UJSShgTraningRepository: Repository<UJSShgTraningEntity>, UJSShgActiveModelFarmerRepository: Repository<UJSShgActiveModelFarmerEntity>, UJSShgAttendanceRepository: Repository<UJSShgAttendanceEntity>, UJSShgContactRepository: Repository<UJSShgContactEntity>, UJSShgDataLockRepository: Repository<UJSShgDataLockEntity>, UJSShgBankLoanAllotmentRepository: Repository<UJSBankLoanAllotmentEntity>, UJSShgBankLoanRepository: Repository<UJSBankLoanEntity>, UJSShgBankRepository: Repository<UJSBankEntity>, UJSShgAuditingRepository: Repository<UJSShgAuditingEntity>, UJSShgDataUploadRepository: Repository<UJSShgDataUploadEntity>, UJSShgDigiSakhiRepository: Repository<UJSShgDigiSakhiEntity>, UJSShgFpoRepository: Repository<UJSShgFpoEntity>, UJSShgFedrationReportRepository: Repository<UJSSHGFedrationReportEntity>, UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>, UJSShgMomRepository: Repository<UJSShgMomEntity>, UJSShgGroupDataUploadMonthERepository: Repository<UJSShgGroupDataUploadMonthEntity>, UJSShgMemberSavingRepository: Repository<UJSShgMemeberSavingEntity>, UJSShgGroupDetailsInfoRepository: Repository<UJSShgGroupDetailsInfoEntity>);
     UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
         status: number;
@@ -496,6 +505,48 @@ export declare class UjsService {
     }>;
     UJSShgMomList(request: any): Promise<{
         mom: UJSShgMomEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupDataUploadMonthAdd(request: any, ujsShgGroupDataUploadMonthDTO: UJSShgGroupDataUploadMonthDTO): Promise<{
+        message: string;
+        status: number;
+        GroupDataUploadMonth?: undefined;
+    } | {
+        GroupDataUploadMonth: UJSShgGroupDataUploadMonthEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupDataUploadMonthList(request: any): Promise<{
+        GroupDataUploadMonth: UJSShgGroupDataUploadMonthEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgMemberSavingAdd(request: any, ujsShgMemberSavingDTO: UJSShgMemberSavingDTO): Promise<{
+        message: string;
+        status: number;
+        GroupDataUploadMonth?: undefined;
+    } | {
+        GroupDataUploadMonth: UJSShgMemeberSavingEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgMemberSavingList(request: any): Promise<{
+        MemberSaving: UJSShgMemeberSavingEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupDetailInfoAdd(request: any, ujsShgGroupDetailInfoDTO: UJSShgGroupDetailsInfoDTO): Promise<{
+        message: string;
+        status: number;
+        GroupDataUploadMonth?: undefined;
+    } | {
+        GroupDataUploadMonth: UJSShgGroupDetailsInfoEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupDetailInfoList(request: any): Promise<{
+        GroupDetailsInfo: UJSShgGroupDetailsInfoEntity[];
         message: string;
         status: number;
     }>;

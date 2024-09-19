@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('shg_data_upload')
+@Entity('shg_group_data_upload_month')
 export class UJSShgGroupDataUploadMonthEntity {
     @PrimaryGeneratedColumn()
   id?: number;
@@ -64,6 +64,4 @@ export class UJSShgGroupDataUploadMonthEntity {
 
   @Column({ type: 'decimal'})
   others?: number;
-
-   
 }

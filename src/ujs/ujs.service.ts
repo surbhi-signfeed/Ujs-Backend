@@ -67,6 +67,12 @@ import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
 import { UJSSHGFedrationEntity } from "./Entity/UJSShgFedrationEntity";
 import { UJSShgMomEntity } from "./Entity/UJSShgMomEntity";
 import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
+import { UJSShgGroupDataUploadMonthEntity } from "./Entity/UJSShgGroupDataUploadMonthEntity";
+import { UJSShgGroupDataUploadMonthDTO } from "./dto/UJSShgGroupDataUploadMonthDTO";
+import { UJSShgMemeberSavingEntity } from "./Entity/UJSShgMemberSavingEntity";
+import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
+import { UJSShgGroupDetailsInfoEntity } from "./Entity/UJSShgGroupDetailsInfoEntity";
+import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
 @Injectable()
 export class UjsService {
 
@@ -131,6 +137,12 @@ export class UjsService {
     private readonly UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>,
     @InjectRepository(UJSShgMomEntity)
     private readonly UJSShgMomRepository: Repository<UJSShgMomEntity>,
+    @InjectRepository(UJSShgGroupDataUploadMonthEntity)
+    private readonly UJSShgGroupDataUploadMonthERepository: Repository<UJSShgGroupDataUploadMonthEntity>,
+    @InjectRepository(UJSShgMemeberSavingEntity)
+    private readonly UJSShgMemberSavingRepository: Repository<UJSShgMemeberSavingEntity>,
+    @InjectRepository(UJSShgGroupDetailsInfoEntity)
+    private readonly UJSShgGroupDetailsInfoRepository: Repository<UJSShgGroupDetailsInfoEntity>,
   ) {
 
   }
@@ -1476,6 +1488,168 @@ export class UjsService {
       {}
     );
     return { mom: momList, message: "success", status: 200 };
+  }
+    // -------------------------- Grp dataupload ----------------------------------
+  // add Shg  Grp dataupload
+  async UJSShgGroupDataUploadMonthAdd(request, ujsShgGroupDataUploadMonthDTO: UJSShgGroupDataUploadMonthDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkGroupDataUploadMonth =
+      await this.UJSShgGroupDataUploadMonthERepository.findOne({
+        where: {
+           group_id: ujsShgGroupDataUploadMonthDTO.group_id
+        },
+      });
+    if (checkGroupDataUploadMonth) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgGroupDataUploadMonth: UJSShgGroupDataUploadMonthEntity =
+        new UJSShgGroupDataUploadMonthEntity();
+    
+        addUJSShgGroupDataUploadMonth.meeting_id = ujsShgGroupDataUploadMonthDTO.meeting_id;
+        addUJSShgGroupDataUploadMonth.group_id = ujsShgGroupDataUploadMonthDTO.group_id;
+        addUJSShgGroupDataUploadMonth.meeting_date = ujsShgGroupDataUploadMonthDTO.meeting_date;
+        addUJSShgGroupDataUploadMonth.last_remaining = ujsShgGroupDataUploadMonthDTO.last_remaining;
+        addUJSShgGroupDataUploadMonth.tot_saving = ujsShgGroupDataUploadMonthDTO.tot_saving;
+        addUJSShgGroupDataUploadMonth.internal_loan = ujsShgGroupDataUploadMonthDTO.internal_loan;
+        addUJSShgGroupDataUploadMonth.internal_loan_int = ujsShgGroupDataUploadMonthDTO.internal_loan_int;
+        addUJSShgGroupDataUploadMonth.bank_loan_amt = ujsShgGroupDataUploadMonthDTO.bank_loan_amt;
+        addUJSShgGroupDataUploadMonth.penalt_other = ujsShgGroupDataUploadMonthDTO.penalt_other;
+        addUJSShgGroupDataUploadMonth.fix_loan1 = ujsShgGroupDataUploadMonthDTO.fix_loan1;
+        addUJSShgGroupDataUploadMonth.bank_loan_amt1 = ujsShgGroupDataUploadMonthDTO.bank_loan_amt1;
+        addUJSShgGroupDataUploadMonth.special_amt = ujsShgGroupDataUploadMonthDTO.special_amt;
+        addUJSShgGroupDataUploadMonth.internal_amt = ujsShgGroupDataUploadMonthDTO.internal_amt;
+        addUJSShgGroupDataUploadMonth.grp_exp = ujsShgGroupDataUploadMonthDTO.grp_exp;
+        addUJSShgGroupDataUploadMonth.tot_expanse = ujsShgGroupDataUploadMonthDTO.tot_expanse;
+        addUJSShgGroupDataUploadMonth.bank_loan_amt_sub = ujsShgGroupDataUploadMonthDTO.bank_loan_amt_sub;
+        addUJSShgGroupDataUploadMonth.bank_saving = ujsShgGroupDataUploadMonthDTO.bank_saving;
+        addUJSShgGroupDataUploadMonth.cash_inhand = ujsShgGroupDataUploadMonthDTO.cash_inhand;
+        addUJSShgGroupDataUploadMonth.federation = ujsShgGroupDataUploadMonthDTO.federation;
+        addUJSShgGroupDataUploadMonth.others = ujsShgGroupDataUploadMonthDTO.others;
+        
+        
+     
+      await this.UJSShgGroupDataUploadMonthERepository.save(addUJSShgGroupDataUploadMonth);
+      return { GroupDataUploadMonth:addUJSShgGroupDataUploadMonth, message: "success", status: 200 };
+    }
+  }
+  // list Grp dataupload
+  async UJSShgGroupDataUploadMonthList(request) {
+    let GroupDataUploadMonthList = await this.UJSShgGroupDataUploadMonthERepository.find(
+      {}
+    );
+    return { GroupDataUploadMonth : GroupDataUploadMonthList, message: "success", status: 200 };
+  }
+    // -------------------------- member saving ----------------------------------
+  // add Shg  member saving
+  async UJSShgMemberSavingAdd(request, ujsShgMemberSavingDTO: UJSShgMemberSavingDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkMemberSaving =
+      await this.UJSShgMemberSavingRepository.findOne({
+        where: {
+           group_id: ujsShgMemberSavingDTO.group_id
+        },
+      });
+    if (checkMemberSaving) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgMemberSaving:UJSShgMemeberSavingEntity =
+        new UJSShgMemeberSavingEntity();
+        addUJSShgMemberSaving.meeting_id = ujsShgMemberSavingDTO.meeting_id;
+        addUJSShgMemberSaving.group_id = ujsShgMemberSavingDTO.group_id;
+        addUJSShgMemberSaving.animator_id = ujsShgMemberSavingDTO.animator_id;
+        addUJSShgMemberSaving.member_id = ujsShgMemberSavingDTO.member_id;
+        addUJSShgMemberSaving.amount = ujsShgMemberSavingDTO.amount;
+        addUJSShgMemberSaving.collectionDate = ujsShgMemberSavingDTO.collectionDate;
+        addUJSShgMemberSaving.federation_amount = ujsShgMemberSavingDTO.federation_amount;
+        addUJSShgMemberSaving.meetingDate = ujsShgMemberSavingDTO.meetingDate;
+      await this.UJSShgMemberSavingRepository.save(addUJSShgMemberSaving);
+      return { GroupDataUploadMonth:addUJSShgMemberSaving, message: "success", status: 200 };
+    }
+  }
+  // list member saving
+  async UJSShgMemberSavingList(request) {
+    let MemberSavingList = await this.UJSShgMemberSavingRepository.find(
+      {}
+    );
+    return { MemberSaving : MemberSavingList, message: "success", status: 200 };
+  }
+    // -------------------------- group details info ----------------------------------
+  // add group details info
+  async UJSShgGroupDetailInfoAdd(request, ujsShgGroupDetailInfoDTO: UJSShgGroupDetailsInfoDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkGroupDetailsInfo =
+      await this.UJSShgGroupDetailsInfoRepository.findOne({
+        where: {
+         NameOfSHG : ujsShgGroupDetailInfoDTO.NameOfSHG
+        },
+      });
+    if (checkGroupDetailsInfo) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgGroupDetailsInfo:UJSShgGroupDetailsInfoEntity =
+        new UJSShgGroupDetailsInfoEntity();
+       
+        addUJSShgGroupDetailsInfo.NameOfSHG = ujsShgGroupDetailInfoDTO.NameOfSHG;
+        addUJSShgGroupDetailsInfo.NameOfDhani = ujsShgGroupDetailInfoDTO.NameOfDhani;
+        addUJSShgGroupDetailsInfo.NameOfVillage = ujsShgGroupDetailInfoDTO.NameOfVillage;
+        addUJSShgGroupDetailsInfo.NameOfGramPanchayat = ujsShgGroupDetailInfoDTO.NameOfGramPanchayat;
+        addUJSShgGroupDetailsInfo.DateOfFormation = ujsShgGroupDetailInfoDTO.DateOfFormation;
+        addUJSShgGroupDetailsInfo.CordinatorName = ujsShgGroupDetailInfoDTO.CordinatorName;
+        addUJSShgGroupDetailsInfo.Date = ujsShgGroupDetailInfoDTO.Date;
+        addUJSShgGroupDetailsInfo.Month = ujsShgGroupDetailInfoDTO.Month;
+        addUJSShgGroupDetailsInfo.Time = ujsShgGroupDetailInfoDTO.Time;
+        addUJSShgGroupDetailsInfo.ProjectIstandIInd = ujsShgGroupDetailInfoDTO.ProjectIstandIInd;
+        addUJSShgGroupDetailsInfo.BankLinkedge = ujsShgGroupDetailInfoDTO.BankLinkedge;
+        addUJSShgGroupDetailsInfo.BankName = ujsShgGroupDetailInfoDTO.BankName;
+        addUJSShgGroupDetailsInfo.BankBranch = ujsShgGroupDetailInfoDTO.BankBranch;
+        addUJSShgGroupDetailsInfo.BankAcNo = ujsShgGroupDetailInfoDTO.BankAcNo;
+        addUJSShgGroupDetailsInfo.LOANSTATUS = ujsShgGroupDetailInfoDTO.LOANSTATUS;
+        addUJSShgGroupDetailsInfo.LoanEmiLastMonth = ujsShgGroupDetailInfoDTO.LoanEmiLastMonth;
+        addUJSShgGroupDetailsInfo.Totalmeeting = ujsShgGroupDetailInfoDTO.Totalmeeting;
+        addUJSShgGroupDetailsInfo.TotalmemberOfSHG = ujsShgGroupDetailInfoDTO.TotalmemberOfSHG;
+        addUJSShgGroupDetailsInfo.ThisMonthSaving = ujsShgGroupDetailInfoDTO.ThisMonthSaving;
+        addUJSShgGroupDetailsInfo.Regularsavings = ujsShgGroupDetailInfoDTO.Regularsavings;
+        addUJSShgGroupDetailsInfo.Interestincome = ujsShgGroupDetailInfoDTO.Interestincome;
+        addUJSShgGroupDetailsInfo.Groupfund = ujsShgGroupDetailInfoDTO.Groupfund;
+        addUJSShgGroupDetailsInfo.Penalty = ujsShgGroupDetailInfoDTO.Penalty;
+        addUJSShgGroupDetailsInfo.fedretioncharge = ujsShgGroupDetailInfoDTO.fedretioncharge;
+        addUJSShgGroupDetailsInfo.fadretionThisMonth = ujsShgGroupDetailInfoDTO.fadretionThisMonth;
+        addUJSShgGroupDetailsInfo.fedretion = ujsShgGroupDetailInfoDTO.fedretion;
+        addUJSShgGroupDetailsInfo.Total = ujsShgGroupDetailInfoDTO.Total;
+        addUJSShgGroupDetailsInfo.interloanLoan = ujsShgGroupDetailInfoDTO.interloanLoan;
+        addUJSShgGroupDetailsInfo.GroupExpenses = ujsShgGroupDetailInfoDTO.GroupExpenses;
+        addUJSShgGroupDetailsInfo.SHGfixloan = ujsShgGroupDetailInfoDTO.SHGfixloan;
+        addUJSShgGroupDetailsInfo.Bank = ujsShgGroupDetailInfoDTO.Bank;
+        addUJSShgGroupDetailsInfo.Manch = ujsShgGroupDetailInfoDTO.Manch;
+        addUJSShgGroupDetailsInfo.fadretion1 = ujsShgGroupDetailInfoDTO.fadretion1;
+        addUJSShgGroupDetailsInfo.Cashinhand = ujsShgGroupDetailInfoDTO.Cashinhand;
+        addUJSShgGroupDetailsInfo.Total1 = ujsShgGroupDetailInfoDTO.Total1;
+        addUJSShgGroupDetailsInfo.Different = ujsShgGroupDetailInfoDTO.Different;
+        addUJSShgGroupDetailsInfo.attendanceExpected = ujsShgGroupDetailInfoDTO.attendanceExpected;
+        
+      
+      await this.UJSShgGroupDetailsInfoRepository.save(addUJSShgGroupDetailsInfo);
+      return { GroupDataUploadMonth:addUJSShgGroupDetailsInfo, message: "success", status: 200 };
+    }
+  }
+  // group details info
+  async UJSShgGroupDetailInfoList(request) {
+    let GroupDetailsInfoList = await this.UJSShgGroupDetailsInfoRepository.find(
+      {}
+    );
+    return { GroupDetailsInfo : GroupDetailsInfoList, message: "success", status: 200 };
   }
 }
 

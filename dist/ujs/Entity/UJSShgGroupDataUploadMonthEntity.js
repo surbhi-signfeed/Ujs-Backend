@@ -99,6 +99,6 @@ __decorate([
     __metadata("design:type", Number)
 ], UJSShgGroupDataUploadMonthEntity.prototype, "others", void 0);
 exports.UJSShgGroupDataUploadMonthEntity = UJSShgGroupDataUploadMonthEntity = __decorate([
-    (0, typeorm_1.Entity)('shg_data_upload')
+    (0, typeorm_1.Entity)('shg_group_data_upload_month')
 ], UJSShgGroupDataUploadMonthEntity);
 //# sourceMappingURL=UJSShgGroupDataUploadMonthEntity.js.map

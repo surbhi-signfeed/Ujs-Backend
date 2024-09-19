@@ -31,10 +31,13 @@ import { UJSShgFpoEntity } from './Entity/UJSShgFpoEntity';
 import { UJSSHGFedrationReportEntity } from './Entity/UJSShgFedrationReportEntity';
 import { UJSSHGFedrationEntity } from './Entity/UJSShgFedrationEntity';
 import { UJSShgMomEntity } from './Entity/UJSShgMomEntity';
+import { UJSShgGroupDataUploadMonthEntity } from './Entity/UJSShgGroupDataUploadMonthEntity';
+import { UJSShgMemeberSavingEntity } from './Entity/UJSShgMemberSavingEntity';
+import { UJSShgGroupDetailsInfoEntity } from './Entity/UJSShgGroupDetailsInfoEntity';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity])],
+  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity,UJSShgGroupDataUploadMonthEntity,UJSShgMemeberSavingEntity, UJSShgGroupDetailsInfoEntity])],
   controllers: [UjsController],
   providers: [UjsService, Logger]
 })

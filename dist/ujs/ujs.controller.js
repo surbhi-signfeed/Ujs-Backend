@@ -46,6 +46,9 @@ const UJSShgFpoDTO_1 = require("./dto/UJSShgFpoDTO");
 const UJSShgFedrationReportDTO_1 = require("./dto/UJSShgFedrationReportDTO");
 const UJSShgFedrationDTO_1 = require("./dto/UJSShgFedrationDTO");
 const UJSShgMomDTO_1 = require("./dto/UJSShgMomDTO");
+const UJSShgGroupDataUploadMonthDTO_1 = require("./dto/UJSShgGroupDataUploadMonthDTO");
+const UJSSShgMemberSavingDTO_1 = require("./dto/UJSSShgMemberSavingDTO");
+const UJSShgGroupDetailsInfoDTO_1 = require("./dto/UJSShgGroupDetailsInfoDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -224,6 +227,24 @@ let UjsController = class UjsController {
     }
     async listShgMom(request) {
         return this.ujsService.UJSShgMomList(request);
+    }
+    async UJSShgGroupDataUploadMonthAdd(request, ujsShgGroupDataUploadMonthDTO) {
+        return this.ujsService.UJSShgGroupDataUploadMonthAdd(request, ujsShgGroupDataUploadMonthDTO);
+    }
+    async listShgGroupDataUploadMonth(request) {
+        return this.ujsService.UJSShgGroupDataUploadMonthList(request);
+    }
+    async UJSShgMemberSavingAdd(request, ujsShgMemberSavingDTO) {
+        return this.ujsService.UJSShgMemberSavingAdd(request, ujsShgMemberSavingDTO);
+    }
+    async listShgMemberSaving(request) {
+        return this.ujsService.UJSShgMemberSavingList(request);
+    }
+    async UJSShgGroupDetailInfoAdd(request, ujsShgGroupDetailsInfoDTO) {
+        return this.ujsService.UJSShgGroupDetailInfoAdd(request, ujsShgGroupDetailsInfoDTO);
+    }
+    async listShgGroupDetailInfo(request) {
+        return this.ujsService.UJSShgGroupDetailInfoList(request);
     }
 };
 exports.UjsController = UjsController;
@@ -722,6 +743,57 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgMom", null);
+__decorate([
+    (0, common_1.Post)("AddShgGroupDataUpload"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgGroupDataUploadMonthDTO_1.UJSShgGroupDataUploadMonthDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgGroupDataUploadMonthAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgGroupDataUpload'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgGroupDataUploadMonth", null);
+__decorate([
+    (0, common_1.Post)("AddShgMemberSaving"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSShgMemberSavingDTO_1.UJSShgMemberSavingDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgMemberSavingAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgMemberSaving'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgMemberSaving", null);
+__decorate([
+    (0, common_1.Post)("AddShgGroupDetailInfo"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgGroupDetailsInfoDTO_1.UJSShgGroupDetailsInfoDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgGroupDetailInfoAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgGroupDetailInfo'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgGroupDetailInfo", null);
 exports.UjsController = UjsController = __decorate([
     (0, common_1.Controller)("ujs"),
     __param(1, (0, common_1.Inject)(common_1.Logger)),

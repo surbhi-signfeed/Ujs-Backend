@@ -32,6 +32,9 @@ import { UJSShgFpoDTO } from "./dto/UJSShgFpoDTO";
 import { UJSSHGFedrationReportDTO } from "./dto/UJSShgFedrationReportDTO";
 import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
 import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
+import { UJSShgGroupDataUploadMonthDTO } from "./dto/UJSShgGroupDataUploadMonthDTO";
+import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
+import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -438,6 +441,48 @@ export declare class UjsController {
     }>;
     listShgMom(request: Request): Promise<{
         mom: import("./Entity/UJSShgMomEntity").UJSShgMomEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupDataUploadMonthAdd(request: Request, ujsShgGroupDataUploadMonthDTO: UJSShgGroupDataUploadMonthDTO): Promise<{
+        message: string;
+        status: number;
+        GroupDataUploadMonth?: undefined;
+    } | {
+        GroupDataUploadMonth: import("./Entity/UJSShgGroupDataUploadMonthEntity").UJSShgGroupDataUploadMonthEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgGroupDataUploadMonth(request: Request): Promise<{
+        GroupDataUploadMonth: import("./Entity/UJSShgGroupDataUploadMonthEntity").UJSShgGroupDataUploadMonthEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgMemberSavingAdd(request: Request, ujsShgMemberSavingDTO: UJSShgMemberSavingDTO): Promise<{
+        message: string;
+        status: number;
+        GroupDataUploadMonth?: undefined;
+    } | {
+        GroupDataUploadMonth: import("./Entity/UJSShgMemberSavingEntity").UJSShgMemeberSavingEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgMemberSaving(request: Request): Promise<{
+        MemberSaving: import("./Entity/UJSShgMemberSavingEntity").UJSShgMemeberSavingEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupDetailInfoAdd(request: Request, ujsShgGroupDetailsInfoDTO: UJSShgGroupDetailsInfoDTO): Promise<{
+        message: string;
+        status: number;
+        GroupDataUploadMonth?: undefined;
+    } | {
+        GroupDataUploadMonth: import("./Entity/UJSShgGroupDetailsInfoEntity").UJSShgGroupDetailsInfoEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgGroupDetailInfo(request: Request): Promise<{
+        GroupDetailsInfo: import("./Entity/UJSShgGroupDetailsInfoEntity").UJSShgGroupDetailsInfoEntity[];
         message: string;
         status: number;
     }>;

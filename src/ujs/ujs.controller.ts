@@ -42,6 +42,9 @@ import { UJSShgFpoDTO } from "./dto/UJSShgFpoDTO";
 import { UJSSHGFedrationReportDTO } from "./dto/UJSShgFedrationReportDTO";
 import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
 import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
+import { UJSShgGroupDataUploadMonthDTO } from "./dto/UJSShgGroupDataUploadMonthDTO";
+import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
+import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -522,5 +525,53 @@ return this.ujsService.UJSShgFedrationList(request);
 @UseGuards(JwtAuthGuard)
 async listShgMom(@Req() request: Request) {
 return this.ujsService.UJSShgMomList(request);
+}
+// ------------------------ ---GroupDataUpload  ------------------------------------
+// add GroupDataUpload
+@Post("AddShgGroupDataUpload")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgGroupDataUploadMonthAdd(
+    @Req() request: Request,
+    @Body() ujsShgGroupDataUploadMonthDTO: UJSShgGroupDataUploadMonthDTO
+  ) {
+    return this.ujsService.UJSShgGroupDataUploadMonthAdd(request, ujsShgGroupDataUploadMonthDTO);
+  }
+  // listGroupDataUpload
+@Get('ListShgGroupDataUpload')
+@UseGuards(JwtAuthGuard)
+async listShgGroupDataUploadMonth(@Req() request: Request) {
+return this.ujsService.UJSShgGroupDataUploadMonthList(request);
+}
+// ------------------------ ---Member saving  ------------------------------------
+// add Member saving
+@Post("AddShgMemberSaving")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgMemberSavingAdd(
+    @Req() request: Request,
+    @Body() ujsShgMemberSavingDTO: UJSShgMemberSavingDTO
+  ) {
+    return this.ujsService.UJSShgMemberSavingAdd(request, ujsShgMemberSavingDTO);
+  }
+  // listMember saving
+@Get('ListShgMemberSaving')
+@UseGuards(JwtAuthGuard)
+async listShgMemberSaving(@Req() request: Request) {
+return this.ujsService.UJSShgMemberSavingList(request);
+}
+// ------------------------ ---Group Details info   ------------------------------------
+// add Group Details info 
+@Post("AddShgGroupDetailInfo")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgGroupDetailInfoAdd(
+    @Req() request: Request,
+    @Body() ujsShgGroupDetailsInfoDTO: UJSShgGroupDetailsInfoDTO
+  ) {
+    return this.ujsService.UJSShgGroupDetailInfoAdd(request, ujsShgGroupDetailsInfoDTO);
+  }
+  // listGroup Details info 
+@Get('ListShgGroupDetailInfo')
+@UseGuards(JwtAuthGuard)
+async listShgGroupDetailInfo(@Req() request: Request) {
+return this.ujsService.UJSShgGroupDetailInfoList(request);
 }
  }
