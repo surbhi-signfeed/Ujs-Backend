@@ -18,6 +18,20 @@ import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 import { UJSStateDTO } from "./dto/UJSStateDTO";
 import { UJSSHGTraningDTO } from "./dto/UJSShgtraningDTO";
+import { UJSSHGActiveModelFarmerDTO } from "./dto/UJSShgActiveModelFarmerDTO";
+import { UJSShgAttendanceDTO } from "./dto/UJSShgAttendanceDTO";
+import { UJSShgContactDTO } from "./dto/UJSShgContactDTO";
+import { UJSShgDataLockDTO } from "./dto/UJSShgDataLockDTO";
+import { UJSBankAllotmentDTO } from "./dto/UJSSHgBankAllotmentDTO";
+import { UJSBankLoanDTO } from "./dto/UJSSBankLoanDTO";
+import { UJSBankDTO } from "./dto/UJSSBankDTO";
+import { UJSShgAuditingDTO } from "./dto/UJSShgAuditingDTO";
+import { UJSShgDataUploadDTO } from "./dto/UJSShgDataUploadDTO";
+import { UJSShgDigiSakhiDTO } from "./dto/UJSShgDigiSakhiDTO";
+import { UJSShgFpoDTO } from "./dto/UJSShgFpoDTO";
+import { UJSSHGFedrationReportDTO } from "./dto/UJSShgFedrationReportDTO";
+import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
+import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -228,6 +242,202 @@ export declare class UjsController {
     }>;
     listShgTraning(request: Request): Promise<{
         shgTraning: import("./Entity/UJSShgTraningEntity").UJSShgTraningEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgActiveModelFarmerAdd(request: Request, ujsShgActiveModelFarmerDTO: UJSSHGActiveModelFarmerDTO): Promise<{
+        message: string;
+        status: number;
+        shgActiveModelFarmer?: undefined;
+    } | {
+        shgActiveModelFarmer: import("./Entity/UJSShgActiveModelFarmerEntity").UJSShgActiveModelFarmerEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgActiveModelFarmer(request: Request): Promise<{
+        shgActiveModelFarmer: import("./Entity/UJSShgActiveModelFarmerEntity").UJSShgActiveModelFarmerEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgAttendanceAdd(request: Request, ujsShgAttendanceDTO: UJSShgAttendanceDTO): Promise<{
+        message: string;
+        status: number;
+        shgAttendance?: undefined;
+    } | {
+        shgAttendance: import("./Entity/UJSShgAttendanceEntity").UJSShgAttendanceEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgAttendance(request: Request): Promise<{
+        shgAttendance: import("./Entity/UJSShgAttendanceEntity").UJSShgAttendanceEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgContactAdd(request: Request, ujsShgContactDTO: UJSShgContactDTO): Promise<{
+        message: string;
+        status: number;
+        shgContact?: undefined;
+    } | {
+        shgContact: import("./Entity/UJSShgContactEntity").UJSShgContactEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgContact(request: Request): Promise<{
+        shgContact: import("./Entity/UJSShgContactEntity").UJSShgContactEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgDataLockAdd(request: Request, ujsShgDataLockDTO: UJSShgDataLockDTO): Promise<{
+        message: string;
+        status: number;
+        shgDataLock?: undefined;
+    } | {
+        shgDataLock: import("./Entity/UJSShgDataLockEntity").UJSShgDataLockEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgDataLock(request: Request): Promise<{
+        shgDataLock: import("./Entity/UJSShgDataLockEntity").UJSShgDataLockEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgBankLoanAllotmentAdd(request: Request, ujsShgBankLoanAllotmentDTO: UJSBankAllotmentDTO): Promise<{
+        message: string;
+        status: number;
+        shgBankLoanAllotment?: undefined;
+    } | {
+        shgBankLoanAllotment: import("./Entity/UJSBankLoanAllotmentEntity").UJSBankLoanAllotmentEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgBankLoanAllotment(request: Request): Promise<{
+        shgbankLoan: import("./Entity/UJSBankLoanAllotmentEntity").UJSBankLoanAllotmentEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgBankLoanAdd(request: Request, ujsShgBankLoanDTO: UJSBankLoanDTO): Promise<{
+        message: string;
+        status: number;
+        shgBankLoan?: undefined;
+    } | {
+        shgBankLoan: import("./Entity/UJSBankLoanEntity").UJSBankLoanEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgBankLoan(request: Request): Promise<{
+        bankLoan: import("./Entity/UJSBankLoanEntity").UJSBankLoanEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgBankAdd(request: Request, ujsShgBankDTO: UJSBankDTO): Promise<{
+        message: string;
+        status: number;
+        shgBank?: undefined;
+    } | {
+        shgBank: import("./Entity/UJSBankEntity").UJSBankEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgBank(request: Request): Promise<{
+        bank: import("./Entity/UJSBankEntity").UJSBankEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgAuditingAdd(request: Request, ujsShgAuditingDTO: UJSShgAuditingDTO): Promise<{
+        message: string;
+        status: number;
+        shgAuditing?: undefined;
+    } | {
+        shgAuditing: import("./Entity/UJSShgAuditingEntity").UJSShgAuditingEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgAuditing(request: Request): Promise<{
+        Auditing: import("./Entity/UJSShgAuditingEntity").UJSShgAuditingEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgDataUploadAdd(request: Request, ujsShgDataUploadDTO: UJSShgDataUploadDTO): Promise<{
+        message: string;
+        status: number;
+        shgDataUpload?: undefined;
+    } | {
+        shgDataUpload: import("./Entity/UJSShgDataUploadkEntity").UJSShgDataUploadEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgDataUpload(request: Request): Promise<{
+        DataUpload: import("./Entity/UJSShgDataUploadkEntity").UJSShgDataUploadEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgDigiSakhiAdd(request: Request, ujsShgDigiSakhiDTO: UJSShgDigiSakhiDTO): Promise<{
+        message: string;
+        status: number;
+        shgDigiSakhi?: undefined;
+    } | {
+        shgDigiSakhi: import("./Entity/UJSShgDigiSakhiEntity").UJSShgDigiSakhiEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgDigiSakhi(request: Request): Promise<{
+        DigiSakhi: import("./Entity/UJSShgDigiSakhiEntity").UJSShgDigiSakhiEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgFpoAdd(request: Request, ujsShgFpoDTO: UJSShgFpoDTO): Promise<{
+        message: string;
+        status: number;
+        Fpo?: undefined;
+    } | {
+        Fpo: import("./Entity/UJSShgFpoEntity").UJSShgFpoEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgFpo(request: Request): Promise<{
+        Fpo: import("./Entity/UJSShgFpoEntity").UJSShgFpoEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgFedrationReportAdd(request: Request, ujsShgFedrationReportDTO: UJSSHGFedrationReportDTO): Promise<{
+        message: string;
+        status: number;
+        Fedration?: undefined;
+    } | {
+        Fedration: import("./Entity/UJSShgFedrationReportEntity").UJSSHGFedrationReportEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgFedrationReport(request: Request): Promise<{
+        Fedration: import("./Entity/UJSShgFedrationReportEntity").UJSSHGFedrationReportEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgFedrationAdd(request: Request, ujsShgFedrationDTO: UJSSHGFedrationDTO): Promise<{
+        message: string;
+        status: number;
+        Fedration?: undefined;
+    } | {
+        Fedration: import("./Entity/UJSShgFedrationEntity").UJSSHGFedrationEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgFedration(request: Request): Promise<{
+        Fedration: import("./Entity/UJSShgFedrationEntity").UJSSHGFedrationEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgMomAdd(request: Request, ujsShgMomDTO: UJSShgMomDTO): Promise<{
+        message: string;
+        status: number;
+        ShgMom?: undefined;
+    } | {
+        ShgMom: import("./Entity/UJSShgMomEntity").UJSShgMomEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgMom(request: Request): Promise<{
+        mom: import("./Entity/UJSShgMomEntity").UJSShgMomEntity[];
         message: string;
         status: number;
     }>;

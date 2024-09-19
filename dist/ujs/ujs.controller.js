@@ -32,6 +32,20 @@ const UJSSHGExpansesDTO_1 = require("./dto/UJSSHGExpansesDTO");
 const UJSSHGLoanRepaymentDTO_1 = require("./dto/UJSSHGLoanRepaymentDTO");
 const UJSStateDTO_1 = require("./dto/UJSStateDTO");
 const UJSShgtraningDTO_1 = require("./dto/UJSShgtraningDTO");
+const UJSShgActiveModelFarmerDTO_1 = require("./dto/UJSShgActiveModelFarmerDTO");
+const UJSShgAttendanceDTO_1 = require("./dto/UJSShgAttendanceDTO");
+const UJSShgContactDTO_1 = require("./dto/UJSShgContactDTO");
+const UJSShgDataLockDTO_1 = require("./dto/UJSShgDataLockDTO");
+const UJSSHgBankAllotmentDTO_1 = require("./dto/UJSSHgBankAllotmentDTO");
+const UJSSBankLoanDTO_1 = require("./dto/UJSSBankLoanDTO");
+const UJSSBankDTO_1 = require("./dto/UJSSBankDTO");
+const UJSShgAuditingDTO_1 = require("./dto/UJSShgAuditingDTO");
+const UJSShgDataUploadDTO_1 = require("./dto/UJSShgDataUploadDTO");
+const UJSShgDigiSakhiDTO_1 = require("./dto/UJSShgDigiSakhiDTO");
+const UJSShgFpoDTO_1 = require("./dto/UJSShgFpoDTO");
+const UJSShgFedrationReportDTO_1 = require("./dto/UJSShgFedrationReportDTO");
+const UJSShgFedrationDTO_1 = require("./dto/UJSShgFedrationDTO");
+const UJSShgMomDTO_1 = require("./dto/UJSShgMomDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -126,6 +140,90 @@ let UjsController = class UjsController {
     }
     async listShgTraning(request) {
         return this.ujsService.UJSShgTraningList(request);
+    }
+    async UJSShgActiveModelFarmerAdd(request, ujsShgActiveModelFarmerDTO) {
+        return this.ujsService.UJSShgActiveModelFarmerAdd(request, ujsShgActiveModelFarmerDTO);
+    }
+    async listShgActiveModelFarmer(request) {
+        return this.ujsService.UJSShgActiveModelFarmerList(request);
+    }
+    async UJSShgAttendanceAdd(request, ujsShgAttendanceDTO) {
+        return this.ujsService.UJSShgAttendanceAdd(request, ujsShgAttendanceDTO);
+    }
+    async listShgAttendance(request) {
+        return this.ujsService.UJSShgAttendanceList(request);
+    }
+    async UJSShgContactAdd(request, ujsShgContactDTO) {
+        return this.ujsService.UJSShgContactAdd(request, ujsShgContactDTO);
+    }
+    async listShgContact(request) {
+        return this.ujsService.UJSShgContactList(request);
+    }
+    async UJSShgDataLockAdd(request, ujsShgDataLockDTO) {
+        return this.ujsService.UJSShgDataLockAdd(request, ujsShgDataLockDTO);
+    }
+    async listShgDataLock(request) {
+        return this.ujsService.UJSShgDataLockList(request);
+    }
+    async UJSShgBankLoanAllotmentAdd(request, ujsShgBankLoanAllotmentDTO) {
+        return this.ujsService.UJSShgBankLoanAllotmentAdd(request, ujsShgBankLoanAllotmentDTO);
+    }
+    async listShgBankLoanAllotment(request) {
+        return this.ujsService.UJSShgBankLoanAllotmentList(request);
+    }
+    async UJSShgBankLoanAdd(request, ujsShgBankLoanDTO) {
+        return this.ujsService.UJSShgBankLoanAdd(request, ujsShgBankLoanDTO);
+    }
+    async listShgBankLoan(request) {
+        return this.ujsService.UJSShgBankLoanList(request);
+    }
+    async UJSShgBankAdd(request, ujsShgBankDTO) {
+        return this.ujsService.UJSShgBankAdd(request, ujsShgBankDTO);
+    }
+    async listShgBank(request) {
+        return this.ujsService.UJSShgBankList(request);
+    }
+    async UJSShgAuditingAdd(request, ujsShgAuditingDTO) {
+        return this.ujsService.UJSShgAuditingAdd(request, ujsShgAuditingDTO);
+    }
+    async listShgAuditing(request) {
+        return this.ujsService.UJSShgAuditingList(request);
+    }
+    async UJSShgDataUploadAdd(request, ujsShgDataUploadDTO) {
+        return this.ujsService.UJSShgDataUploadAdd(request, ujsShgDataUploadDTO);
+    }
+    async listShgDataUpload(request) {
+        return this.ujsService.UJSShgDataUploadList(request);
+    }
+    async UJSShgDigiSakhiAdd(request, ujsShgDigiSakhiDTO) {
+        return this.ujsService.UJSShgDigiSakhiAdd(request, ujsShgDigiSakhiDTO);
+    }
+    async listShgDigiSakhi(request) {
+        return this.ujsService.UJSShgDigiSakhiList(request);
+    }
+    async UJSShgFpoAdd(request, ujsShgFpoDTO) {
+        return this.ujsService.UJSShgFpoAdd(request, ujsShgFpoDTO);
+    }
+    async listShgFpo(request) {
+        return this.ujsService.UJSShgFpoList(request);
+    }
+    async UJSShgFedrationReportAdd(request, ujsShgFedrationReportDTO) {
+        return this.ujsService.UJSShgFedrationReportAdd(request, ujsShgFedrationReportDTO);
+    }
+    async listShgFedrationReport(request) {
+        return this.ujsService.UJSShgFedrationReportList(request);
+    }
+    async UJSShgFedrationAdd(request, ujsShgFedrationDTO) {
+        return this.ujsService.UJSShgFedrationAdd(request, ujsShgFedrationDTO);
+    }
+    async listShgFedration(request) {
+        return this.ujsService.UJSShgFedrationList(request);
+    }
+    async UJSShgMomAdd(request, ujsShgMomDTO) {
+        return this.ujsService.UJSShgMomAdd(request, ujsShgMomDTO);
+    }
+    async listShgMom(request) {
+        return this.ujsService.UJSShgMomList(request);
     }
 };
 exports.UjsController = UjsController;
@@ -386,6 +484,244 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgTraning", null);
+__decorate([
+    (0, common_1.Post)("AddShgActiveModelFarmer"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgActiveModelFarmerDTO_1.UJSSHGActiveModelFarmerDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgActiveModelFarmerAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgActiveModelFarmer'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgActiveModelFarmer", null);
+__decorate([
+    (0, common_1.Post)("AddShgAttendance"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgAttendanceDTO_1.UJSShgAttendanceDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgAttendanceAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgAttendance'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgAttendance", null);
+__decorate([
+    (0, common_1.Post)("AddShgContact"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgContactDTO_1.UJSShgContactDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgContactAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgContact'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgContact", null);
+__decorate([
+    (0, common_1.Post)("AddShgDataLock"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgDataLockDTO_1.UJSShgDataLockDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgDataLockAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgDataLock'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgDataLock", null);
+__decorate([
+    (0, common_1.Post)("AddBankLoanAllotment"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSHgBankAllotmentDTO_1.UJSBankAllotmentDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgBankLoanAllotmentAdd", null);
+__decorate([
+    (0, common_1.Get)('ListBankLoanAllotment'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgBankLoanAllotment", null);
+__decorate([
+    (0, common_1.Post)("AddBankLoan"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSBankLoanDTO_1.UJSBankLoanDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgBankLoanAdd", null);
+__decorate([
+    (0, common_1.Get)('ListBankLoan'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgBankLoan", null);
+__decorate([
+    (0, common_1.Post)("AddShgBank"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSBankDTO_1.UJSBankDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgBankAdd", null);
+__decorate([
+    (0, common_1.Get)('ListBank'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgBank", null);
+__decorate([
+    (0, common_1.Post)("AddShgAuditing"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgAuditingDTO_1.UJSShgAuditingDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgAuditingAdd", null);
+__decorate([
+    (0, common_1.Get)('ListAuditing'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgAuditing", null);
+__decorate([
+    (0, common_1.Post)("AddShgDataUpload"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgDataUploadDTO_1.UJSShgDataUploadDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgDataUploadAdd", null);
+__decorate([
+    (0, common_1.Get)('ListDataUpload'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgDataUpload", null);
+__decorate([
+    (0, common_1.Post)("AddShgDigiSakhi"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgDigiSakhiDTO_1.UJSShgDigiSakhiDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgDigiSakhiAdd", null);
+__decorate([
+    (0, common_1.Get)('ListDigiSakhi'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgDigiSakhi", null);
+__decorate([
+    (0, common_1.Post)("AddShgFpo"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgFpoDTO_1.UJSShgFpoDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgFpoAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgFpo'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgFpo", null);
+__decorate([
+    (0, common_1.Post)("AddShgFedrationReport"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgFedrationReportDTO_1.UJSSHGFedrationReportDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgFedrationReportAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgFedrationReport'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgFedrationReport", null);
+__decorate([
+    (0, common_1.Post)("AddShgFedration"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgFedrationDTO_1.UJSSHGFedrationDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgFedrationAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgFedration'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgFedration", null);
+__decorate([
+    (0, common_1.Post)("AddShgMom"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgMomDTO_1.UJSShgMomDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgMomAdd", null);
+__decorate([
+    (0, common_1.Get)('ListShgMom'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgMom", null);
 exports.UjsController = UjsController = __decorate([
     (0, common_1.Controller)("ujs"),
     __param(1, (0, common_1.Inject)(common_1.Logger)),

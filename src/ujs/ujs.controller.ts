@@ -28,6 +28,20 @@ import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 import { UJSStateDTO } from "./dto/UJSStateDTO";
 import { UJSSHGTraningDTO } from "./dto/UJSShgtraningDTO";
+import { UJSSHGActiveModelFarmerDTO } from "./dto/UJSShgActiveModelFarmerDTO";
+import { UJSShgAttendanceDTO } from "./dto/UJSShgAttendanceDTO";
+import { UJSShgContactDTO } from "./dto/UJSShgContactDTO";
+import { UJSShgDataLockDTO } from "./dto/UJSShgDataLockDTO";
+import { UJSBankAllotmentDTO } from "./dto/UJSSHgBankAllotmentDTO";
+import { UJSBankLoanDTO } from "./dto/UJSSBankLoanDTO";
+import { UJSBankDTO } from "./dto/UJSSBankDTO";
+import { UJSShgAuditingDTO } from "./dto/UJSShgAuditingDTO";
+import { UJSShgDataUploadDTO } from "./dto/UJSShgDataUploadDTO";
+import { UJSShgDigiSakhiDTO } from "./dto/UJSShgDigiSakhiDTO";
+import { UJSShgFpoDTO } from "./dto/UJSShgFpoDTO";
+import { UJSSHGFedrationReportDTO } from "./dto/UJSShgFedrationReportDTO";
+import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
+import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -284,5 +298,229 @@ return this.ujsService.UJSStateList(request);
 @UseGuards(JwtAuthGuard)
 async listShgTraning(@Req() request: Request) {
 return this.ujsService.UJSShgTraningList(request);
+}
+// ------------------------ -----farmem model active------------------------------------
+// add farmem model active
+@Post("AddShgActiveModelFarmer")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgActiveModelFarmerAdd(
+    @Req() request: Request,
+    @Body() ujsShgActiveModelFarmerDTO: UJSSHGActiveModelFarmerDTO
+  ) {
+    return this.ujsService.UJSShgActiveModelFarmerAdd(request, ujsShgActiveModelFarmerDTO);
+  }
+  // list farmem model active
+@Get('ListShgActiveModelFarmer')
+@UseGuards(JwtAuthGuard)
+async listShgActiveModelFarmer(@Req() request: Request) {
+return this.ujsService.UJSShgActiveModelFarmerList(request);
+}
+// ------------------------ ---- attendance------------------------------------
+// add attendance
+@Post("AddShgAttendance")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgAttendanceAdd(
+    @Req() request: Request,
+    @Body() ujsShgAttendanceDTO: UJSShgAttendanceDTO
+  ) {
+    return this.ujsService.UJSShgAttendanceAdd(request, ujsShgAttendanceDTO);
+  }
+  // list attendance
+@Get('ListShgAttendance')
+@UseGuards(JwtAuthGuard)
+async listShgAttendance(@Req() request: Request) {
+return this.ujsService.UJSShgAttendanceList(request);
+}
+// ------------------------ ---- sgf contact------------------------------------
+// add sgf contact
+@Post("AddShgContact")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgContactAdd(
+    @Req() request: Request,
+    @Body() ujsShgContactDTO: UJSShgContactDTO
+  ) {
+    return this.ujsService.UJSShgContactAdd(request, ujsShgContactDTO);
+  }
+  // list sgf contact
+@Get('ListShgContact')
+@UseGuards(JwtAuthGuard)
+async listShgContact(@Req() request: Request) {
+return this.ujsService.UJSShgContactList(request);
+}
+// ------------------------ ---- shg data lockt------------------------------------
+// add shg data lock
+@Post("AddShgDataLock")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgDataLockAdd(
+    @Req() request: Request,
+    @Body() ujsShgDataLockDTO: UJSShgDataLockDTO
+  ) {
+    return this.ujsService.UJSShgDataLockAdd(request, ujsShgDataLockDTO);
+  }
+  // list shg data lock
+@Get('ListShgDataLock')
+@UseGuards(JwtAuthGuard)
+async listShgDataLock(@Req() request: Request) {
+return this.ujsService.UJSShgDataLockList(request);
+}
+// ------------------------ ---- bank loan allotment------------------------------------
+// add bank loan allotment
+@Post("AddBankLoanAllotment")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgBankLoanAllotmentAdd(
+    @Req() request: Request,
+    @Body() ujsShgBankLoanAllotmentDTO: UJSBankAllotmentDTO
+  ) {
+    return this.ujsService.UJSShgBankLoanAllotmentAdd(request, ujsShgBankLoanAllotmentDTO);
+  }
+  // list bank loan allotment
+@Get('ListBankLoanAllotment')
+@UseGuards(JwtAuthGuard)
+async listShgBankLoanAllotment(@Req() request: Request) {
+return this.ujsService.UJSShgBankLoanAllotmentList(request);
+}
+// ------------------------ ---- bank loan ------------------------------------
+// add bank loan 
+@Post("AddBankLoan")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgBankLoanAdd(
+    @Req() request: Request,
+    @Body() ujsShgBankLoanDTO: UJSBankLoanDTO
+  ) {
+    return this.ujsService.UJSShgBankLoanAdd(request, ujsShgBankLoanDTO);
+  }
+  // list bank loan 
+@Get('ListBankLoan')
+@UseGuards(JwtAuthGuard)
+async listShgBankLoan(@Req() request: Request) {
+return this.ujsService.UJSShgBankLoanList(request);
+}
+// ------------------------ ---- bank  ------------------------------------
+// add bank 
+@Post("AddShgBank")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgBankAdd(
+    @Req() request: Request,
+    @Body() ujsShgBankDTO: UJSBankDTO
+  ) {
+    return this.ujsService.UJSShgBankAdd(request, ujsShgBankDTO);
+  }
+  // list bank
+@Get('ListBank')
+@UseGuards(JwtAuthGuard)
+async listShgBank(@Req() request: Request) {
+return this.ujsService.UJSShgBankList(request);
+}
+// ------------------------ ---- shg auditing  ------------------------------------
+// add shg auditing 
+@Post("AddShgAuditing")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgAuditingAdd(
+    @Req() request: Request,
+    @Body() ujsShgAuditingDTO: UJSShgAuditingDTO
+  ) {
+    return this.ujsService.UJSShgAuditingAdd(request, ujsShgAuditingDTO);
+  }
+  // list shg auditing
+@Get('ListAuditing')
+@UseGuards(JwtAuthGuard)
+async listShgAuditing(@Req() request: Request) {
+return this.ujsService.UJSShgAuditingList(request);
+}
+// ------------------------ --- data upload  ------------------------------------
+// add data upload
+@Post("AddShgDataUpload")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgDataUploadAdd(
+    @Req() request: Request,
+    @Body() ujsShgDataUploadDTO: UJSShgDataUploadDTO
+  ) {
+    return this.ujsService.UJSShgDataUploadAdd(request, ujsShgDataUploadDTO);
+  }
+  // lis data upload
+@Get('ListDataUpload')
+@UseGuards(JwtAuthGuard)
+async listShgDataUpload(@Req() request: Request) {
+return this.ujsService.UJSShgDataUploadList(request);
+}
+// ------------------------ --- digi sakhi  ------------------------------------
+// add digi sakhi
+@Post("AddShgDigiSakhi")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgDigiSakhiAdd(
+    @Req() request: Request,
+    @Body() ujsShgDigiSakhiDTO: UJSShgDigiSakhiDTO
+  ) {
+    return this.ujsService.UJSShgDigiSakhiAdd(request, ujsShgDigiSakhiDTO);
+  }
+  // lis digi sakhi
+@Get('ListDigiSakhi')
+@UseGuards(JwtAuthGuard)
+async listShgDigiSakhi(@Req() request: Request) {
+return this.ujsService.UJSShgDigiSakhiList(request);
+}
+// ------------------------ --- Fpo  ------------------------------------
+// add Fpo
+@Post("AddShgFpo")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgFpoAdd(
+    @Req() request: Request,
+    @Body() ujsShgFpoDTO: UJSShgFpoDTO
+  ) {
+    return this.ujsService.UJSShgFpoAdd(request, ujsShgFpoDTO);
+  }
+  // list Fpo
+@Get('ListShgFpo')
+@UseGuards(JwtAuthGuard)
+async listShgFpo(@Req() request: Request) {
+return this.ujsService.UJSShgFpoList(request);
+}
+// ------------------------ --- Fedration  ------------------------------------
+// add Fedration Report
+@Post("AddShgFedrationReport")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgFedrationReportAdd(
+    @Req() request: Request,
+    @Body() ujsShgFedrationReportDTO: UJSSHGFedrationReportDTO
+  ) {
+    return this.ujsService.UJSShgFedrationReportAdd(request, ujsShgFedrationReportDTO);
+  }
+  // list Fedration Report
+@Get('ListShgFedrationReport')
+@UseGuards(JwtAuthGuard)
+async listShgFedrationReport(@Req() request: Request) {
+return this.ujsService.UJSShgFedrationReportList(request);
+}
+// ------------------------ --- Fedration  ------------------------------------
+// add Fedration 
+@Post("AddShgFedration")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgFedrationAdd(
+    @Req() request: Request,
+    @Body() ujsShgFedrationDTO: UJSSHGFedrationDTO
+  ) {
+    return this.ujsService.UJSShgFedrationAdd(request, ujsShgFedrationDTO);
+  }
+  // list Fedration
+@Get('ListShgFedration')
+@UseGuards(JwtAuthGuard)
+async listShgFedration(@Req() request: Request) {
+return this.ujsService.UJSShgFedrationList(request);
+}
+// ------------------------ ---shg mom  ------------------------------------
+// add shg mom
+@Post("AddShgMom")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgMomAdd(
+    @Req() request: Request,
+    @Body() ujsShgMomDTO: UJSShgMomDTO
+  ) {
+    return this.ujsService.UJSShgMomAdd(request, ujsShgMomDTO);
+  }
+  // listshg mom
+@Get('ListShgMom')
+@UseGuards(JwtAuthGuard)
+async listShgMom(@Req() request: Request) {
+return this.ujsService.UJSShgMomList(request);
 }
  }

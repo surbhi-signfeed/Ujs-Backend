@@ -17,10 +17,24 @@ import { UJSSHGExpansesEntity } from './Entity/UJSSHGExpansesEntity';
 import { UJSSHGLoanRepaymentEntity } from './Entity/UJSSHGLoanRepaymentEntity';
 import { UJSStateEntity } from './Entity/UJSStateEntity';
 import { UJSShgTraningEntity } from './Entity/UJSShgTraningEntity';
+import { UJSShgActiveModelFarmerEntity } from './Entity/UJSShgActiveModelFarmerEntity';
+import { UJSShgAttendanceEntity } from './Entity/UJSShgAttendanceEntity';
+import { UJSShgContactEntity } from './Entity/UJSShgContactEntity';
+import { UJSShgDataLockEntity } from './Entity/UJSShgDataLockEntity';
+import { UJSBankLoanAllotmentEntity } from './Entity/UJSBankLoanAllotmentEntity';
+import { UJSBankLoanEntity } from './Entity/UJSBankLoanEntity';
+import { UJSBankEntity } from './Entity/UJSBankEntity';
+import { UJSShgAuditingEntity } from './Entity/UJSShgAuditingEntity';
+import { UJSShgDataUploadEntity } from './Entity/UJSShgDataUploadkEntity';
+import { UJSShgDigiSakhiEntity } from './Entity/UJSShgDigiSakhiEntity';
+import { UJSShgFpoEntity } from './Entity/UJSShgFpoEntity';
+import { UJSSHGFedrationReportEntity } from './Entity/UJSShgFedrationReportEntity';
+import { UJSSHGFedrationEntity } from './Entity/UJSShgFedrationEntity';
+import { UJSShgMomEntity } from './Entity/UJSShgMomEntity';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity])],
+  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity])],
   controllers: [UjsController],
   providers: [UjsService, Logger]
 })

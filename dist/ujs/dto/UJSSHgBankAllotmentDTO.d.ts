@@ -1,0 +1,34 @@
+export declare class UJSBankAllotmentDTO {
+    id?: number;
+    group_id: number;
+    Start_date?: Date;
+    End_date?: Date;
+    shg_id?: string;
+    group_name?: string;
+    bank_name?: string;
+    loan_no?: string;
+    loan_type?: string;
+    totalEmi?: number;
+    remainingEmi?: number;
+    loan_amt?: number;
+    requested_loan_amt?: number;
+    interest_rate?: number;
+    interest?: number;
+    member_emi_amount?: number;
+    settle_interest?: string;
+    tenure?: string;
+    file_charge?: number;
+    fedration_charge?: number;
+    distribution_amt?: number;
+    total_int?: number;
+    settle_amt?: number;
+    loan_date?: Date;
+    bank_ifsc?: string;
+    meetingDate?: Date;
+    sanctionDate?: Date;
+    distributionDate?: Date;
+    totalMember?: number;
+    updatedAt?: Date;
+    status: boolean;
+    last_emi_collected_date?: Date;
+}

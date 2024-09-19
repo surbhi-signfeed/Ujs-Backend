@@ -39,59 +39,114 @@ import { UJSStateEntity } from "./Entity/UJSStateEntity";
 import { UJSStateDTO } from "./dto/UJSStateDTO";
 import { UJSShgTraningEntity } from "./Entity/UJSShgTraningEntity";
 import { UJSSHGTraningDTO } from "./dto/UJSShgtraningDTO";
+import { UJSShgActiveModelFarmerEntity } from "./Entity/UJSShgActiveModelFarmerEntity";
+import { UJSSHGActiveModelFarmerDTO } from "./dto/UJSShgActiveModelFarmerDTO";
+import { UJSShgAttendanceEntity } from "./Entity/UJSShgAttendanceEntity";
+import { UJSShgAttendanceDTO } from "./dto/UJSShgAttendanceDTO";
+import { UJSShgContactEntity } from "./Entity/UJSShgContactEntity";
+import { UJSShgContactDTO } from "./dto/UJSShgContactDTO";
+import { UJSShgDataLockEntity } from "./Entity/UJSShgDataLockEntity";
+import { UJSShgDataLockDTO } from "./dto/UJSShgDataLockDTO";
+import { UJSBankAllotmentDTO } from "./dto/UJSSHgBankAllotmentDTO";
+import { UJSBankLoanAllotmentEntity } from "./Entity/UJSBankLoanAllotmentEntity";
+import { UJSBankLoanDTO } from "./dto/UJSSBankLoanDTO";
+import { UJSBankLoanEntity } from "./Entity/UJSBankLoanEntity";
+import { UJSBankEntity } from "./Entity/UJSBankEntity";
+import { UJSBankDTO } from "./dto/UJSSBankDTO";
+import { UJSShgAuditingDTO } from "./dto/UJSShgAuditingDTO";
+import { UJSShgAuditingEntity } from "./Entity/UJSShgAuditingEntity";
+import { UJSShgDataUploadEntity } from "./Entity/UJSShgDataUploadkEntity";
+import { UJSShgDataUploadDTO } from "./dto/UJSShgDataUploadDTO";
+import { UJSShgDigiSakhiEntity } from "./Entity/UJSShgDigiSakhiEntity";
+import { UJSShgDigiSakhiDTO } from "./dto/UJSShgDigiSakhiDTO";
+import { UJSShgFpoEntity } from "./Entity/UJSShgFpoEntity";
+import { UJSShgFpoDTO } from "./dto/UJSShgFpoDTO";
+import { UJSSHGFedrationReportDTO } from "./dto/UJSShgFedrationReportDTO";
+import { UJSSHGFedrationReportEntity } from "./Entity/UJSShgFedrationReportEntity";
+import { UJSSHGFedrationDTO } from "./dto/UJSShgFedrationDTO";
+import { UJSSHGFedrationEntity } from "./Entity/UJSShgFedrationEntity";
+import { UJSShgMomEntity } from "./Entity/UJSShgMomEntity";
+import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
 @Injectable()
 export class UjsService {
-  
+
   constructor(
     @Inject(Logger) private readonly logger: Logger,
     @InjectDataSource() private readonly connection: Connection,
     @InjectRepository(UJSDepartmentEntity)
-    private readonly UJSDepartmentRepository :Repository<UJSDepartmentEntity>,
+    private readonly UJSDepartmentRepository: Repository<UJSDepartmentEntity>,
     @InjectRepository(UJSShgGroupEntity)
-    private readonly UJSSghGroupRepository :Repository<UJSShgGroupEntity>,
-     @InjectRepository(UJSShgMemberEntity)
-    private readonly UJSShgMemberRepository :Repository<UJSShgMemberEntity>,
+    private readonly UJSSghGroupRepository: Repository<UJSShgGroupEntity>,
+    @InjectRepository(UJSShgMemberEntity)
+    private readonly UJSShgMemberRepository: Repository<UJSShgMemberEntity>,
     @InjectRepository(UJSUsersEntity)
-    private readonly UJSUserRepository :Repository<UJSUsersEntity>,
+    private readonly UJSUserRepository: Repository<UJSUsersEntity>,
     @InjectRepository(UJSRoleEntity)
-    private readonly UJSRoleRepository :Repository<UJSRoleEntity>,
+    private readonly UJSRoleRepository: Repository<UJSRoleEntity>,
     @InjectRepository(UJSRolePermissionEntity)
-    private readonly UJSRolePermissionRepository :Repository<UJSRolePermissionEntity>,
+    private readonly UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>,
     @InjectRepository(UJSBackupShgGroupDataUploadMonthEntity)
-    private readonly UJSBackupShgGroupDataUploadMonthRepository :Repository<UJSBackupShgGroupDataUploadMonthEntity>,
-   
+    private readonly UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>,
     @InjectRepository(UJSBranchEntity)
-    private readonly UJSBranchRepository :Repository<UJSBranchEntity>,
+    private readonly UJSBranchRepository: Repository<UJSBranchEntity>,
     @InjectRepository(UJSFailedJobEntity)
-    private readonly UJSFailedJobRepository :Repository<UJSFailedJobEntity>,
+    private readonly UJSFailedJobRepository: Repository<UJSFailedJobEntity>,
     @InjectRepository(UJSMigrationEntity)
-    private readonly UJSMigrationRepository :Repository<UJSMigrationEntity>,
+    private readonly UJSMigrationRepository: Repository<UJSMigrationEntity>,
     @InjectRepository(UJSPersonalAccessTokenEntity)
-    private readonly UJSPersonalAccessTokenRepository :Repository<UJSPersonalAccessTokenEntity>,
+    private readonly UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>,
     @InjectRepository(UJSSHGExpansesEntity)
-    private readonly UJSSHGExpansesRepository :Repository<UJSSHGExpansesEntity>,
+    private readonly UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>,
     @InjectRepository(UJSSHGLoanRepaymentEntity)
-    private readonly UJSSHGLoanRepaymentRepository :Repository<UJSSHGLoanRepaymentEntity>,
+    private readonly UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>,
     @InjectRepository(UJSStateEntity)
-    private readonly UJSStateRepository :Repository<UJSStateEntity>,
+    private readonly UJSStateRepository: Repository<UJSStateEntity>,
     @InjectRepository(UJSShgTraningEntity)
-    private readonly UJSShgTraningRepository :Repository<UJSShgTraningEntity>,
+    private readonly UJSShgTraningRepository: Repository<UJSShgTraningEntity>,
+    @InjectRepository(UJSShgActiveModelFarmerEntity)
+    private readonly UJSShgActiveModelFarmerRepository: Repository<UJSShgActiveModelFarmerEntity>,
+    @InjectRepository(UJSShgAttendanceEntity)
+    private readonly UJSShgAttendanceRepository: Repository<UJSShgAttendanceEntity>,
+    @InjectRepository(UJSShgContactEntity)
+    private readonly UJSShgContactRepository: Repository<UJSShgContactEntity>,
+    @InjectRepository(UJSShgDataLockEntity)
+    private readonly UJSShgDataLockRepository: Repository<UJSShgDataLockEntity>,
+    @InjectRepository(UJSBankLoanAllotmentEntity)
+    private readonly UJSShgBankLoanAllotmentRepository: Repository<UJSBankLoanAllotmentEntity>,
+    @InjectRepository(UJSBankLoanEntity)
+    private readonly UJSShgBankLoanRepository: Repository<UJSBankLoanEntity>,
+    @InjectRepository(UJSBankEntity)
+    private readonly UJSShgBankRepository: Repository<UJSBankEntity>,
+    @InjectRepository(UJSShgAuditingEntity)
+    private readonly UJSShgAuditingRepository: Repository<UJSShgAuditingEntity>,
+    @InjectRepository(UJSShgDataUploadEntity)
+    private readonly UJSShgDataUploadRepository: Repository<UJSShgDataUploadEntity>,
+    @InjectRepository(UJSShgDigiSakhiEntity)
+    private readonly UJSShgDigiSakhiRepository: Repository<UJSShgDigiSakhiEntity>,
+    @InjectRepository(UJSShgFpoEntity)
+    private readonly UJSShgFpoRepository: Repository<UJSShgFpoEntity>,
+    @InjectRepository(UJSSHGFedrationReportEntity)
+    private readonly UJSShgFedrationReportRepository: Repository<UJSSHGFedrationReportEntity>,
+    @InjectRepository(UJSSHGFedrationEntity)
+    private readonly UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>,
+    @InjectRepository(UJSShgMomEntity)
+    private readonly UJSShgMomRepository: Repository<UJSShgMomEntity>,
   ) {
-    
+
   }
   // --------------------------department--------------------------------
   // add department
   async UJSDepartmentAdd(request, ujsDepartmentDTO: UJSDepartmentDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
+
+
+
     let checkDepartment =
       await this.UJSDepartmentRepository.findOne({
         where: {
           department_name: ujsDepartmentDTO.department_name,
-          
+
         },
       });
     if (checkDepartment) {
@@ -104,8 +159,8 @@ export class UjsService {
         new UJSDepartmentEntity();
       addUJSDepartment.department_name = ujsDepartmentDTO.department_name;
       addUJSDepartment.status = ujsDepartmentDTO.status;
-    
-    
+
+
       await this.UJSDepartmentRepository.save(addUJSDepartment);
       return { departmentList: addUJSDepartment, message: "success", status: 200 };
     }
@@ -123,8 +178,8 @@ export class UjsService {
     ujsDepartmentUpdateDTO: UJSDepartmentUpdateDTO
   ) {
     const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-    
+
+
     let checkDepartment =
       await this.UJSDepartmentRepository.findOne({
         where: {
@@ -133,8 +188,8 @@ export class UjsService {
       });
     if (checkDepartment) {
       checkDepartment.department_name = ujsDepartmentUpdateDTO.department_name;
-      checkDepartment.status=ujsDepartmentUpdateDTO.status;
-    
+      checkDepartment.status = ujsDepartmentUpdateDTO.status;
+
       await this.UJSDepartmentRepository.save(checkDepartment);
       return { department: checkDepartment, message: "success", status: 200 };
     } else {
@@ -148,9 +203,9 @@ export class UjsService {
   ) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-    
-   
-    
+
+
+
     let checkDepartment =
       await this.UJSDepartmentRepository.findOne({
         where: {
@@ -169,18 +224,18 @@ export class UjsService {
     }
   }
   // -----------------------------shg group-----------------------------------
-   // add shg group
-   async UJSShgGroupAdd(request, ujsShgGroupDTO: UJSShgGroupDTO) {
+  // add shg group
+  async UJSShgGroupAdd(request, ujsShgGroupDTO: UJSShgGroupDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
+
+
+
     let checkGroup =
       await this.UJSSghGroupRepository.findOne({
         where: {
           group_name: ujsShgGroupDTO.group_name,
-          
+
         },
       });
     if (checkGroup) {
@@ -210,9 +265,9 @@ export class UjsService {
       addUJSShgGroup.total_member = ujsShgGroupDTO.total_member;
       addUJSShgGroup.last_meeting_date = ujsShgGroupDTO.last_meeting_date;
       addUJSShgGroup.status = ujsShgGroupDTO.status;
-      
-    
-    
+
+
+
       await this.UJSSghGroupRepository.save(addUJSShgGroup);
       return { shgGroupList: addUJSShgGroup, message: "success", status: 200 };
     }
@@ -225,19 +280,19 @@ export class UjsService {
     return { shgGroup: shgGroupList, message: "success", status: 200 };
   }
   // -----------------------------shg member----------------------------------
-   // add shg member
+  // add shg member
 
-   async UJSShgMemberAdd(request, ujsShgMemberDTO: UJSShgMemberDTO) {
+  async UJSShgMemberAdd(request, ujsShgMemberDTO: UJSShgMemberDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
+
+
+
     let checkMember =
       await this.UJSShgMemberRepository.findOne({
         where: {
           group_name: ujsShgMemberDTO.group_name,
-          
+
         },
       });
     if (checkMember) {
@@ -303,14 +358,14 @@ export class UjsService {
   async UJSUserAdd(request, ujsUserDTO: UJSUsersDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
+
+
+
     let checkUser =
       await this.UJSUserRepository.findOne({
         where: {
           name: ujsUserDTO.name,
-          
+
         },
       });
     if (checkUser) {
@@ -321,16 +376,16 @@ export class UjsService {
     } else {
       const addUJSUser: UJSUsersEntity =
         new UJSUsersEntity();
-        addUJSUser.name = ujsUserDTO.name;
-        addUJSUser.email = ujsUserDTO.email;
-        addUJSUser.password = ujsUserDTO.password;
-        addUJSUser.shg_grp = ujsUserDTO.shg_grp;
-        addUJSUser.active = ujsUserDTO.active;
-        addUJSUser.role = ujsUserDTO.role;
-        addUJSUser.emp_code = ujsUserDTO.emp_code;
-        addUJSUser.mobile = ujsUserDTO.mobile;
-      addUJSUser.admin_app=ujsUserDTO.admin_app;
-    
+      addUJSUser.name = ujsUserDTO.name;
+      addUJSUser.email = ujsUserDTO.email;
+      addUJSUser.password = ujsUserDTO.password;
+      addUJSUser.shg_grp = ujsUserDTO.shg_grp;
+      addUJSUser.active = ujsUserDTO.active;
+      addUJSUser.role = ujsUserDTO.role;
+      addUJSUser.emp_code = ujsUserDTO.emp_code;
+      addUJSUser.mobile = ujsUserDTO.mobile;
+      addUJSUser.admin_app = ujsUserDTO.admin_app;
+
       await this.UJSUserRepository.save(addUJSUser);
       return { UserList: addUJSUser, message: "success", status: 200 };
     }
@@ -347,77 +402,77 @@ export class UjsService {
   // create role
   async UJSRoleAdd(request, ujsRoleDTO: UJSRoleDTO, permissionDTOs: UJSRolePermissionDTO[]) {
     const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-    
-  
+
+
+
     // Check if the role already exists by role_name
     let checkRole = await this.UJSRoleRepository.findOne({
       where: { role_name: ujsRoleDTO.role_name },
     });
-  
+
     if (checkRole) {
       return { message: "Role Already Exists", status: 400 };
-    } 
-  
+    }
+
     // Create new role if it does not exist
     const addUJSRole: UJSRoleEntity = new UJSRoleEntity();
     addUJSRole.role_name = ujsRoleDTO.role_name;
     addUJSRole.status = ujsRoleDTO.status;
     await this.UJSRoleRepository.save(addUJSRole);
-  
+
     // After saving, retrieve the created role by role_name (to get the newly created role's ID)
     let getRole = await this.UJSRoleRepository.findOne({
       where: { role_name: ujsRoleDTO.role_name },
     });
-  
+
     if (!getRole) {
       return { message: "Failed to retrieve the created role", status: 500 };
     }
-  
+
     // Iterate over the array of permissionDTOs and save each permission with the same role_id
     for (const permissionDTO of permissionDTOs) {
       // Check if the permission exists by permission_name in the permission repository
       const checkPermission = await this.UJSRolePermissionRepository.findOne({
         where: { permission_name: permissionDTO.permission_name, roll_id: getRole.roll_id },
       });
-  
+
       if (checkPermission) {
         return { message: `Permission '${permissionDTO.permission_name}' Already Exists for this Role`, status: 400 };
       }
-  
+
       // If permission does not exist, create a new permission associated with the role
       const addRolePermission: UJSRolePermissionEntity = new UJSRolePermissionEntity();
       addRolePermission.roll_id = getRole.roll_id;  // Use roll_id from the newly created role
       addRolePermission.permission_name = permissionDTO.permission_name;
       addRolePermission.active = permissionDTO.active;
-  
+
       await this.UJSRolePermissionRepository.save(addRolePermission);
     }
-  
+
     return { message: "Role and Permissions created successfully", status: 200, role: getRole };
   }
-  
-// list role
 
-async UJSRoleList(request) {
-  let shgRoleList = await this.UJSRoleRepository.find(
-    {}
-  );
-  return { shgRole: shgRoleList, message: "success", status: 200 };
-}
- // --------------------------Migration--------------------------------
+  // list role
+
+  async UJSRoleList(request) {
+    let shgRoleList = await this.UJSRoleRepository.find(
+      {}
+    );
+    return { shgRole: shgRoleList, message: "success", status: 200 };
+  }
+  // --------------------------Migration--------------------------------
   // add Migration
   async UJSMigrationAdd(request, ujsDepartmentDTO: UJSMigrationDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
+
+
+
     let checkMigration =
       await this.UJSMigrationRepository.findOne({
         where: {
           migration: ujsDepartmentDTO.migration,
-          
+
         },
       });
     if (checkMigration) {
@@ -428,7 +483,7 @@ async UJSRoleList(request) {
     } else {
       const addUJSMigration: UJSMigrationEntity = new UJSMigrationEntity();
       addUJSMigration.migration = ujsDepartmentDTO.migration;
-      addUJSMigration.batch = ujsDepartmentDTO.batch;    
+      addUJSMigration.batch = ujsDepartmentDTO.batch;
       await this.UJSMigrationRepository.save(addUJSMigration);
       return { migrationList: addUJSMigration, message: "success", status: 200 };
     }
@@ -440,20 +495,20 @@ async UJSRoleList(request) {
     );
     return { migration: migrationList, message: "success", status: 200 };
   }
-   // --------------------------FailedJobs--------------------------------
+  // --------------------------FailedJobs--------------------------------
   // add FailedJobs
-  async UJSFailedJobsAdd(request, ujsFailedJobsDTO: UJSFailedJobDTO) { 
+  async UJSFailedJobsAdd(request, ujsFailedJobsDTO: UJSFailedJobDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
-    
+
+
+
+
     let checkFailedJob =
       await this.UJSFailedJobRepository.findOne({
         where: {
           uuid: ujsFailedJobsDTO.uuid,
-          
+
         },
       });
     if (checkFailedJob) {
@@ -481,20 +536,20 @@ async UJSRoleList(request) {
     );
     return { failedJobs: failedJobsList, message: "success", status: 200 };
   }
-    // --------------------------Branch--------------------------------
+  // --------------------------Branch--------------------------------
   // add Branch
-  async UJSBranchAdd(request, ujsBranchDTO: UJSBranchDTO) { 
+  async UJSBranchAdd(request, ujsBranchDTO: UJSBranchDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
-    
+
+
+
+
     let checkFailedJob =
       await this.UJSBranchRepository.findOne({
         where: {
           branch_name: ujsBranchDTO.branch_name,
-          
+
         },
       });
     if (checkFailedJob) {
@@ -547,20 +602,20 @@ async UJSRoleList(request) {
     );
     return { Branch: BranchList, message: "success", status: 200 };
   }
-   // --------------------------backup shg grp--------------------------------
+  // --------------------------backup shg grp--------------------------------
   // add backup shg grp
-  async UJSBackupShgGroupAdd(request, ujsBackupShgGroupDataUploadMonthDTO: UJSBackupShgGroupDataUploadMonthDTO) { 
+  async UJSBackupShgGroupAdd(request, ujsBackupShgGroupDataUploadMonthDTO: UJSBackupShgGroupDataUploadMonthDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
-    
+
+
+
+
     let checkBackupShgGroupDataUploadMonth =
       await this.UJSBackupShgGroupDataUploadMonthRepository.findOne({
         where: {
           group_id: ujsBackupShgGroupDataUploadMonthDTO.group_id,
-          
+
         },
       });
     if (checkBackupShgGroupDataUploadMonth) {
@@ -602,20 +657,20 @@ async UJSRoleList(request) {
     );
     return { UJSBackupShgGroup: UJSBackupShgGroupList, message: "success", status: 200 };
   }
-   // --------------------------personal access token--------------------------------
+  // --------------------------personal access token--------------------------------
   // add personal access token
-  async UJSPersonalAccessTokenAdd(request, ujsPersonalAccessTokenDTO: UJSPersonalAccessTokenDTO) { 
+  async UJSPersonalAccessTokenAdd(request, ujsPersonalAccessTokenDTO: UJSPersonalAccessTokenDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
-    
+
+
+
+
     let checkPersonalAccessToken =
       await this.UJSPersonalAccessTokenRepository.findOne({
         where: {
           name: ujsPersonalAccessTokenDTO.name,
-          
+
         },
       });
     if (checkPersonalAccessToken) {
@@ -634,7 +689,7 @@ async UJSRoleList(request) {
       addUJSUJSPersonalAccessToken.last_used_at = ujsPersonalAccessTokenDTO.last_used_at;
       addUJSUJSPersonalAccessToken.created_at = ujsPersonalAccessTokenDTO.created_at;
       addUJSUJSPersonalAccessToken.updated_at = ujsPersonalAccessTokenDTO.updated_at;
-      
+
       await this.UJSPersonalAccessTokenRepository.save(addUJSUJSPersonalAccessToken);
       return { PersonalAccessTokenList: addUJSUJSPersonalAccessToken, message: "success", status: 200 };
     }
@@ -646,20 +701,20 @@ async UJSRoleList(request) {
     );
     return { PersonalAccessToken: PersonalAccessTokenList, message: "success", status: 200 };
   }
-    // --------------------------SHGExpenses--------------------------------
+  // --------------------------SHGExpenses--------------------------------
   // add SHGExpenses
-  async UJSSHGExpensesAdd(request, ujsSHGExpansesDTO: UJSSHGExpansesDTO) { 
+  async UJSSHGExpensesAdd(request, ujsSHGExpansesDTO: UJSSHGExpansesDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
-   
-    
-    
+
+
+
+
     let checkShgExpenses =
       await this.UJSSHGExpansesRepository.findOne({
         where: {
           group_id: ujsSHGExpansesDTO.group_id,
-          
+
         },
       });
     if (checkShgExpenses) {
@@ -683,7 +738,7 @@ async UJSRoleList(request) {
       addUJSSHGExpenses.datetime = ujsSHGExpansesDTO.datetime;
       addUJSSHGExpenses.total = ujsSHGExpansesDTO.total;
 
-      
+
       await this.UJSSHGExpansesRepository.save(addUJSSHGExpenses);
       return { ShgExpensesList: addUJSSHGExpenses, message: "success", status: 200 };
     }
@@ -695,17 +750,17 @@ async UJSRoleList(request) {
     );
     return { SHGExpenses: SHGExpensesList, message: "success", status: 200 };
   }
-   // --------------------------SHG loan repayment--------------------------------
+  // --------------------------SHG loan repayment--------------------------------
   // add SHG loan repayment
-  async UJSShgLoanRepaymentAdd(request, ujsSHGLoanRepaymentDTO: UJSSHGLoanRepaymentDTO) { 
+  async UJSShgLoanRepaymentAdd(request, ujsSHGLoanRepaymentDTO: UJSSHGLoanRepaymentDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-   
+
     let checkShgExpenses =
       await this.UJSSHGLoanRepaymentRepository.findOne({
         where: {
           group_id: ujsSHGLoanRepaymentDTO.group_id,
-          
+
         },
       });
     if (checkShgExpenses) {
@@ -716,17 +771,17 @@ async UJSRoleList(request) {
     } else {
       const addUJSSHGLoanRepayment: UJSSHGLoanRepaymentEntity =
         new UJSSHGLoanRepaymentEntity();
-        addUJSSHGLoanRepayment.meeting_id = ujsSHGLoanRepaymentDTO.meeting_id;
-        addUJSSHGLoanRepayment.emi_amount = ujsSHGLoanRepaymentDTO.emi_amount;
-        addUJSSHGLoanRepayment.interest = ujsSHGLoanRepaymentDTO.interest;
-        addUJSSHGLoanRepayment.member_id = ujsSHGLoanRepaymentDTO.member_id;
-        addUJSSHGLoanRepayment.member_name = ujsSHGLoanRepaymentDTO.member_name;
-        addUJSSHGLoanRepayment.group_id = ujsSHGLoanRepaymentDTO.group_id;
-        addUJSSHGLoanRepayment.animator_id = ujsSHGLoanRepaymentDTO.animator_id;
-        addUJSSHGLoanRepayment.emi_no = ujsSHGLoanRepaymentDTO.emi_no;
-        addUJSSHGLoanRepayment.emi_date = ujsSHGLoanRepaymentDTO.emi_date;
+      addUJSSHGLoanRepayment.meeting_id = ujsSHGLoanRepaymentDTO.meeting_id;
+      addUJSSHGLoanRepayment.emi_amount = ujsSHGLoanRepaymentDTO.emi_amount;
+      addUJSSHGLoanRepayment.interest = ujsSHGLoanRepaymentDTO.interest;
+      addUJSSHGLoanRepayment.member_id = ujsSHGLoanRepaymentDTO.member_id;
+      addUJSSHGLoanRepayment.member_name = ujsSHGLoanRepaymentDTO.member_name;
+      addUJSSHGLoanRepayment.group_id = ujsSHGLoanRepaymentDTO.group_id;
+      addUJSSHGLoanRepayment.animator_id = ujsSHGLoanRepaymentDTO.animator_id;
+      addUJSSHGLoanRepayment.emi_no = ujsSHGLoanRepaymentDTO.emi_no;
+      addUJSSHGLoanRepayment.emi_date = ujsSHGLoanRepaymentDTO.emi_date;
       addUJSSHGLoanRepayment.meetingDate = ujsSHGLoanRepaymentDTO.meetingDate;
-    
+
       await this.UJSSHGLoanRepaymentRepository.save(addUJSSHGLoanRepayment);
       return { ShgExpensesList: addUJSSHGLoanRepayment, message: "success", status: 200 };
     }
@@ -738,16 +793,16 @@ async UJSRoleList(request) {
     );
     return { SHGLoanRepayment: SHGLoanRepaymentList, message: "success", status: 200 };
   }
-   // -----------------------------state-----------------------------------
-   // add state
-   async UJSStateAdd(request, ujsStateDTO: UJSStateDTO) {
+  // -----------------------------state-----------------------------------
+  // add state
+  async UJSStateAdd(request, ujsStateDTO: UJSStateDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
     let checkState =
       await this.UJSStateRepository.findOne({
         where: {
           district: ujsStateDTO.district,
-          
+
         },
       });
     if (checkState) {
@@ -760,9 +815,9 @@ async UJSRoleList(request) {
         new UJSStateEntity();
       addUJSState.state = ujsStateDTO.state;
       addUJSState.district = ujsStateDTO.district;
-     
-    
-    
+
+
+
       await this.UJSStateRepository.save(addUJSState);
       return { stateList: addUJSState, message: "success", status: 200 };
     }
@@ -774,19 +829,19 @@ async UJSRoleList(request) {
     );
     return { state: stateList, message: "success", status: 200 };
   }
-   // -----------------------------shg tarning-----------------------------------
-   // add shg traning
-   async UJSShgTraningAdd(request, ujsShgTraningDTO: UJSSHGTraningDTO) {
+  // -----------------------------shg tarning-----------------------------------
+  // add shg traning
+  async UJSShgTraningAdd(request, ujsShgTraningDTO: UJSSHGTraningDTO) {
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-    let checkState =
+    let checkShgTraning =
       await this.UJSShgTraningRepository.findOne({
         where: {
-          meeting_id:  ujsShgTraningDTO.meeting_id,
-          
+          meeting_id: ujsShgTraningDTO.meeting_id,
+
         },
       });
-    if (checkState) {
+    if (checkShgTraning) {
       return {
         message: "Shg Traning Already Exist",
         status: 400,
@@ -794,15 +849,15 @@ async UJSRoleList(request) {
     } else {
       const addUJSShgTraning: UJSShgTraningEntity =
         new UJSShgTraningEntity();
-      addUJSShgTraning.meeting_id =  ujsShgTraningDTO.meeting_id;
-    
-      addUJSShgTraning.group_id =  ujsShgTraningDTO.group_id;
-      addUJSShgTraning.animator_id =  ujsShgTraningDTO.animator_id;
-      addUJSShgTraning.traning =  ujsShgTraningDTO.traning;
-      addUJSShgTraning.traningDate =  ujsShgTraningDTO.traningDate;
-      addUJSShgTraning.created_Date =  ujsShgTraningDTO.created_Date;
-    
-    
+      addUJSShgTraning.meeting_id = ujsShgTraningDTO.meeting_id;
+
+      addUJSShgTraning.group_id = ujsShgTraningDTO.group_id;
+      addUJSShgTraning.animator_id = ujsShgTraningDTO.animator_id;
+      addUJSShgTraning.traning = ujsShgTraningDTO.traning;
+      addUJSShgTraning.traningDate = ujsShgTraningDTO.traningDate;
+      addUJSShgTraning.created_Date = ujsShgTraningDTO.created_Date;
+
+
       await this.UJSShgTraningRepository.save(addUJSShgTraning);
       return { shgTraning: addUJSShgTraning, message: "success", status: 200 };
     }
@@ -814,6 +869,613 @@ async UJSRoleList(request) {
     );
     return { shgTraning: shgTraningList, message: "success", status: 200 };
   }
-  
+  // -----------------------------shg active model farmer-----------------------------------
+  // add shg active model farmer
+  async UJSShgActiveModelFarmerAdd(request, ujsShgActiveModelFarmerDTO: UJSSHGActiveModelFarmerDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkModel =
+      await this.UJSShgActiveModelFarmerRepository.findOne({
+        where: {
+          farmer_name: ujsShgActiveModelFarmerDTO.farmer_name,
+
+        },
+      });
+    if (checkModel) {
+      return {
+        message: "Shg Active Framer Model Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgActiveModelActive: UJSShgActiveModelFarmerEntity =
+        new UJSShgActiveModelFarmerEntity();
+      addUJSShgActiveModelActive.farmer_name = ujsShgActiveModelFarmerDTO.farmer_name;
+      addUJSShgActiveModelActive.village = ujsShgActiveModelFarmerDTO.village;
+      addUJSShgActiveModelActive.mobile = ujsShgActiveModelFarmerDTO.mobile;
+
+
+      await this.UJSShgActiveModelFarmerRepository.save(addUJSShgActiveModelActive);
+      return { shgActiveModelFarmer: addUJSShgActiveModelActive, message: "success", status: 200 };
+    }
+  }
+  // list shg active model farmer
+  async UJSShgActiveModelFarmerList(request) {
+    let shgActiveModelFarmerList = await this.UJSShgActiveModelFarmerRepository.find(
+      {}
+    );
+    return { shgActiveModelFarmer: shgActiveModelFarmerList, message: "success", status: 200 };
+  }
+  // -----------------------------shg attendance-----------------------------------
+  // add shg attendance
+  async UJSShgAttendanceAdd(request, ujsShgAttendanceDTO: UJSShgAttendanceDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkAttendance =
+      await this.UJSShgAttendanceRepository.findOne({
+        where: {
+          meeting_id: ujsShgAttendanceDTO.meeting_id,
+
+        },
+      });
+    if (checkAttendance) {
+      return {
+        message: "Shg Attendance Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgAttendance: UJSShgAttendanceEntity =
+        new UJSShgAttendanceEntity();
+      addUJSShgAttendance.meeting_id = ujsShgAttendanceDTO.meeting_id;
+      addUJSShgAttendance.group_id = ujsShgAttendanceDTO.group_id;
+      addUJSShgAttendance.group_name = ujsShgAttendanceDTO.group_name;
+      addUJSShgAttendance.animator_id = ujsShgAttendanceDTO.animator_id;
+      addUJSShgAttendance.animator_name = ujsShgAttendanceDTO.animator_name;
+      addUJSShgAttendance.member_id = ujsShgAttendanceDTO.member_id;
+      addUJSShgAttendance.member_name = ujsShgAttendanceDTO.member_name;
+      addUJSShgAttendance.attendance = ujsShgAttendanceDTO.attendance;
+      addUJSShgAttendance.datetime = ujsShgAttendanceDTO.datetime;
+      addUJSShgAttendance.meetingDate = ujsShgAttendanceDTO.meetingDate;
+      await this.UJSShgAttendanceRepository.save(addUJSShgAttendance);
+      return { shgAttendance: addUJSShgAttendance, message: "success", status: 200 };
+    }
+  }
+  // list shg attendance
+  async UJSShgAttendanceList(request) {
+    let shgAttendanceList = await this.UJSShgAttendanceRepository.find(
+      {}
+    );
+    return { shgAttendance: shgAttendanceList, message: "success", status: 200 };
+  }
+  // -----------------------------shg acontact----------------------------------
+  // add shg contact
+  async UJSShgContactAdd(request, ujsShgContactDTO: UJSShgContactDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkContact =
+      await this.UJSShgContactRepository.findOne({
+        where: {
+          email: ujsShgContactDTO.email,
+
+        },
+      });
+    if (checkContact) {
+      return {
+        message: "contact Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgContact: UJSShgContactEntity =
+        new UJSShgContactEntity();
+      addUJSShgContact.name = ujsShgContactDTO.name;
+      addUJSShgContact.email = ujsShgContactDTO.email;
+      addUJSShgContact.mobile = ujsShgContactDTO.mobile;
+      addUJSShgContact.subject = ujsShgContactDTO.subject;
+      addUJSShgContact.message = ujsShgContactDTO.message;
+      addUJSShgContact.contactDate = ujsShgContactDTO.contactDate;
+      await this.UJSShgContactRepository.save(addUJSShgContact);
+      return { shgContact: addUJSShgContact, message: "success", status: 200 };
+    }
+  }
+  // list shg contact
+  async UJSShgContactList(request) {
+    let shgContactList = await this.UJSShgContactRepository.find(
+      {}
+    );
+    return { shgContact: shgContactList, message: "success", status: 200 };
+  }
+  // -----------------------------data lock----------------------------------
+  // add data lock
+  async UJSShgDataLockAdd(request, ujsShgDataLockDTO: UJSShgDataLockDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkdatalock =
+      await this.UJSShgDataLockRepository.findOne({
+        where: {
+          group_id: ujsShgDataLockDTO.group_id,
+
+        },
+      });
+    if (checkdatalock) {
+      return {
+        message: "Data Lock Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgDataLock: UJSShgDataLockEntity =
+        new UJSShgDataLockEntity();
+      addUJSShgDataLock.group_id = ujsShgDataLockDTO.group_id;
+      addUJSShgDataLock.lock_date = ujsShgDataLockDTO.lock_date;
+      addUJSShgDataLock.transaction = ujsShgDataLockDTO.transaction;
+      addUJSShgDataLock.status = ujsShgDataLockDTO.status;
+      addUJSShgDataLock.updatedAt = ujsShgDataLockDTO.updatedAt;
+
+      await this.UJSShgDataLockRepository.save(addUJSShgDataLock);
+      return { shgDataLock: addUJSShgDataLock, message: "success", status: 200 };
+    }
+  }
+  // list data lock
+  async UJSShgDataLockList(request) {
+    let shgDataLockList = await this.UJSShgDataLockRepository.find(
+      {}
+    );
+    return { shgDataLock: shgDataLockList, message: "success", status: 200 };
+  }
+  // -----------------------------bank loan allotment----------------------------------
+  // add bank loan allotment
+  async UJSShgBankLoanAllotmentAdd(request, ujsShgbankAllotmentDTO: UJSBankAllotmentDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkbankloan =
+      await this.UJSShgBankLoanAllotmentRepository.findOne({
+        where: {
+          group_id: ujsShgbankAllotmentDTO.group_id,
+
+        },
+      });
+    if (checkbankloan) {
+      return {
+        message: "Bank Loan Already Allot",
+        status: 400,
+      };
+    } else {
+      const addUJSShgBankLoanAllotment: UJSBankLoanAllotmentEntity =
+        new UJSBankLoanAllotmentEntity();
+      addUJSShgBankLoanAllotment.group_id = ujsShgbankAllotmentDTO.group_id;
+      addUJSShgBankLoanAllotment.Start_date = ujsShgbankAllotmentDTO.Start_date;
+      addUJSShgBankLoanAllotment.End_date = ujsShgbankAllotmentDTO.End_date;
+      addUJSShgBankLoanAllotment.shg_id = ujsShgbankAllotmentDTO.shg_id;
+      addUJSShgBankLoanAllotment.group_name = ujsShgbankAllotmentDTO.group_name;
+      addUJSShgBankLoanAllotment.bank_name = ujsShgbankAllotmentDTO.bank_name;
+      addUJSShgBankLoanAllotment.loan_no = ujsShgbankAllotmentDTO.loan_no;
+      addUJSShgBankLoanAllotment.loan_type = ujsShgbankAllotmentDTO.loan_type;
+      addUJSShgBankLoanAllotment.totalEmi = ujsShgbankAllotmentDTO.totalEmi;
+      addUJSShgBankLoanAllotment.remainingEmi = ujsShgbankAllotmentDTO.remainingEmi;
+      addUJSShgBankLoanAllotment.loan_amt = ujsShgbankAllotmentDTO.loan_amt;
+      addUJSShgBankLoanAllotment.requested_loan_amt = ujsShgbankAllotmentDTO.requested_loan_amt;
+      addUJSShgBankLoanAllotment.interest_rate = ujsShgbankAllotmentDTO.interest_rate;
+      addUJSShgBankLoanAllotment.interest = ujsShgbankAllotmentDTO.interest;
+      addUJSShgBankLoanAllotment.member_emi_amount = ujsShgbankAllotmentDTO.member_emi_amount;
+      addUJSShgBankLoanAllotment.settle_interest = ujsShgbankAllotmentDTO.settle_interest;
+      addUJSShgBankLoanAllotment.tenure = ujsShgbankAllotmentDTO.tenure;
+      addUJSShgBankLoanAllotment.file_charge = ujsShgbankAllotmentDTO.file_charge;
+      addUJSShgBankLoanAllotment.fedration_charge = ujsShgbankAllotmentDTO.fedration_charge;
+      addUJSShgBankLoanAllotment.distribution_amt = ujsShgbankAllotmentDTO.distribution_amt;
+      addUJSShgBankLoanAllotment.total_int = ujsShgbankAllotmentDTO.total_int;
+      addUJSShgBankLoanAllotment.settle_amt = ujsShgbankAllotmentDTO.settle_amt;
+      addUJSShgBankLoanAllotment.loan_date = ujsShgbankAllotmentDTO.loan_date;
+      addUJSShgBankLoanAllotment.bank_ifsc = ujsShgbankAllotmentDTO.bank_ifsc;
+      addUJSShgBankLoanAllotment.meetingDate = ujsShgbankAllotmentDTO.meetingDate;
+      addUJSShgBankLoanAllotment.sanctionDate = ujsShgbankAllotmentDTO.sanctionDate;
+      addUJSShgBankLoanAllotment.distributionDate = ujsShgbankAllotmentDTO.distributionDate;
+      addUJSShgBankLoanAllotment.totalMember = ujsShgbankAllotmentDTO.totalMember;
+      addUJSShgBankLoanAllotment.updatedAt = ujsShgbankAllotmentDTO.updatedAt;
+      addUJSShgBankLoanAllotment.status = ujsShgbankAllotmentDTO.status;
+      addUJSShgBankLoanAllotment.last_emi_collected_date = ujsShgbankAllotmentDTO.last_emi_collected_date;
+
+
+      await this.UJSShgBankLoanAllotmentRepository.save(addUJSShgBankLoanAllotment);
+      return { shgBankLoanAllotment: addUJSShgBankLoanAllotment, message: "success", status: 200 };
+    }
+  }
+  // list bank loan allotment
+  async UJSShgBankLoanAllotmentList(request) {
+    let shgbankLoanList = await this.UJSShgBankLoanAllotmentRepository.find(
+      {}
+    );
+    return { shgbankLoan: shgbankLoanList, message: "success", status: 200 };
+  }
+  // -----------------------------bank loan ----------------------------------
+  // add bank loan 
+  async UJSShgBankLoanAdd(request, ujsShgbankAllotmentDTO: UJSBankLoanDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkbankloan =
+      await this.UJSShgBankLoanRepository.findOne({
+        where: {
+          group_id: ujsShgbankAllotmentDTO.group_id,
+
+        },
+      });
+    if (checkbankloan) {
+      return {
+        message: "Loan Already Allot",
+        status: 400,
+      };
+    } else {
+      const addUJSShgBankLoan: UJSBankLoanEntity =
+        new UJSBankLoanEntity();
+      // Assuming `addUJSShgBankLoan` is an instance of the entity and `ujsShgbankAllotmentDTO` is the DTO instance
+
+      addUJSShgBankLoan.id = ujsShgbankAllotmentDTO.id;
+      addUJSShgBankLoan.loan_no = ujsShgbankAllotmentDTO.loan_no;
+      addUJSShgBankLoan.bank_name = ujsShgbankAllotmentDTO.bank_name;
+      addUJSShgBankLoan.meeting_id = ujsShgbankAllotmentDTO.meeting_id;
+      addUJSShgBankLoan.group_id = ujsShgbankAllotmentDTO.group_id;
+      addUJSShgBankLoan.member_id = ujsShgbankAllotmentDTO.member_id;
+      addUJSShgBankLoan.animator_id = ujsShgbankAllotmentDTO.animator_id;
+      addUJSShgBankLoan.member_name = ujsShgbankAllotmentDTO.member_name;
+      addUJSShgBankLoan.group_name = ujsShgbankAllotmentDTO.group_name;
+      addUJSShgBankLoan.animator_name = ujsShgbankAllotmentDTO.animator_name;
+      addUJSShgBankLoan.loan_amt = ujsShgbankAllotmentDTO.loan_amt;
+      addUJSShgBankLoan.interest_rate = ujsShgbankAllotmentDTO.interest_rate;
+      addUJSShgBankLoan.interest = ujsShgbankAllotmentDTO.interest;
+      addUJSShgBankLoan.settle_interest = ujsShgbankAllotmentDTO.settle_interest;
+      addUJSShgBankLoan.loan_period = ujsShgbankAllotmentDTO.loan_period;
+      addUJSShgBankLoan.loan_date = ujsShgbankAllotmentDTO.loan_date;
+      addUJSShgBankLoan.loan_type = ujsShgbankAllotmentDTO.loan_type;
+      addUJSShgBankLoan.settle_amount = ujsShgbankAllotmentDTO.settle_amount;
+      addUJSShgBankLoan.total_emi = ujsShgbankAllotmentDTO.total_emi;
+      addUJSShgBankLoan.current_emi = ujsShgbankAllotmentDTO.current_emi;
+      addUJSShgBankLoan.meetingDate = ujsShgbankAllotmentDTO.meetingDate;
+
+
+
+      await this.UJSShgBankLoanRepository.save(addUJSShgBankLoan);
+      return { shgBankLoan: addUJSShgBankLoan, message: "success", status: 200 };
+    }
+  }
+  // list bank loan allotment
+  async UJSShgBankLoanList(request) {
+    let bankLoanList = await this.UJSShgBankLoanRepository.find(
+      {}
+    );
+    return { bankLoan: bankLoanList, message: "success", status: 200 };
+  }
+   // -----------------------------ban ----------------------------------
+  // add bank
+  async UJSShgBankAdd(request, ujsShgbankDTO: UJSBankDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkbank =
+      await this.UJSShgBankRepository.findOne({
+        where: {
+          bank_name: ujsShgbankDTO.bank_name,
+
+        },
+      });
+    if (checkbank) {
+      return {
+        message: "Bank Already Allot",
+        status: 400,
+      };
+    } else {
+      const addUJSShgBank: UJSBankEntity =
+        new UJSBankEntity();
+    
+      addUJSShgBank.bank_name = ujsShgbankDTO.bank_name;
+      addUJSShgBank.interest_rate = ujsShgbankDTO.interest_rate;
+      addUJSShgBank.filecharge = ujsShgbankDTO.filecharge
+      addUJSShgBank.fedrationcharge = ujsShgbankDTO.fedrationcharge;
+   
+
+
+
+      await this.UJSShgBankRepository.save(addUJSShgBank);
+      return { shgBank: addUJSShgBank, message: "success", status: 200 };
+    }
+  }
+  // list bank 
+  async UJSShgBankList(request) {
+    let bankList = await this.UJSShgBankRepository.find(
+      {}
+    );
+    return { bank: bankList, message: "success", status: 200 };
+  }
+  // ----------------------------auditing ----------------------------------
+  // add auditing
+  async UJSShgAuditingAdd(request, ujsShgAuditingDTO: UJSShgAuditingDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkaudit =
+      await this.UJSShgAuditingRepository.findOne({
+        where: {
+           auditor_name: ujsShgAuditingDTO. auditor_name,
+
+        },
+      });
+    if (checkaudit) {
+      return {
+        message: "shg Auditing Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgAuditing: UJSShgAuditingEntity =
+        new UJSShgAuditingEntity();
+    
+      addUJSShgAuditing.auditor_name = ujsShgAuditingDTO.auditor_name;
+      addUJSShgAuditing.meeting_id = ujsShgAuditingDTO.meeting_id;
+      addUJSShgAuditing.animator_id = ujsShgAuditingDTO.animator_id;
+      addUJSShgAuditing.group_id = ujsShgAuditingDTO.group_id;
+      addUJSShgAuditing.fromdate = ujsShgAuditingDTO.fromdate;
+      addUJSShgAuditing.todate = ujsShgAuditingDTO.todate;
+      addUJSShgAuditing.auditdate = ujsShgAuditingDTO.auditdate;
+      addUJSShgAuditing.created_date = ujsShgAuditingDTO.created_date;
+      await this.UJSShgAuditingRepository.save(addUJSShgAuditing);
+      return { shgAuditing: addUJSShgAuditing, message: "success", status: 200 };
+    }
+  }
+  // list auditing 
+  async UJSShgAuditingList(request) {
+    let AuditingList = await this.UJSShgAuditingRepository.find(
+      {}
+    );
+    return { Auditing: AuditingList, message: "success", status: 200 };
+  }
+  // --------------------------- data upload  ----------------------------------
+  // add data upload 
+  async UJSShgDataUploadAdd(request, ujsShgDataUploadDTO: UJSShgDataUploadDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkUpload =
+      await this.UJSShgDataUploadRepository.findOne({
+        where: {
+           group_id: ujsShgDataUploadDTO. group_id,
+
+        },
+      });
+    if (checkUpload) {
+      return {
+        message: " Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgDataUpload: UJSShgDataUploadEntity =
+        new UJSShgDataUploadEntity();
+    
+        addUJSShgDataUpload.group_id = ujsShgDataUploadDTO.group_id;
+        addUJSShgDataUpload.member_id = ujsShgDataUploadDTO.member_id;
+        addUJSShgDataUpload.member_name = ujsShgDataUploadDTO.member_name;
+        addUJSShgDataUpload.HusbandFather_Name = ujsShgDataUploadDTO.HusbandFather_Name;
+        addUJSShgDataUpload.attendance = ujsShgDataUploadDTO.attendance;
+        addUJSShgDataUpload.opening = ujsShgDataUploadDTO.opening;
+        addUJSShgDataUpload.saving = ujsShgDataUploadDTO.saving;
+        addUJSShgDataUpload.special_saving = ujsShgDataUploadDTO.special_saving;
+        addUJSShgDataUpload.installment = ujsShgDataUploadDTO.installment;
+        addUJSShgDataUpload.interest = ujsShgDataUploadDTO.interest;
+        addUJSShgDataUpload.penalty = ujsShgDataUploadDTO.penalty;
+        addUJSShgDataUpload.fix_loan = ujsShgDataUploadDTO.fix_loan;
+        addUJSShgDataUpload.bank_loan = ujsShgDataUploadDTO.bank_loan;
+        addUJSShgDataUpload.bank_interest = ujsShgDataUploadDTO.bank_interest;
+        addUJSShgDataUpload.new_loan = ujsShgDataUploadDTO.new_loan;
+        addUJSShgDataUpload.remaining_loan = ujsShgDataUploadDTO.remaining_loan;
+        addUJSShgDataUpload.meeting_date = ujsShgDataUploadDTO.meeting_date;
+        addUJSShgDataUpload.meeting_id = ujsShgDataUploadDTO.meeting_id;
+        addUJSShgDataUpload.datetime = ujsShgDataUploadDTO.datetime;
+        addUJSShgDataUpload.openingBal = ujsShgDataUploadDTO.openingBal;
+        addUJSShgDataUpload.fixLoan = ujsShgDataUploadDTO.fixLoan;
+ 
+      await this.UJSShgDataUploadRepository.save(addUJSShgDataUpload);
+      return { shgDataUpload: addUJSShgDataUpload, message: "success", status: 200 };
+    }
+  }
+  // list  data upload 
+  async UJSShgDataUploadList(request) {
+    let DataUploadList = await this.UJSShgDataUploadRepository.find(
+      {}
+    );
+    return { DataUpload: DataUploadList, message: "success", status: 200 };
+  }
+    // --------------------------- Digital sakhi  ----------------------------------
+  // add Digital sakhi 
+  async UJSShgDigiSakhiAdd(request, ujsShgDigiSakhiDTO: UJSShgDigiSakhiDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkDigiSakhi =
+      await this.UJSShgDigiSakhiRepository.findOne({
+        where: {
+           gp_name: ujsShgDigiSakhiDTO. gp_name,
+
+        },
+      });
+    if (checkDigiSakhi) {
+      return {
+        message: " Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgDigiSakhi: UJSShgDigiSakhiEntity =
+        new UJSShgDigiSakhiEntity();
+    
+        addUJSShgDigiSakhi.gp_name = ujsShgDigiSakhiDTO.gp_name;
+        addUJSShgDigiSakhi.state = ujsShgDigiSakhiDTO.state;
+        addUJSShgDigiSakhi.district = ujsShgDigiSakhiDTO.district;
+        addUJSShgDigiSakhi.block = ujsShgDigiSakhiDTO.block;
+        addUJSShgDigiSakhi.villege_name = ujsShgDigiSakhiDTO.villege_name;
+        addUJSShgDigiSakhi.vle_name = ujsShgDigiSakhiDTO.vle_name;
+        addUJSShgDigiSakhi.mobile = ujsShgDigiSakhiDTO.mobile;
+        addUJSShgDigiSakhi.email = ujsShgDigiSakhiDTO.email;
+        addUJSShgDigiSakhi.application_ref_no = ujsShgDigiSakhiDTO.application_ref_no;
+        addUJSShgDigiSakhi.cscId = ujsShgDigiSakhiDTO.cscId;
+ 
+      await this.UJSShgDigiSakhiRepository.save(addUJSShgDigiSakhi);
+      return { shgDigiSakhi: addUJSShgDigiSakhi, message: "success", status: 200 };
+    }
+  }
+  // list  dDigital sakhi
+  async UJSShgDigiSakhiList(request) {
+    let DigiSakhiList = await this.UJSShgDigiSakhiRepository.find(
+      {}
+    );
+    return { DigiSakhi: DigiSakhiList, message: "success", status: 200 };
+  }
+    // --------------------------- Shg Fpo ----------------------------------
+  // add Shg Fpo
+  async UJSShgFpoAdd(request, ujsShgFpoDTO: UJSShgFpoDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkFpo =
+      await this.UJSShgFpoRepository.findOne({
+        where: {
+           member_sharholder: ujsShgFpoDTO. member_sharholder,
+
+        },
+      });
+    if (checkFpo) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgFpo: UJSShgFpoEntity =
+        new UJSShgFpoEntity();
+    
+        addUJSShgFpo.member_sharholder = ujsShgFpoDTO.member_sharholder; 
+        addUJSShgFpo.husband_name = ujsShgFpoDTO.husband_name; 
+        addUJSShgFpo.village_name = ujsShgFpoDTO.village_name; 
+        addUJSShgFpo.gender = ujsShgFpoDTO.gender; 
+        addUJSShgFpo.share_amt = ujsShgFpoDTO.share_amt; 
+        addUJSShgFpo.no_of_share = ujsShgFpoDTO.no_of_share; 
+        addUJSShgFpo.folio_share_distinct_no = ujsShgFpoDTO.folio_share_distinct_no; 
+        addUJSShgFpo.land_holdeing = ujsShgFpoDTO.land_holdeing; 
+        addUJSShgFpo.land_record = ujsShgFpoDTO.land_record; 
+        addUJSShgFpo.mobile = ujsShgFpoDTO.mobile; 
+        addUJSShgFpo.remarks = ujsShgFpoDTO.remarks; 
+      await this.UJSShgFpoRepository.save(addUJSShgFpo);
+      return { Fpo: addUJSShgFpo, message: "success", status: 200 };
+    }
+  }
+  // list  Shg Fpo
+  async UJSShgFpoList(request) {
+    let FpoList = await this.UJSShgFpoRepository.find(
+      {}
+    );
+    return { Fpo: FpoList, message: "success", status: 200 };
+  }
+     // --------------------------- Shg Fedration ----------------------------------
+  // add Shg Fedration
+  async UJSShgFedrationReportAdd(request, ujsShgFedrationReportDTO: UJSSHGFedrationReportDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkFedration =
+      await this.UJSShgFedrationReportRepository.findOne({
+        where: {
+           shg_name: ujsShgFedrationReportDTO.shg_name
+        },
+      });
+    if (checkFedration) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgFedration: UJSSHGFedrationReportEntity =
+        new UJSSHGFedrationReportEntity();
+    
+        addUJSShgFedration.shg_name = ujsShgFedrationReportDTO.shg_name; 
+        addUJSShgFedration.dhani = ujsShgFedrationReportDTO.dhani; 
+        addUJSShgFedration.gram_panchayat = ujsShgFedrationReportDTO.gram_panchayat; 
+        addUJSShgFedration.total_member = ujsShgFedrationReportDTO.total_member; 
+        addUJSShgFedration.federation_this_month = ujsShgFedrationReportDTO.federation_this_month;
+        addUJSShgFedration.federation = ujsShgFedrationReportDTO.federation; 
+     
+      await this.UJSShgFedrationReportRepository.save(addUJSShgFedration);
+      return { Fedration: addUJSShgFedration, message: "success", status: 200 };
+    }
+  }
+  // list  Shg Fedration
+  async UJSShgFedrationReportList(request) {
+    let FedrationList = await this.UJSShgFedrationReportRepository.find(
+      {}
+    );
+    return { Fedration: FedrationList, message: "success", status: 200 };
+  }
+    // --------------------------- Shg Fedration ----------------------------------
+  // add Shg Fedration
+  async UJSShgFedrationAdd(request, ujsShgFedrationDTO: UJSSHGFedrationDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkFedration =
+      await this.UJSShgFedrationRepository.findOne({
+        where: {
+           group_id: ujsShgFedrationDTO.group_id
+        },
+      });
+    if (checkFedration) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgFedration: UJSSHGFedrationEntity =
+        new UJSSHGFedrationEntity();
+    
+        addUJSShgFedration.meeting_id = ujsShgFedrationDTO.meeting_id; 
+        addUJSShgFedration.group_id = ujsShgFedrationDTO.group_id; 
+        addUJSShgFedration.animator_id = ujsShgFedrationDTO.animator_id; 
+        addUJSShgFedration.animator_name = ujsShgFedrationDTO.animator_name; 
+        addUJSShgFedration.group_name = ujsShgFedrationDTO.group_name;
+        addUJSShgFedration.amount = ujsShgFedrationDTO.amount; 
+        addUJSShgFedration.datetime = ujsShgFedrationDTO.datetime; 
+     
+      await this.UJSShgFedrationRepository.save(addUJSShgFedration);
+      return { Fedration: addUJSShgFedration, message: "success", status: 200 };
+    }
+  }
+  // list  Shg Fedration
+  async UJSShgFedrationList(request) {
+    let FedrationList = await this.UJSShgFedrationRepository.find(
+      {}
+    );
+    return { Fedration: FedrationList, message: "success", status: 200 };
+  }
+    // --------------------------- Shg Mom ----------------------------------
+  // add Shg Fedration
+  async UJSShgMomAdd(request, ujsShgMomDTO: UJSShgMomDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkMom =
+      await this.UJSShgMomRepository.findOne({
+        where: {
+           group_id: ujsShgMomDTO.group_id
+        },
+      });
+    if (checkMom) {
+      return {
+        message: "Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgMom: UJSShgMomEntity =
+        new UJSShgMomEntity();
+    
+        addUJSShgMom.meeting_id = ujsShgMomDTO.meeting_id; 
+        addUJSShgMom.group_id = ujsShgMomDTO.group_id; 
+        addUJSShgMom.animator_id = ujsShgMomDTO.animator_id; 
+        addUJSShgMom.animator_name = ujsShgMomDTO.animator_name; 
+        addUJSShgMom.group_name = ujsShgMomDTO.group_name;
+        addUJSShgMom.mom = ujsShgMomDTO.mom; 
+        addUJSShgMom.datetime = ujsShgMomDTO.datetime; 
+     
+      await this.UJSShgMomRepository.save(addUJSShgMom);
+      return { ShgMom: addUJSShgMom, message: "success", status: 200 };
+    }
+  }
+  // list  Shg Mom
+  async UJSShgMomList(request) {
+    let momList = await this.UJSShgMomRepository.find(
+      {}
+    );
+    return { mom: momList, message: "success", status: 200 };
+  }
 }
 
