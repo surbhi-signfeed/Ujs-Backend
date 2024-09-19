@@ -37,6 +37,8 @@ import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 import { UJSStateEntity } from "./Entity/UJSStateEntity";
 import { UJSStateDTO } from "./dto/UJSStateDTO";
+import { UJSShgTraningEntity } from "./Entity/UJSShgTraningEntity";
+import { UJSSHGTraningDTO } from "./dto/UJSShgtraningDTO";
 @Injectable()
 export class UjsService {
   
@@ -72,6 +74,8 @@ export class UjsService {
     private readonly UJSSHGLoanRepaymentRepository :Repository<UJSSHGLoanRepaymentEntity>,
     @InjectRepository(UJSStateEntity)
     private readonly UJSStateRepository :Repository<UJSStateEntity>,
+    @InjectRepository(UJSShgTraningEntity)
+    private readonly UJSShgTraningRepository :Repository<UJSShgTraningEntity>,
   ) {
     
   }
@@ -770,5 +774,46 @@ async UJSRoleList(request) {
     );
     return { state: stateList, message: "success", status: 200 };
   }
+   // -----------------------------shg tarning-----------------------------------
+   // add shg traning
+   async UJSShgTraningAdd(request, ujsShgTraningDTO: UJSSHGTraningDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+    let checkState =
+      await this.UJSShgTraningRepository.findOne({
+        where: {
+          meeting_id:  ujsShgTraningDTO.meeting_id,
+          
+        },
+      });
+    if (checkState) {
+      return {
+        message: "Shg Traning Already Exist",
+        status: 400,
+      };
+    } else {
+      const addUJSShgTraning: UJSShgTraningEntity =
+        new UJSShgTraningEntity();
+      addUJSShgTraning.meeting_id =  ujsShgTraningDTO.meeting_id;
+    
+      addUJSShgTraning.group_id =  ujsShgTraningDTO.group_id;
+      addUJSShgTraning.animator_id =  ujsShgTraningDTO.animator_id;
+      addUJSShgTraning.traning =  ujsShgTraningDTO.traning;
+      addUJSShgTraning.traningDate =  ujsShgTraningDTO.traningDate;
+      addUJSShgTraning.created_Date =  ujsShgTraningDTO.created_Date;
+    
+    
+      await this.UJSShgTraningRepository.save(addUJSShgTraning);
+      return { shgTraning: addUJSShgTraning, message: "success", status: 200 };
+    }
+  }
+  // list shg traning
+  async UJSShgTraningList(request) {
+    let shgTraningList = await this.UJSShgTraningRepository.find(
+      {}
+    );
+    return { shgTraning: shgTraningList, message: "success", status: 200 };
+  }
+  
 }
 

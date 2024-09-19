@@ -27,6 +27,7 @@ import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
 import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 import { UJSStateDTO } from "./dto/UJSStateDTO";
+import { UJSSHGTraningDTO } from "./dto/UJSShgtraningDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -266,5 +267,22 @@ return this.ujsService.UJSShgLoanRepaymentList(request);
 @UseGuards(JwtAuthGuard)
 async listState(@Req() request: Request) {
 return this.ujsService.UJSStateList(request);
+}
+
+// ------------------------ -----shg traning------------------------------------
+// add shg traning
+@Post("AddShgTraning")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgTraningAdd(
+    @Req() request: Request,
+    @Body() ujsShgTraningDTO: UJSSHGTraningDTO
+  ) {
+    return this.ujsService.UJSShgTraningAdd(request, ujsShgTraningDTO);
+  }
+  // list shg tarning
+@Get('ListShgTraning')
+@UseGuards(JwtAuthGuard)
+async listShgTraning(@Req() request: Request) {
+return this.ujsService.UJSShgTraningList(request);
 }
  }

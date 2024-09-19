@@ -30,8 +30,9 @@ const UJSPersonalAccessTokenEntity_1 = require("./Entity/UJSPersonalAccessTokenE
 const UJSSHGExpansesEntity_1 = require("./Entity/UJSSHGExpansesEntity");
 const UJSSHGLoanRepaymentEntity_1 = require("./Entity/UJSSHGLoanRepaymentEntity");
 const UJSStateEntity_1 = require("./Entity/UJSStateEntity");
+const UJSShgTraningEntity_1 = require("./Entity/UJSShgTraningEntity");
 let UjsService = class UjsService {
-    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository, UJSStateRepository) {
+    constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository, UJSStateRepository, UJSShgTraningRepository) {
         this.logger = logger;
         this.connection = connection;
         this.UJSDepartmentRepository = UJSDepartmentRepository;
@@ -48,6 +49,7 @@ let UjsService = class UjsService {
         this.UJSSHGExpansesRepository = UJSSHGExpansesRepository;
         this.UJSSHGLoanRepaymentRepository = UJSSHGLoanRepaymentRepository;
         this.UJSStateRepository = UJSStateRepository;
+        this.UJSShgTraningRepository = UJSShgTraningRepository;
     }
     async UJSDepartmentAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
@@ -555,6 +557,35 @@ let UjsService = class UjsService {
         let stateList = await this.UJSStateRepository.find({});
         return { state: stateList, message: "success", status: 200 };
     }
+    async UJSShgTraningAdd(request, ujsShgTraningDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkState = await this.UJSShgTraningRepository.findOne({
+            where: {
+                meeting_id: ujsShgTraningDTO.meeting_id,
+            },
+        });
+        if (checkState) {
+            return {
+                message: "Shg Traning Already Exist",
+                status: 400,
+            };
+        }
+        else {
+            const addUJSShgTraning = new UJSShgTraningEntity_1.UJSShgTraningEntity();
+            addUJSShgTraning.meeting_id = ujsShgTraningDTO.meeting_id;
+            addUJSShgTraning.group_id = ujsShgTraningDTO.group_id;
+            addUJSShgTraning.animator_id = ujsShgTraningDTO.animator_id;
+            addUJSShgTraning.traning = ujsShgTraningDTO.traning;
+            addUJSShgTraning.traningDate = ujsShgTraningDTO.traningDate;
+            addUJSShgTraning.created_Date = ujsShgTraningDTO.created_Date;
+            await this.UJSShgTraningRepository.save(addUJSShgTraning);
+            return { shgTraning: addUJSShgTraning, message: "success", status: 200 };
+        }
+    }
+    async UJSShgTraningList(request) {
+        let shgTraningList = await this.UJSShgTraningRepository.find({});
+        return { shgTraning: shgTraningList, message: "success", status: 200 };
+    }
 };
 exports.UjsService = UjsService;
 exports.UjsService = UjsService = __decorate([
@@ -575,7 +606,9 @@ exports.UjsService = UjsService = __decorate([
     __param(13, (0, typeorm_1.InjectRepository)(UJSSHGExpansesEntity_1.UJSSHGExpansesEntity)),
     __param(14, (0, typeorm_1.InjectRepository)(UJSSHGLoanRepaymentEntity_1.UJSSHGLoanRepaymentEntity)),
     __param(15, (0, typeorm_1.InjectRepository)(UJSStateEntity_1.UJSStateEntity)),
+    __param(16, (0, typeorm_1.InjectRepository)(UJSShgTraningEntity_1.UJSShgTraningEntity)),
     __metadata("design:paramtypes", [common_1.Logger, Object, typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,

@@ -25,12 +25,13 @@ const UJSPersonalAccessTokenEntity_1 = require("./Entity/UJSPersonalAccessTokenE
 const UJSSHGExpansesEntity_1 = require("./Entity/UJSSHGExpansesEntity");
 const UJSSHGLoanRepaymentEntity_1 = require("./Entity/UJSSHGLoanRepaymentEntity");
 const UJSStateEntity_1 = require("./Entity/UJSStateEntity");
+const UJSShgTraningEntity_1 = require("./Entity/UJSShgTraningEntity");
 let CmsModule = class CmsModule {
 };
 exports.CmsModule = CmsModule;
 exports.CmsModule = CmsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([UJSDepartmentEntity_1.UJSDepartmentEntity, UJSShgGroupEntity_1.UJSShgGroupEntity, UJSShgMemberEntity_1.UJSShgMemberEntity, UJSUsersEntity_1.UJSUsersEntity, UJSRoleEntity_1.UJSRoleEntity, UJSRolePermissionEntity_1.UJSRolePermissionEntity, UJSBackupShgGroupDataUploadEntity_1.UJSBackupShgGroupDataUploadMonthEntity, UJSBranchEntity_1.UJSBranchEntity, UJSFailedJobsEntity_1.UJSFailedJobEntity, UJSMigrationEntity_1.UJSMigrationEntity, UJSPersonalAccessTokenEntity_1.UJSPersonalAccessTokenEntity, UJSSHGExpansesEntity_1.UJSSHGExpansesEntity, UJSSHGLoanRepaymentEntity_1.UJSSHGLoanRepaymentEntity, UJSStateEntity_1.UJSStateEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([UJSDepartmentEntity_1.UJSDepartmentEntity, UJSShgGroupEntity_1.UJSShgGroupEntity, UJSShgMemberEntity_1.UJSShgMemberEntity, UJSUsersEntity_1.UJSUsersEntity, UJSRoleEntity_1.UJSRoleEntity, UJSRolePermissionEntity_1.UJSRolePermissionEntity, UJSBackupShgGroupDataUploadEntity_1.UJSBackupShgGroupDataUploadMonthEntity, UJSBranchEntity_1.UJSBranchEntity, UJSFailedJobsEntity_1.UJSFailedJobEntity, UJSMigrationEntity_1.UJSMigrationEntity, UJSPersonalAccessTokenEntity_1.UJSPersonalAccessTokenEntity, UJSSHGExpansesEntity_1.UJSSHGExpansesEntity, UJSSHGLoanRepaymentEntity_1.UJSSHGLoanRepaymentEntity, UJSStateEntity_1.UJSStateEntity, UJSShgTraningEntity_1.UJSShgTraningEntity])],
         controllers: [ujs_controller_1.UjsController],
         providers: [ujs_service_1.UjsService, common_1.Logger]
     })

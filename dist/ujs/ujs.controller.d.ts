@@ -17,6 +17,7 @@ import { UJSPersonalAccessTokenDTO } from "./dto/UJSPersonalAccessTokenDTO";
 import { UJSSHGExpansesDTO } from "./dto/UJSSHGExpansesDTO";
 import { UJSSHGLoanRepaymentDTO } from "./dto/UJSSHGLoanRepaymentDTO";
 import { UJSStateDTO } from "./dto/UJSStateDTO";
+import { UJSSHGTraningDTO } from "./dto/UJSShgtraningDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -213,6 +214,20 @@ export declare class UjsController {
     }>;
     listState(request: Request): Promise<{
         state: import("./Entity/UJSStateEntity").UJSStateEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgTraningAdd(request: Request, ujsShgTraningDTO: UJSSHGTraningDTO): Promise<{
+        message: string;
+        status: number;
+        shgTraning?: undefined;
+    } | {
+        shgTraning: import("./Entity/UJSShgTraningEntity").UJSShgTraningEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgTraning(request: Request): Promise<{
+        shgTraning: import("./Entity/UJSShgTraningEntity").UJSShgTraningEntity[];
         message: string;
         status: number;
     }>;

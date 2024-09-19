@@ -16,10 +16,11 @@ import { UJSPersonalAccessTokenEntity } from './Entity/UJSPersonalAccessTokenEnt
 import { UJSSHGExpansesEntity } from './Entity/UJSSHGExpansesEntity';
 import { UJSSHGLoanRepaymentEntity } from './Entity/UJSSHGLoanRepaymentEntity';
 import { UJSStateEntity } from './Entity/UJSStateEntity';
+import { UJSShgTraningEntity } from './Entity/UJSShgTraningEntity';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity])],
+  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity])],
   controllers: [UjsController],
   providers: [UjsService, Logger]
 })
