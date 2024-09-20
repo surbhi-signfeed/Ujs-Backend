@@ -17,80 +17,144 @@ exports.UJSShgGroupEntity = UJSShgGroupEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], UJSShgGroupEntity.prototype, "ID", void 0);
+], UJSShgGroupEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'group_id', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "group_id", void 0);
+], UJSShgGroupEntity.prototype, "shg_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'group_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], UJSShgGroupEntity.prototype, "group_name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'group_leader', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], UJSShgGroupEntity.prototype, "group_leader", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'formation_date', type: 'date' }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "formation_date", void 0);
+], UJSShgGroupEntity.prototype, "state", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'state_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "state_name", void 0);
+], UJSShgGroupEntity.prototype, "district", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'district_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "district_name", void 0);
+], UJSShgGroupEntity.prototype, "location", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'location_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "location_name", void 0);
+], UJSShgGroupEntity.prototype, "village", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'village_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "village_name", void 0);
+], UJSShgGroupEntity.prototype, "block_taluk", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'taluka_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "taluka_name", void 0);
+], UJSShgGroupEntity.prototype, "pincode", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'bank_name', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "animator_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], UJSShgGroupEntity.prototype, "animator", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], UJSShgGroupEntity.prototype, "bank_name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'bank_branch', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], UJSShgGroupEntity.prototype, "bank_branch", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'bank_account', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "bank_account", void 0);
+], UJSShgGroupEntity.prototype, "bank_ac", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'cash_in_hand', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "cash_in_hand", void 0);
+], UJSShgGroupEntity.prototype, "formationDate", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'federation_amount', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "federation_amount", void 0);
+], UJSShgGroupEntity.prototype, "fed_amt", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'cash_at_bank', type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "cash_at_bank", void 0);
+], UJSShgGroupEntity.prototype, "cashatbank", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'total_member', type: 'int' }),
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], UJSShgGroupEntity.prototype, "amount", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], UJSShgGroupEntity.prototype, "totalMember", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
     __metadata("design:type", Number)
-], UJSShgGroupEntity.prototype, "total_member", void 0);
+], UJSShgGroupEntity.prototype, "transactionstatus", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'last_meeting_date', type: 'date' }),
-    __metadata("design:type", String)
-], UJSShgGroupEntity.prototype, "last_meeting_date", void 0);
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "month", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'status', type: 'varchar', length: 255 }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'date', nullable: true }),
+    __metadata("design:type", Date)
+], UJSShgGroupEntity.prototype, "monthlymeeting", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 1 }),
+    __metadata("design:type", Number)
 ], UJSShgGroupEntity.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "TotalmonthlySaving", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "totalMeeting", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "savingAmt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "totalInternalLoan", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "totalInternalLoanRecover", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "totalInternalLoanInterest", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "totalExpanses", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "TotalBankLoan", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "totalbankloanrecover", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'date', nullable: true }),
+    __metadata("design:type", Date)
+], UJSShgGroupEntity.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),
+    __metadata("design:type", Number)
+], UJSShgGroupEntity.prototype, "TotalBankLoanInterest", void 0);
 exports.UJSShgGroupEntity = UJSShgGroupEntity = __decorate([
-    (0, typeorm_1.Entity)('SHG_Group')
+    (0, typeorm_1.Entity)('shg_groups')
 ], UJSShgGroupEntity);
 //# sourceMappingURL=UJSShgGroupEntity.js.map

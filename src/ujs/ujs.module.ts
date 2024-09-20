@@ -34,10 +34,16 @@ import { UJSShgMomEntity } from './Entity/UJSShgMomEntity';
 import { UJSShgGroupDataUploadMonthEntity } from './Entity/UJSShgGroupDataUploadMonthEntity';
 import { UJSShgMemeberSavingEntity } from './Entity/UJSShgMemberSavingEntity';
 import { UJSShgGroupDetailsInfoEntity } from './Entity/UJSShgGroupDetailsInfoEntity';
+import { UJSShgGroupSummaryEntity } from './Entity/UJSShgGroupSummaryEntity';
+import { UJSShgInternalLoanSummaryEntity } from './Entity/UJSShgInternalLoanSummaryEntity';
+import { UJSShgLoanEntity } from './Entity/UJSShgLoanEntity';
+import { UJSShgMeetingTrackEntity } from './Entity/UJSShgMeetingTrackEntity';
+import { UJSShgOtherIncomeEntity } from './Entity/UJSShgOtherIncomeEntity';
+import { UJSShgTillNowDataEntity } from './Entity/UJSShgTillNowDataEntity';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity,UJSShgGroupDataUploadMonthEntity,UJSShgMemeberSavingEntity, UJSShgGroupDetailsInfoEntity])],
+  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity,UJSShgGroupDataUploadMonthEntity,UJSShgMemeberSavingEntity, UJSShgGroupDetailsInfoEntity,UJSShgGroupSummaryEntity,UJSShgInternalLoanSummaryEntity,UJSShgLoanEntity,UJSShgMeetingTrackEntity,UJSShgOtherIncomeEntity,UJSShgTillNowDataEntity])],
   controllers: [UjsController],
   providers: [UjsService, Logger]
 })

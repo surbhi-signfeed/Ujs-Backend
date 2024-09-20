@@ -67,6 +67,18 @@ import { UJSShgMemeberSavingEntity } from "./Entity/UJSShgMemberSavingEntity";
 import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
 import { UJSShgGroupDetailsInfoEntity } from "./Entity/UJSShgGroupDetailsInfoEntity";
 import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
+import { UJSShgGroupSummaryEntity } from "./Entity/UJSShgGroupSummaryEntity";
+import { UJSShgInternalLoanSummaryEntity } from "./Entity/UJSShgInternalLoanSummaryEntity";
+import { UJSShgGroupSummaryDTO } from "./dto/UJSGroupSummaryDTO";
+import { UJSShgInternalLoanSummaryDTO } from "./dto/UJSInternalLOanSummaryDTO";
+import { UJSShgLoanEntity } from "./Entity/UJSShgLoanEntity";
+import { UJSShgLoanDTO } from "./dto/UJSShgLoanDTO";
+import { UJSShgMeetingTrackEntity } from "./Entity/UJSShgMeetingTrackEntity";
+import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
+import { UJSShgOtherIncomeEntity } from "./Entity/UJSShgOtherIncomeEntity";
+import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
+import { UJSShgTillNowDataEntity } from "./Entity/UJSShgTillNowDataEntity";
+import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
@@ -102,7 +114,13 @@ export declare class UjsService {
     private readonly UJSShgGroupDataUploadMonthERepository;
     private readonly UJSShgMemberSavingRepository;
     private readonly UJSShgGroupDetailsInfoRepository;
-    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>, UJSStateRepository: Repository<UJSStateEntity>, UJSShgTraningRepository: Repository<UJSShgTraningEntity>, UJSShgActiveModelFarmerRepository: Repository<UJSShgActiveModelFarmerEntity>, UJSShgAttendanceRepository: Repository<UJSShgAttendanceEntity>, UJSShgContactRepository: Repository<UJSShgContactEntity>, UJSShgDataLockRepository: Repository<UJSShgDataLockEntity>, UJSShgBankLoanAllotmentRepository: Repository<UJSBankLoanAllotmentEntity>, UJSShgBankLoanRepository: Repository<UJSBankLoanEntity>, UJSShgBankRepository: Repository<UJSBankEntity>, UJSShgAuditingRepository: Repository<UJSShgAuditingEntity>, UJSShgDataUploadRepository: Repository<UJSShgDataUploadEntity>, UJSShgDigiSakhiRepository: Repository<UJSShgDigiSakhiEntity>, UJSShgFpoRepository: Repository<UJSShgFpoEntity>, UJSShgFedrationReportRepository: Repository<UJSSHGFedrationReportEntity>, UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>, UJSShgMomRepository: Repository<UJSShgMomEntity>, UJSShgGroupDataUploadMonthERepository: Repository<UJSShgGroupDataUploadMonthEntity>, UJSShgMemberSavingRepository: Repository<UJSShgMemeberSavingEntity>, UJSShgGroupDetailsInfoRepository: Repository<UJSShgGroupDetailsInfoEntity>);
+    private readonly UJSShgGroupSummaryRepository;
+    private readonly UJSShgInternalLoanSummaryRepository;
+    private readonly UJSShgLoanRepository;
+    private readonly UJSShgMeetingTrackRepository;
+    private readonly UJSShgOtherIncomeRepository;
+    private readonly UJSShgTillNowDataRepository;
+    constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>, UJSStateRepository: Repository<UJSStateEntity>, UJSShgTraningRepository: Repository<UJSShgTraningEntity>, UJSShgActiveModelFarmerRepository: Repository<UJSShgActiveModelFarmerEntity>, UJSShgAttendanceRepository: Repository<UJSShgAttendanceEntity>, UJSShgContactRepository: Repository<UJSShgContactEntity>, UJSShgDataLockRepository: Repository<UJSShgDataLockEntity>, UJSShgBankLoanAllotmentRepository: Repository<UJSBankLoanAllotmentEntity>, UJSShgBankLoanRepository: Repository<UJSBankLoanEntity>, UJSShgBankRepository: Repository<UJSBankEntity>, UJSShgAuditingRepository: Repository<UJSShgAuditingEntity>, UJSShgDataUploadRepository: Repository<UJSShgDataUploadEntity>, UJSShgDigiSakhiRepository: Repository<UJSShgDigiSakhiEntity>, UJSShgFpoRepository: Repository<UJSShgFpoEntity>, UJSShgFedrationReportRepository: Repository<UJSSHGFedrationReportEntity>, UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>, UJSShgMomRepository: Repository<UJSShgMomEntity>, UJSShgGroupDataUploadMonthERepository: Repository<UJSShgGroupDataUploadMonthEntity>, UJSShgMemberSavingRepository: Repository<UJSShgMemeberSavingEntity>, UJSShgGroupDetailsInfoRepository: Repository<UJSShgGroupDetailsInfoEntity>, UJSShgGroupSummaryRepository: Repository<UJSShgGroupSummaryEntity>, UJSShgInternalLoanSummaryRepository: Repository<UJSShgInternalLoanSummaryEntity>, UJSShgLoanRepository: Repository<UJSShgLoanEntity>, UJSShgMeetingTrackRepository: Repository<UJSShgMeetingTrackEntity>, UJSShgOtherIncomeRepository: Repository<UJSShgOtherIncomeEntity>, UJSShgTillNowDataRepository: Repository<UJSShgTillNowDataEntity>);
     UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
         status: number;
@@ -547,6 +565,66 @@ export declare class UjsService {
     }>;
     UJSShgGroupDetailInfoList(request: any): Promise<{
         GroupDetailsInfo: UJSShgGroupDetailsInfoEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupSummaryAdd(request: any, ujsShgGroupSummaryDTO: UJSShgGroupSummaryDTO): Promise<{
+        GroupSummary: UJSShgGroupSummaryEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupSummaryList(request: any): Promise<{
+        GroupSummary: UJSShgGroupSummaryEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgInternalLoanSummaryAdd(request: any, ujsShgInternalLoanSummaryDTO: UJSShgInternalLoanSummaryDTO): Promise<{
+        InternalloanSummary: UJSShgInternalLoanSummaryEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgInternalLoanSummaryList(request: any): Promise<{
+        InternalLoanSummary: UJSShgInternalLoanSummaryEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgLoanAdd(request: any, ujsShgLoanDTO: UJSShgLoanDTO): Promise<{
+        loan: UJSShgLoanEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgLoanList(request: any): Promise<{
+        ShgLoan: UJSShgLoanEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgMeetingTrackAdd(request: any, ujsShgMeetingTrackDTO: UJSShgMeetingTrackDTO): Promise<{
+        MeetingTrack: UJSShgMeetingTrackEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgMeetingTrackList(request: any): Promise<{
+        ShgMeetingTrack: UJSShgMeetingTrackEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgOtherIncomeAdd(request: any, ujsShgOtherIncomeDTO: UJSShgOtherIncomeDTO): Promise<{
+        OtherIncome: UJSShgOtherIncomeEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgOtherIncomeList(request: any): Promise<{
+        ShgOtherIncome: UJSShgOtherIncomeEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgTillNowDataAdd(request: any, ujsShgTillNowDataDTO: UJSShgTillNowDataDTO): Promise<{
+        TillNowData: UJSShgTillNowDataEntity;
+        message: string;
+        status: number;
+    }>;
+    UJSShgTillNowDataList(request: any): Promise<{
+        ShgTillNowData: UJSShgTillNowDataEntity[];
         message: string;
         status: number;
     }>;

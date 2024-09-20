@@ -1,60 +1,141 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty,IsOptional } from "class-validator";
 
 export class UJSShgGroupDTO {
     @IsNotEmpty()
-    ID: string;
+    id: number;
 
-    @IsNotEmpty()
-    group_id: string;
+    @IsOptional()
+   
+    shg_id: string;
 
-    @IsNotEmpty()
+    @IsOptional()
+   
     group_name: string;
 
-    @IsNotEmpty()
+    @IsOptional()
+   
     group_leader: string;
 
-    @IsNotEmpty()
-    formation_date: string;
+    @IsOptional()
+   
+    state: string;
 
-    @IsNotEmpty()
-    state_name: string;
+    @IsOptional()
+   
+    district: string;
 
-    @IsNotEmpty()
-    district_name: string;
+    @IsOptional()
+   
+    location: string;
 
-    @IsNotEmpty()
-    location_name: string;
+    @IsOptional()
+   
+    village: string;
 
-    @IsNotEmpty()
-    village_name: string;
+    @IsOptional()
+   
+    block_taluk: string;
 
-    @IsNotEmpty()
-    taluka_name: string;
+    @IsOptional()
+   
+    pincode: string;
+    @IsOptional()
+   
+    updatedAt: Date;
 
-    @IsNotEmpty()
+    @IsOptional()
+   
+    animator_id: number;
+
+    @IsOptional()
+   
+    animator: string;
+
+    @IsOptional()
+   
     bank_name: string;
 
-    @IsNotEmpty()
+    @IsOptional()
+   
     bank_branch: string;
 
-    @IsNotEmpty()
-    bank_account: string;
+    @IsOptional()
+   
+    bank_ac: string;
+
+    @IsOptional()
+   
+    formationDate: string;
+
+    @IsOptional()
+   
+    fed_amt: string;
+
+    @IsOptional()
+   
+    cashatbank: string;
+
+    @IsOptional()
+   
+    amount: string;
+
+    @IsOptional()
+   
+    totalMember: string;
+
+    @IsOptional()
+   
+    transactionstatus: number;
+
+    @IsOptional()
+   
+    month: number;
+
+    @IsOptional()
+   
+    monthlymeeting: Date;
 
     @IsNotEmpty()
-    cash_in_hand: string;
+   
+    status: number;
 
-    @IsNotEmpty()
-    federation_amount: string;
+    @IsOptional()
+    
+    TotalmonthlySaving: number;
 
-    @IsNotEmpty()
-    cash_at_bank: string;
+    @IsOptional()
+   
+    totalMeeting: number;
 
-    @IsNotEmpty()
-    total_member: number;
+    @IsOptional()
+    
+    savingAmt: number;
 
-    @IsNotEmpty()
-    last_meeting_date: string;
+    @IsOptional()
+    
+    totalInternalLoan: number;
 
-    @IsNotEmpty()
-    status: string;
+    @IsOptional()
+    
+    totalInternalLoanRecover: number;
+
+    @IsOptional()
+    
+    totalInternalLoanInterest: number;
+
+    @IsOptional()
+    
+    totalExpanses: number;
+
+    @IsOptional()
+    
+    TotalBankLoan: number;
+
+    @IsOptional()
+    
+    totalbankloanrecover: number;
+
+    @IsOptional()
+    
+    TotalBankLoanInterest: number;
 }

@@ -45,6 +45,12 @@ import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
 import { UJSShgGroupDataUploadMonthDTO } from "./dto/UJSShgGroupDataUploadMonthDTO";
 import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
 import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
+import { UJSShgGroupSummaryDTO } from "./dto/UJSGroupSummaryDTO";
+import { UJSShgInternalLoanSummaryDTO } from "./dto/UJSInternalLOanSummaryDTO";
+import { UJSShgLoanDTO } from "./dto/UJSShgLoanDTO";
+import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
+import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
+import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -573,5 +579,101 @@ return this.ujsService.UJSShgMemberSavingList(request);
 @UseGuards(JwtAuthGuard)
 async listShgGroupDetailInfo(@Req() request: Request) {
 return this.ujsService.UJSShgGroupDetailInfoList(request);
+}
+// ------------------------ ---Groupsummary   ------------------------------------
+// add Group summary
+@Post("AddShgGroupSummary")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgGroupSummaryAdd(
+    @Req() request: Request,
+    @Body() ujsShgGroupDSummaryDTO: UJSShgGroupSummaryDTO
+  ) {
+    return this.ujsService.UJSShgGroupSummaryAdd(request, ujsShgGroupDSummaryDTO);
+  }
+  // listGroupsummary 
+@Get('ListShgGroupSummary')
+@UseGuards(JwtAuthGuard)
+async listShgGroupSummary(@Req() request: Request) {
+return this.ujsService.UJSShgGroupSummaryList(request);
+}
+// ------------------------ --Internal Loan Summary   ------------------------------------
+// add Internal Loan Summary
+@Post("AddShgInternalLoanSummary")
+  @UseGuards(JwtAuthGuard)
+  async UJSShInternalLoanSummaryAdd(
+    @Req() request: Request,
+    @Body() ujsShgInternalLoanSummaryDTO: UJSShgInternalLoanSummaryDTO
+  ) {
+    return this.ujsService.UJSShgInternalLoanSummaryAdd(request, ujsShgInternalLoanSummaryDTO);
+  }
+  // listInternal Loan Summary
+@Get('ListShgInternalLoanSummary')
+@UseGuards(JwtAuthGuard)
+async listSInternalLoanSummary(@Req() request: Request) {
+return this.ujsService.UJSShgInternalLoanSummaryList(request);
+}
+// ------------------------ --shg loan   ------------------------------------
+// add shg loan
+@Post("AddShgLoan")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgLoanAdd(
+    @Req() request: Request,
+    @Body() ujsShggLoanDTO: UJSShgLoanDTO
+  ) {
+    return this.ujsService.UJSShgLoanAdd(request, ujsShggLoanDTO);
+  }
+  // listshg loan
+@Get('ListShgLoan')
+@UseGuards(JwtAuthGuard)
+async listSgLoan(@Req() request: Request) {
+return this.ujsService.UJSShgLoanList(request);
+}
+// ------------------------ -- Meeting track   ------------------------------------
+// add  Meeting track
+@Post("AddShgMeetingTrack")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgMeetingTrackAdd(
+    @Req() request: Request,
+    @Body() ujsShgMeetingTrackDTO: UJSShgMeetingTrackDTO
+  ) {
+    return this.ujsService.UJSShgMeetingTrackAdd(request, ujsShgMeetingTrackDTO);
+  }
+  // list Meeting track
+@Get('ListShgMeetingTrack')
+@UseGuards(JwtAuthGuard)
+async listSgMeetingTrack(@Req() request: Request) {
+return this.ujsService.UJSShgMeetingTrackList(request);
+}
+// ------------------------ -- other income   ------------------------------------
+// add  other income
+@Post("AddShgOtherIncome")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgOtherIncomeAdd(
+    @Req() request: Request,
+    @Body() ujsShgOtherIncomeDTO: UJSShgOtherIncomeDTO
+  ) {
+    return this.ujsService.UJSShgOtherIncomeAdd(request, ujsShgOtherIncomeDTO);
+  }
+  // list other income
+@Get('ListShgOtherIncome')
+@UseGuards(JwtAuthGuard)
+async listSgOtherIncome(@Req() request: Request) {
+return this.ujsService.UJSShgOtherIncomeList(request);
+}
+// ------------------------ -- Till Now Data   ------------------------------------
+// add  Till Now Data
+@Post("AddShgTillNowData")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgTillNowDataAdd(
+    @Req() request: Request,
+    @Body() ujsShgTillNowDataDTO: UJSShgTillNowDataDTO
+  ) {
+    return this.ujsService.UJSShgTillNowDataAdd(request, ujsShgTillNowDataDTO);
+  }
+  // list Till Now Data
+@Get('ListShgTillNowData')
+@UseGuards(JwtAuthGuard)
+async listSgTillNowData(@Req() request: Request) {
+return this.ujsService.UJSShgTillNowDataList(request);
 }
  }

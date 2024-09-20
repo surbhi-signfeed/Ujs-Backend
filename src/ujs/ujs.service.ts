@@ -73,6 +73,18 @@ import { UJSShgMemeberSavingEntity } from "./Entity/UJSShgMemberSavingEntity";
 import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
 import { UJSShgGroupDetailsInfoEntity } from "./Entity/UJSShgGroupDetailsInfoEntity";
 import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
+import { UJSShgGroupSummaryEntity } from "./Entity/UJSShgGroupSummaryEntity";
+import { UJSShgInternalLoanSummaryEntity } from "./Entity/UJSShgInternalLoanSummaryEntity";
+import { UJSShgGroupSummaryDTO } from "./dto/UJSGroupSummaryDTO";
+import { UJSShgInternalLoanSummaryDTO } from "./dto/UJSInternalLOanSummaryDTO";
+import { UJSShgLoanEntity } from "./Entity/UJSShgLoanEntity";
+import { UJSShgLoanDTO } from "./dto/UJSShgLoanDTO";
+import { UJSShgMeetingTrackEntity } from "./Entity/UJSShgMeetingTrackEntity";
+import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
+import { UJSShgOtherIncomeEntity } from "./Entity/UJSShgOtherIncomeEntity";
+import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
+import { UJSShgTillNowDataEntity } from "./Entity/UJSShgTillNowDataEntity";
+import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
 @Injectable()
 export class UjsService {
 
@@ -143,6 +155,18 @@ export class UjsService {
     private readonly UJSShgMemberSavingRepository: Repository<UJSShgMemeberSavingEntity>,
     @InjectRepository(UJSShgGroupDetailsInfoEntity)
     private readonly UJSShgGroupDetailsInfoRepository: Repository<UJSShgGroupDetailsInfoEntity>,
+    @InjectRepository(UJSShgGroupSummaryEntity)
+    private readonly UJSShgGroupSummaryRepository: Repository<UJSShgGroupSummaryEntity>,
+    @InjectRepository(UJSShgInternalLoanSummaryEntity)
+    private readonly UJSShgInternalLoanSummaryRepository: Repository<UJSShgInternalLoanSummaryEntity>,
+    @InjectRepository(UJSShgLoanEntity)
+    private readonly UJSShgLoanRepository: Repository<UJSShgLoanEntity>,
+    @InjectRepository(UJSShgMeetingTrackEntity)
+    private readonly UJSShgMeetingTrackRepository: Repository<UJSShgMeetingTrackEntity>,
+    @InjectRepository(UJSShgOtherIncomeEntity)
+    private readonly UJSShgOtherIncomeRepository: Repository<UJSShgOtherIncomeEntity>,
+    @InjectRepository(UJSShgTillNowDataEntity)
+    private readonly UJSShgTillNowDataRepository: Repository<UJSShgTillNowDataEntity>,
   ) {
 
   }
@@ -258,26 +282,42 @@ export class UjsService {
     } else {
       const addUJSShgGroup: UJSShgGroupEntity =
         new UJSShgGroupEntity();
-      addUJSShgGroup.group_id = ujsShgGroupDTO.group_id;
-      addUJSShgGroup.group_id = ujsShgGroupDTO.group_id;
-      addUJSShgGroup.group_name = ujsShgGroupDTO.group_name;
-      addUJSShgGroup.group_leader = ujsShgGroupDTO.group_leader;
-      addUJSShgGroup.formation_date = ujsShgGroupDTO.formation_date;
-      addUJSShgGroup.state_name = ujsShgGroupDTO.state_name;
-      addUJSShgGroup.district_name = ujsShgGroupDTO.district_name;
-      addUJSShgGroup.location_name = ujsShgGroupDTO.location_name;
-      addUJSShgGroup.village_name = ujsShgGroupDTO.village_name;
-      addUJSShgGroup.taluka_name = ujsShgGroupDTO.taluka_name;
-      addUJSShgGroup.bank_name = ujsShgGroupDTO.bank_name;
-      addUJSShgGroup.bank_branch = ujsShgGroupDTO.bank_branch;
-      addUJSShgGroup.bank_account = ujsShgGroupDTO.bank_account;
-      addUJSShgGroup.cash_in_hand = ujsShgGroupDTO.cash_in_hand;
-      addUJSShgGroup.federation_amount = ujsShgGroupDTO.federation_amount;
-      addUJSShgGroup.cash_at_bank = ujsShgGroupDTO.cash_at_bank;
-      addUJSShgGroup.total_member = ujsShgGroupDTO.total_member;
-      addUJSShgGroup.last_meeting_date = ujsShgGroupDTO.last_meeting_date;
-      addUJSShgGroup.status = ujsShgGroupDTO.status;
-
+        addUJSShgGroup.id = ujsShgGroupDTO.id;
+        addUJSShgGroup.shg_id = ujsShgGroupDTO.shg_id;
+        addUJSShgGroup.group_name = ujsShgGroupDTO.group_name;
+        addUJSShgGroup.group_leader = ujsShgGroupDTO.group_leader;
+        addUJSShgGroup.state = ujsShgGroupDTO.state;
+        addUJSShgGroup.district = ujsShgGroupDTO.district;
+        addUJSShgGroup.location = ujsShgGroupDTO.location;
+        addUJSShgGroup.village = ujsShgGroupDTO.village;
+        addUJSShgGroup.block_taluk = ujsShgGroupDTO.block_taluk;
+        addUJSShgGroup.pincode = ujsShgGroupDTO.pincode;
+        addUJSShgGroup.animator_id = ujsShgGroupDTO.animator_id;
+        addUJSShgGroup.animator = ujsShgGroupDTO.animator;
+        addUJSShgGroup.bank_name = ujsShgGroupDTO.bank_name;
+        addUJSShgGroup.bank_branch = ujsShgGroupDTO.bank_branch;
+        addUJSShgGroup.bank_ac = ujsShgGroupDTO.bank_ac;
+        addUJSShgGroup.formationDate = ujsShgGroupDTO.formationDate;
+        addUJSShgGroup.fed_amt = ujsShgGroupDTO.fed_amt;
+        addUJSShgGroup.cashatbank = ujsShgGroupDTO.cashatbank;
+        addUJSShgGroup.amount = ujsShgGroupDTO.amount;
+        addUJSShgGroup.totalMember = ujsShgGroupDTO.totalMember;
+        addUJSShgGroup.transactionstatus = ujsShgGroupDTO.transactionstatus;
+        addUJSShgGroup.month = ujsShgGroupDTO.month;
+        addUJSShgGroup.monthlymeeting = ujsShgGroupDTO.monthlymeeting;
+        addUJSShgGroup.status = ujsShgGroupDTO.status;
+        addUJSShgGroup.updatedAt = ujsShgGroupDTO.updatedAt;
+        addUJSShgGroup.TotalmonthlySaving = ujsShgGroupDTO.TotalmonthlySaving;
+        addUJSShgGroup.totalMeeting = ujsShgGroupDTO.totalMeeting;
+        addUJSShgGroup.savingAmt = ujsShgGroupDTO.savingAmt;
+        addUJSShgGroup.totalInternalLoan = ujsShgGroupDTO.totalInternalLoan;
+        addUJSShgGroup.totalInternalLoanRecover = ujsShgGroupDTO.totalInternalLoanRecover;
+        addUJSShgGroup.totalInternalLoanInterest = ujsShgGroupDTO.totalInternalLoanInterest;
+        addUJSShgGroup.totalExpanses = ujsShgGroupDTO.totalExpanses;
+        addUJSShgGroup.TotalBankLoan = ujsShgGroupDTO.TotalBankLoan;
+        addUJSShgGroup.totalbankloanrecover = ujsShgGroupDTO.totalbankloanrecover;
+        addUJSShgGroup.TotalBankLoanInterest = ujsShgGroupDTO.TotalBankLoanInterest;
+        
 
 
       await this.UJSSghGroupRepository.save(addUJSShgGroup);
@@ -315,44 +355,56 @@ export class UjsService {
     } else {
       const addUJSShgMember: UJSShgMemberEntity =
         new UJSShgMemberEntity();
-      addUJSShgMember.group_name = ujsShgMemberDTO.group_name;
-      addUJSShgMember.group_id = ujsShgMemberDTO.group_id;
-      addUJSShgMember.group_name = ujsShgMemberDTO.group_name;
-      addUJSShgMember.member_name = ujsShgMemberDTO.member_name;
-      addUJSShgMember.leader_name = ujsShgMemberDTO.leader_name;
-      addUJSShgMember.state_name = ujsShgMemberDTO.state_name;
-      addUJSShgMember.district_name = ujsShgMemberDTO.district_name;
-      addUJSShgMember.village_name = ujsShgMemberDTO.village_name;
-      addUJSShgMember.gender = ujsShgMemberDTO.gender;
-      addUJSShgMember.dob = ujsShgMemberDTO.dob;
-      addUJSShgMember.husband_or_father_name = ujsShgMemberDTO.husband_or_father_name;
-      addUJSShgMember.block_taluka = ujsShgMemberDTO.block_taluka;
-      addUJSShgMember.mobile = ujsShgMemberDTO.mobile;
-      addUJSShgMember.whatsapp = ujsShgMemberDTO.whatsapp;
-      addUJSShgMember.email = ujsShgMemberDTO.email;
-      addUJSShgMember.education = ujsShgMemberDTO.education;
-      addUJSShgMember.primary_occupation = ujsShgMemberDTO.primary_occupation;
-      addUJSShgMember.religion = ujsShgMemberDTO.religion;
-      addUJSShgMember.aadhar_number = ujsShgMemberDTO.aadhar_number;
-      addUJSShgMember.voter_number = ujsShgMemberDTO.voter_number;
-      addUJSShgMember.mnrega_number = ujsShgMemberDTO.mnrega_number;
-      addUJSShgMember.house_number = ujsShgMemberDTO.house_number;
-      addUJSShgMember.pin_code = ujsShgMemberDTO.pin_code;
-      addUJSShgMember.gram_panchayat = ujsShgMemberDTO.gram_panchayat;
-      addUJSShgMember.bank_name = ujsShgMemberDTO.bank_name;
-      addUJSShgMember.bank_branch = ujsShgMemberDTO.bank_branch;
-      addUJSShgMember.bank_account = ujsShgMemberDTO.bank_account;
-      addUJSShgMember.bank_ifsc = ujsShgMemberDTO.bank_ifsc;
-      addUJSShgMember.aadhar_seeding_status = ujsShgMemberDTO.aadhar_seeding_status;
-      addUJSShgMember.loan_taken = ujsShgMemberDTO.loan_taken;
-      addUJSShgMember.mfi_bank_loan = ujsShgMemberDTO.mfi_bank_loan;
-      addUJSShgMember.annual_income = ujsShgMemberDTO.annual_income;
-      addUJSShgMember.total_household_member = ujsShgMemberDTO.total_household_member;
-      addUJSShgMember.total_monthly_saving = ujsShgMemberDTO.total_monthly_saving;
-      addUJSShgMember.total_federation_saving = ujsShgMemberDTO.total_federation_saving;
-      addUJSShgMember.category = ujsShgMemberDTO.category;
-      addUJSShgMember.differently_abled = ujsShgMemberDTO.differently_abled;
-      addUJSShgMember.status = ujsShgMemberDTO.status;
+        addUJSShgMember.id = ujsShgMemberDTO.id;
+        addUJSShgMember.row_arrangement = ujsShgMemberDTO.row_arrangement;
+        addUJSShgMember.shg_id = ujsShgMemberDTO.shg_id;
+        addUJSShgMember.member_name = ujsShgMemberDTO.member_name;
+        addUJSShgMember.member_name_eng = ujsShgMemberDTO.member_name_eng;
+        addUJSShgMember.group_id = ujsShgMemberDTO.group_id;
+        addUJSShgMember.group_name = ujsShgMemberDTO.group_name;
+        addUJSShgMember.animator_id = ujsShgMemberDTO.animator_id;
+        addUJSShgMember.animator_name = ujsShgMemberDTO.animator_name;
+        addUJSShgMember.leader_name = ujsShgMemberDTO.leader_name;
+        addUJSShgMember.HusbandFather_Name = ujsShgMemberDTO.HusbandFather_Name;
+        addUJSShgMember.village = ujsShgMemberDTO.village;
+        addUJSShgMember.mobile = ujsShgMemberDTO.mobile;
+        addUJSShgMember.whatsapp_number = ujsShgMemberDTO.whatsapp_number;
+        addUJSShgMember.email = ujsShgMemberDTO.email;
+        addUJSShgMember.adhaar_number = ujsShgMemberDTO.adhaar_number;
+        addUJSShgMember.gender = ujsShgMemberDTO.gender;
+        addUJSShgMember.dob = ujsShgMemberDTO.dob;
+        addUJSShgMember.education = ujsShgMemberDTO.education;
+        addUJSShgMember.primary_occu = ujsShgMemberDTO.primary_occu;
+        addUJSShgMember.religion = ujsShgMemberDTO.religion;
+        addUJSShgMember.house_num = ujsShgMemberDTO.house_num;
+        addUJSShgMember.block_taluk = ujsShgMemberDTO.block_taluk;
+        addUJSShgMember.gram_punchayat = ujsShgMemberDTO.gram_punchayat;
+        addUJSShgMember.state = ujsShgMemberDTO.state;
+        addUJSShgMember.district = ujsShgMemberDTO.district;
+        addUJSShgMember.pincode = ujsShgMemberDTO.pincode;
+        addUJSShgMember.bank_name = ujsShgMemberDTO.bank_name;
+        addUJSShgMember.branch_name = ujsShgMemberDTO.branch_name;
+        addUJSShgMember.bank_ac = ujsShgMemberDTO.bank_ac;
+        addUJSShgMember.bank_ifsc = ujsShgMemberDTO.bank_ifsc;
+        addUJSShgMember.aadhar_seeding_status = ujsShgMemberDTO.aadhar_seeding_status;
+        addUJSShgMember.voter_num = ujsShgMemberDTO.voter_num;
+        addUJSShgMember.mngrega_num = ujsShgMemberDTO.mngrega_num;
+        addUJSShgMember.sub_cat = ujsShgMemberDTO.sub_cat;
+        addUJSShgMember.loan_taken = ujsShgMemberDTO.loan_taken;
+        addUJSShgMember.mfi_bank_loan = ujsShgMemberDTO.mfi_bank_loan;
+        addUJSShgMember.annual_income = ujsShgMemberDTO.annual_income;
+        addUJSShgMember.diff_abled = ujsShgMemberDTO.diff_abled;
+        addUJSShgMember.total_household_member = ujsShgMemberDTO.total_household_member;
+        addUJSShgMember.member_status = ujsShgMemberDTO.member_status;
+        addUJSShgMember.social_strata = ujsShgMemberDTO.social_strata;
+        addUJSShgMember.house_hold_above = ujsShgMemberDTO.house_hold_above;
+        addUJSShgMember.status = ujsShgMemberDTO.status;
+        addUJSShgMember.monthlySaving = ujsShgMemberDTO.monthlySaving;
+        addUJSShgMember.fedrationSaving = ujsShgMemberDTO.fedrationSaving;
+        addUJSShgMember.updated_at = ujsShgMemberDTO.updated_at;
+        addUJSShgMember.openingBal = ujsShgMemberDTO.openingBal;
+        addUJSShgMember.fix_loan = ujsShgMemberDTO.fix_loan;
+        
       await this.UJSShgMemberRepository.save(addUJSShgMember);
       return { shgMemberList: addUJSShgMember, message: "success", status: 200 };
     }
@@ -388,15 +440,41 @@ export class UjsService {
     } else {
       const addUJSUser: UJSUsersEntity =
         new UJSUsersEntity();
-      addUJSUser.name = ujsUserDTO.name;
-      addUJSUser.email = ujsUserDTO.email;
-      addUJSUser.password = ujsUserDTO.password;
-      addUJSUser.shg_grp = ujsUserDTO.shg_grp;
-      addUJSUser.active = ujsUserDTO.active;
-      addUJSUser.role = ujsUserDTO.role;
-      addUJSUser.emp_code = ujsUserDTO.emp_code;
-      addUJSUser.mobile = ujsUserDTO.mobile;
-      addUJSUser.admin_app = ujsUserDTO.admin_app;
+        addUJSUser.id = ujsUserDTO.id;
+        addUJSUser.name = ujsUserDTO.name;
+        addUJSUser.email = ujsUserDTO.email;
+        addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
+        addUJSUser.password = ujsUserDTO.password;
+        addUJSUser.photo = ujsUserDTO.photo;
+        addUJSUser.active = ujsUserDTO.active;
+        addUJSUser.deleted_at = ujsUserDTO.deleted_at;
+        addUJSUser.remember_token = ujsUserDTO.remember_token;
+        addUJSUser.created_at = ujsUserDTO.created_at;
+        addUJSUser.updated_at = ujsUserDTO.updated_at;
+        addUJSUser.created_by = ujsUserDTO.created_by;
+        addUJSUser.updated_by = ujsUserDTO.updated_by;
+        addUJSUser.department = ujsUserDTO.department;
+        addUJSUser.role = ujsUserDTO.role;
+        addUJSUser.emp_code = ujsUserDTO.emp_code;
+        addUJSUser.mobile = ujsUserDTO.mobile;
+        addUJSUser.user_app = ujsUserDTO.user_app;
+        addUJSUser.admin_app = ujsUserDTO.admin_app;
+        addUJSUser.address = ujsUserDTO.address;
+        addUJSUser.dob = ujsUserDTO.dob;
+        addUJSUser.gender = ujsUserDTO.gender;
+        addUJSUser.fathername = ujsUserDTO.fathername;
+        addUJSUser.mothername = ujsUserDTO.mothername;
+        addUJSUser.student_email = ujsUserDTO.student_email;
+        addUJSUser.organization = ujsUserDTO.organization;
+        addUJSUser.EmergencyContact = ujsUserDTO.EmergencyContact;
+        addUJSUser.adhaarnumber = ujsUserDTO.adhaarnumber;
+        addUJSUser.blood_group = ujsUserDTO.blood_group;
+        addUJSUser.student_img  = ujsUserDTO.student_img;
+        addUJSUser.student_signature = ujsUserDTO.student_signature;
+        addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
+        addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
+        addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
+        
 
       await this.UJSUserRepository.save(addUJSUser);
       return { UserList: addUJSUser, message: "success", status: 200 };
@@ -1650,6 +1728,213 @@ export class UjsService {
       {}
     );
     return { GroupDetailsInfo : GroupDetailsInfoList, message: "success", status: 200 };
+  }
+    // -------------------------- group summary ----------------------------------
+  // add Shg  group summary
+  async UJSShgGroupSummaryAdd(request, ujsShgGroupSummaryDTO: UJSShgGroupSummaryDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+      const addUJSShgGroupSummary:UJSShgGroupSummaryEntity =
+        new UJSShgGroupSummaryEntity();
+        addUJSShgGroupSummary.total_bank_loan =ujsShgGroupSummaryDTO.total_bank_loan;
+        addUJSShgGroupSummary.total_federation = ujsShgGroupSummaryDTO.total_federation;
+        addUJSShgGroupSummary.total_internal_loan = ujsShgGroupSummaryDTO.total_internal_loan;
+        addUJSShgGroupSummary.total_meeting = ujsShgGroupSummaryDTO.total_meeting;
+        addUJSShgGroupSummary.total_saving = ujsShgGroupSummaryDTO.total_saving;
+        addUJSShgGroupSummary.total_shg = ujsShgGroupSummaryDTO.total_shg;
+      
+      await this.UJSShgGroupSummaryRepository.save(addUJSShgGroupSummary);
+      return { GroupSummary:addUJSShgGroupSummary, message: "success", status: 200 };
+    
+  }
+  // list group summary
+  async UJSShgGroupSummaryList(request) {
+    let GroupSummaryList = await this.UJSShgGroupSummaryRepository.find(
+      {}
+    );
+    return { GroupSummary : GroupSummaryList, message: "success", status: 200 };
+  }
+    // -------------------------- Internla loan summary ----------------------------------
+  // add Shg  Internla loan summary
+  async UJSShgInternalLoanSummaryAdd(request, ujsShgInternalLoanSummaryDTO: UJSShgInternalLoanSummaryDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+      const addUJSShgInternalloanSummary:UJSShgInternalLoanSummaryEntity =
+        new UJSShgInternalLoanSummaryEntity();
+        addUJSShgInternalloanSummary.shg_id =ujsShgInternalLoanSummaryDTO.shg_id;
+        addUJSShgInternalloanSummary.group_id = ujsShgInternalLoanSummaryDTO.group_id;
+        addUJSShgInternalloanSummary.group_name = ujsShgInternalLoanSummaryDTO.group_name;
+        addUJSShgInternalloanSummary.loan_amt = ujsShgInternalLoanSummaryDTO.loan_amt;
+        addUJSShgInternalloanSummary.tenure = ujsShgInternalLoanSummaryDTO.tenure;
+        addUJSShgInternalloanSummary.interest = ujsShgInternalLoanSummaryDTO.interest;
+        addUJSShgInternalloanSummary.recover_amt = ujsShgInternalLoanSummaryDTO.recover_amt;
+        addUJSShgInternalloanSummary.datetime = ujsShgInternalLoanSummaryDTO.datetime;
+        addUJSShgInternalloanSummary.status = ujsShgInternalLoanSummaryDTO.status;
+       
+      
+      await this.UJSShgInternalLoanSummaryRepository.save(addUJSShgInternalloanSummary);
+      return { InternalloanSummary:addUJSShgInternalloanSummary, message: "success", status: 200 };
+    
+  }
+  // list Internla loan summary
+  async UJSShgInternalLoanSummaryList(request) {
+    let InternalLoanSummaryList = await this.UJSShgInternalLoanSummaryRepository.find(
+      {}
+    );
+    return { InternalLoanSummary : InternalLoanSummaryList, message: "success", status: 200 };
+  }
+      // -------------------------- loan ----------------------------------
+  // add Shg  loan
+  async UJSShgLoanAdd(request, ujsShgLoanDTO: UJSShgLoanDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+      const addLoan:UJSShgLoanEntity =
+        new UJSShgLoanEntity();
+        addLoan.id = ujsShgLoanDTO.id;
+        addLoan.meeting_id = ujsShgLoanDTO.meeting_id;
+        addLoan.loan_id = ujsShgLoanDTO.loan_id;
+        addLoan.member_id = ujsShgLoanDTO.member_id;
+        addLoan.group_id = ujsShgLoanDTO.group_id;
+        addLoan.shg_id = ujsShgLoanDTO.shg_id;
+        addLoan.animator_id = ujsShgLoanDTO.animator_id;
+        addLoan.member_name = ujsShgLoanDTO.member_name;
+        addLoan.group_name = ujsShgLoanDTO.group_name;
+        addLoan.animator_name = ujsShgLoanDTO.animator_name;
+        addLoan.loan_amt = ujsShgLoanDTO.loan_amt;
+        addLoan.interest = ujsShgLoanDTO.interest;
+        addLoan.settle_interest = ujsShgLoanDTO.settle_interest;
+        addLoan.loan_period = ujsShgLoanDTO.loan_period;
+        addLoan.loan_type = ujsShgLoanDTO.loan_type;
+        addLoan.loan_date = ujsShgLoanDTO.loan_date;
+        addLoan.settle_amount = ujsShgLoanDTO.settle_amount;
+        addLoan.total_emi = ujsShgLoanDTO.total_emi;
+        addLoan.current_emi = ujsShgLoanDTO.current_emi;
+        addLoan.meetingDate = ujsShgLoanDTO.meetingDate;
+        addLoan.status = ujsShgLoanDTO.status;
+        addLoan.update_at = ujsShgLoanDTO.update_at;
+        
+       
+       
+      
+      await this.UJSShgLoanRepository.save(addLoan);
+      return {loan:addLoan, message: "success", status: 200 };
+    
+  }
+  // list loan
+  async UJSShgLoanList(request) {
+    let ShgLoanList = await this.UJSShgLoanRepository.find(
+      {}
+    );
+    return { ShgLoan : ShgLoanList, message: "success", status: 200 };
+  }
+       // -------------------------- meeting track ----------------------------------
+  // add Shg  meeting track
+  async UJSShgMeetingTrackAdd(request, ujsShgMeetingTrackDTO: UJSShgMeetingTrackDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+      const addMeeting:UJSShgMeetingTrackEntity =
+        new UJSShgMeetingTrackEntity();
+        addMeeting.id = ujsShgMeetingTrackDTO.id;
+        addMeeting.group_id = ujsShgMeetingTrackDTO.group_id;
+        addMeeting.animator_id = ujsShgMeetingTrackDTO.animator_id;
+        addMeeting.datetime = ujsShgMeetingTrackDTO.datetime;
+        addMeeting.meetingDate = ujsShgMeetingTrackDTO.meetingDate;
+        addMeeting.month = ujsShgMeetingTrackDTO.month;
+        addMeeting.meeting_id = ujsShgMeetingTrackDTO.meeting_id;
+        addMeeting.Attendance = ujsShgMeetingTrackDTO.Attendance;
+        addMeeting.Saving = ujsShgMeetingTrackDTO.Saving;
+        addMeeting.InternalLoanRepayment = ujsShgMeetingTrackDTO.InternalLoanRepayment;
+        addMeeting.BankLoanRepayment = ujsShgMeetingTrackDTO.BankLoanRepayment;
+        addMeeting.InternalLoanDistribution = ujsShgMeetingTrackDTO.InternalLoanDistribution;
+        addMeeting.BankLoanDistribution = ujsShgMeetingTrackDTO.BankLoanDistribution;
+        addMeeting.SummaryReport = ujsShgMeetingTrackDTO.SummaryReport;
+        addMeeting.updatedAt = ujsShgMeetingTrackDTO.updatedAt;
+        
+       
+      await this.UJSShgMeetingTrackRepository.save(addMeeting);
+      return {MeetingTrack:addMeeting, message: "success", status: 200 };
+    
+  }
+  // list meeting track
+  async UJSShgMeetingTrackList(request) {
+    let ShgMeetingTrackList = await this.UJSShgMeetingTrackRepository.find(
+      {}
+    );
+    return { ShgMeetingTrack : ShgMeetingTrackList, message: "success", status: 200 };
+  }
+       // -------------------------- other income----------------------------------
+  // add Shg  other income
+  async UJSShgOtherIncomeAdd(request, ujsShgOtherIncomeDTO: UJSShgOtherIncomeDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+      const addOtherIncome:UJSShgOtherIncomeEntity =
+        new UJSShgOtherIncomeEntity();
+      
+addOtherIncome.meeting_id = ujsShgOtherIncomeDTO.meeting_id;
+addOtherIncome.group_id = ujsShgOtherIncomeDTO.group_id;
+addOtherIncome.animator_id = ujsShgOtherIncomeDTO.animator_id;
+addOtherIncome.member_id = ujsShgOtherIncomeDTO.member_id;
+addOtherIncome.group_name = ujsShgOtherIncomeDTO.group_name;
+addOtherIncome.animator_name = ujsShgOtherIncomeDTO.animator_name;
+addOtherIncome.member_name = ujsShgOtherIncomeDTO.member_name;
+addOtherIncome.income = ujsShgOtherIncomeDTO.income;
+addOtherIncome.datetime = ujsShgOtherIncomeDTO.datetime;       
+      await this.UJSShgOtherIncomeRepository.save(addOtherIncome);
+      return {OtherIncome:addOtherIncome, message: "success", status: 200 };
+    
+  }
+  // list other income
+  async UJSShgOtherIncomeList(request) {
+    let ShgOtherIncomeList = await this.UJSShgOtherIncomeRepository.find(
+      {}
+    );
+    return { ShgOtherIncome : ShgOtherIncomeList, message: "success", status: 200 };
+  }
+      // -------------------------- till now data----------------------------------
+  // add Shg  till now data
+  async UJSShgTillNowDataAdd(request, ujsShgTillNowDataDTO: UJSShgTillNowDataDTO) {
+    const ipAddress =
+      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+      const addTillNowData:UJSShgTillNowDataEntity =
+        new UJSShgTillNowDataEntity();
+      
+        addTillNowData.id = ujsShgTillNowDataDTO.id;
+        addTillNowData.group_id = ujsShgTillNowDataDTO.group_id;
+        addTillNowData.meeting_id = ujsShgTillNowDataDTO.meeting_id;
+        addTillNowData.meeting_date = ujsShgTillNowDataDTO.meeting_date;
+        addTillNowData.member_saving = ujsShgTillNowDataDTO.member_saving;
+        addTillNowData.internal_income = ujsShgTillNowDataDTO.internal_income;
+        addTillNowData.submit_bank_loan = ujsShgTillNowDataDTO.submit_bank_loan;
+        addTillNowData.internal_amt1 = ujsShgTillNowDataDTO.internal_amt1;
+        addTillNowData.penalty1 = ujsShgTillNowDataDTO.penalty1;
+        addTillNowData.fix_loan2 = ujsShgTillNowDataDTO.fix_loan2;
+        addTillNowData.special_amt1 = ujsShgTillNowDataDTO.special_amt1;
+        addTillNowData.others1 = ujsShgTillNowDataDTO.others1;
+        addTillNowData.distributed = ujsShgTillNowDataDTO.distributed;
+        addTillNowData.grp_expanses = ujsShgTillNowDataDTO.grp_expanses;
+        addTillNowData.tot_submitted = ujsShgTillNowDataDTO.tot_submitted;
+        addTillNowData.remaining_loan_amt = ujsShgTillNowDataDTO.remaining_loan_amt;
+        addTillNowData.bank_saving_amt = ujsShgTillNowDataDTO.bank_saving_amt;
+        addTillNowData.cash_in_hand = ujsShgTillNowDataDTO.cash_in_hand;
+        addTillNowData.federation1 = ujsShgTillNowDataDTO.federation1;
+        addTillNowData.total_clf_amount = ujsShgTillNowDataDTO.total_clf_amount;
+              
+      await this.UJSShgTillNowDataRepository.save(addTillNowData);
+      return {TillNowData:addTillNowData, message: "success", status: 200 };
+    
+  }
+  // list till now data
+  async UJSShgTillNowDataList(request) {
+    let ShgTillNowDataList = await this.UJSShgTillNowDataRepository.find(
+      {}
+    );
+    return { ShgTillNowData : ShgTillNowDataList, message: "success", status: 200 };
   }
 }
 

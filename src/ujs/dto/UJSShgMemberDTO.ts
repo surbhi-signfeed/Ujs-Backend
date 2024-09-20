@@ -1,44 +1,152 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty ,IsOptional} from "class-validator";
 
 export class UJSShgMemberDTO {
     @IsNotEmpty()
-    group_id: string;
+    id: number;
+
     @IsNotEmpty()
-    group_name: string;
+    row_arrangement: number;
+
+    @IsOptional()
+    shg_id: string;
+
+    @IsOptional()
     member_name: string;
+
+    @IsOptional()
+    member_name_eng: string;
+
+    @IsOptional()
+    group_id: number;
+
+    @IsOptional()
+    group_name: string;
+
+    @IsOptional()
+    animator_id: number;
+
+    @IsOptional()
+    animator_name: string;
+
+    @IsOptional()
     leader_name: string;
-    state_name: string;
-    district_name: string;
-    village_name: string;
-    gender: string;
-    dob: string; // Date of birth, stored as string for simplicity (format: YYYY-MM-DD)
-    husband_or_father_name: string;
-    block_taluka: string;
+
+    @IsOptional()
+    HusbandFather_Name: string;
+
+    @IsOptional()
+    village: string;
+
+    @IsOptional()
     mobile: string;
-    whatsapp: string;
+
+    @IsOptional()
+    whatsapp_number: string;
+
+    @IsOptional()
     email: string;
+
+    @IsOptional()
+    adhaar_number: string;
+
+    @IsOptional()
+    gender: string;
+
+    @IsOptional()
+    dob: string;
+
+    @IsOptional()
     education: string;
-    primary_occupation: string;
+
+    @IsOptional()
+    primary_occu: string;
+
+    @IsOptional()
     religion: string;
-    aadhar_number: string;
-    voter_number: string;
-    mnrega_number: string;
-    house_number: string;
-    pin_code: string;
-    gram_panchayat: string;
+
+    @IsOptional()
+    house_num: string;
+
+    @IsOptional()
+    block_taluk: string;
+
+    @IsOptional()
+    gram_punchayat: string;
+
+    @IsOptional()
+    state: string;
+
+    @IsOptional()
+    district: string;
+
+    @IsOptional()
+    pincode: string;
+
+    @IsOptional()
     bank_name: string;
-    bank_branch: string;
-    bank_account: string;
+
+    @IsOptional()
+    branch_name: string;
+
+    @IsOptional()
+    bank_ac: string;
+
+    @IsOptional()
     bank_ifsc: string;
+
+    @IsOptional()
     aadhar_seeding_status: string;
+
+    @IsOptional()
+    voter_num: string;
+
+    @IsOptional()
+    mngrega_num: string;
+
+    @IsOptional()
+    sub_cat: string;
+
+    @IsOptional()
     loan_taken: string;
+
+    @IsOptional()
     mfi_bank_loan: string;
-    annual_income: number;
-    total_household_member: number;
-    total_monthly_saving: number;
-    total_federation_saving: number;
-    category: string;
-    differently_abled: string;
-    status: string; // Active/Inactive, assuming it is a string for dropdown
+
+    @IsOptional()
+    annual_income: string;
+
+    @IsOptional()
+    diff_abled: string;
+
+    @IsOptional()
+    total_household_member: string;
+
+    @IsOptional()
+    member_status: string;
+
+    @IsOptional()
+    social_strata: string;
+
+    @IsOptional()
+    house_hold_above: string;
+
+    @IsNotEmpty()
+    status: number;
+
+    @IsOptional()
+    monthlySaving: number;
+
+    @IsOptional()
+    fedrationSaving: number;
+
+    @IsOptional()
+    updated_at: Date;
+
+    @IsNotEmpty()
+    openingBal: number;
+
+    @IsNotEmpty()
+    fix_loan: number;
+  
 }
 

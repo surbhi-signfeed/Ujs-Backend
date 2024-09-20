@@ -35,6 +35,12 @@ import { UJSShgMomDTO } from "./dto/UJSShgMomDTO";
 import { UJSShgGroupDataUploadMonthDTO } from "./dto/UJSShgGroupDataUploadMonthDTO";
 import { UJSShgMemberSavingDTO } from "./dto/UJSSShgMemberSavingDTO";
 import { UJSShgGroupDetailsInfoDTO } from "./dto/UJSShgGroupDetailsInfoDTO";
+import { UJSShgGroupSummaryDTO } from "./dto/UJSGroupSummaryDTO";
+import { UJSShgInternalLoanSummaryDTO } from "./dto/UJSInternalLOanSummaryDTO";
+import { UJSShgLoanDTO } from "./dto/UJSShgLoanDTO";
+import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
+import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
+import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -483,6 +489,66 @@ export declare class UjsController {
     }>;
     listShgGroupDetailInfo(request: Request): Promise<{
         GroupDetailsInfo: import("./Entity/UJSShgGroupDetailsInfoEntity").UJSShgGroupDetailsInfoEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgGroupSummaryAdd(request: Request, ujsShgGroupDSummaryDTO: UJSShgGroupSummaryDTO): Promise<{
+        GroupSummary: import("./Entity/UJSShgGroupSummaryEntity").UJSShgGroupSummaryEntity;
+        message: string;
+        status: number;
+    }>;
+    listShgGroupSummary(request: Request): Promise<{
+        GroupSummary: import("./Entity/UJSShgGroupSummaryEntity").UJSShgGroupSummaryEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShInternalLoanSummaryAdd(request: Request, ujsShgInternalLoanSummaryDTO: UJSShgInternalLoanSummaryDTO): Promise<{
+        InternalloanSummary: import("./Entity/UJSShgInternalLoanSummaryEntity").UJSShgInternalLoanSummaryEntity;
+        message: string;
+        status: number;
+    }>;
+    listSInternalLoanSummary(request: Request): Promise<{
+        InternalLoanSummary: import("./Entity/UJSShgInternalLoanSummaryEntity").UJSShgInternalLoanSummaryEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgLoanAdd(request: Request, ujsShggLoanDTO: UJSShgLoanDTO): Promise<{
+        loan: import("./Entity/UJSShgLoanEntity").UJSShgLoanEntity;
+        message: string;
+        status: number;
+    }>;
+    listSgLoan(request: Request): Promise<{
+        ShgLoan: import("./Entity/UJSShgLoanEntity").UJSShgLoanEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgMeetingTrackAdd(request: Request, ujsShgMeetingTrackDTO: UJSShgMeetingTrackDTO): Promise<{
+        MeetingTrack: import("./Entity/UJSShgMeetingTrackEntity").UJSShgMeetingTrackEntity;
+        message: string;
+        status: number;
+    }>;
+    listSgMeetingTrack(request: Request): Promise<{
+        ShgMeetingTrack: import("./Entity/UJSShgMeetingTrackEntity").UJSShgMeetingTrackEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgOtherIncomeAdd(request: Request, ujsShgOtherIncomeDTO: UJSShgOtherIncomeDTO): Promise<{
+        OtherIncome: import("./Entity/UJSShgOtherIncomeEntity").UJSShgOtherIncomeEntity;
+        message: string;
+        status: number;
+    }>;
+    listSgOtherIncome(request: Request): Promise<{
+        ShgOtherIncome: import("./Entity/UJSShgOtherIncomeEntity").UJSShgOtherIncomeEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgTillNowDataAdd(request: Request, ujsShgTillNowDataDTO: UJSShgTillNowDataDTO): Promise<{
+        TillNowData: import("./Entity/UJSShgTillNowDataEntity").UJSShgTillNowDataEntity;
+        message: string;
+        status: number;
+    }>;
+    listSgTillNowData(request: Request): Promise<{
+        ShgTillNowData: import("./Entity/UJSShgTillNowDataEntity").UJSShgTillNowDataEntity[];
         message: string;
         status: number;
     }>;

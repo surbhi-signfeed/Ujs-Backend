@@ -16,78 +16,142 @@ class UJSShgGroupDTO {
 exports.UJSShgGroupDTO = UJSShgGroupDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "ID", void 0);
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "id", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "group_id", void 0);
+], UJSShgGroupDTO.prototype, "shg_id", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSShgGroupDTO.prototype, "group_name", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSShgGroupDTO.prototype, "group_leader", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "formation_date", void 0);
+], UJSShgGroupDTO.prototype, "state", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "state_name", void 0);
+], UJSShgGroupDTO.prototype, "district", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "district_name", void 0);
+], UJSShgGroupDTO.prototype, "location", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "location_name", void 0);
+], UJSShgGroupDTO.prototype, "village", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "village_name", void 0);
+], UJSShgGroupDTO.prototype, "block_taluk", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "taluka_name", void 0);
+], UJSShgGroupDTO.prototype, "pincode", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Date)
+], UJSShgGroupDTO.prototype, "updatedAt", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "animator_id", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UJSShgGroupDTO.prototype, "animator", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSShgGroupDTO.prototype, "bank_name", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSShgGroupDTO.prototype, "bank_branch", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "bank_account", void 0);
+], UJSShgGroupDTO.prototype, "bank_ac", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "cash_in_hand", void 0);
+], UJSShgGroupDTO.prototype, "formationDate", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "federation_amount", void 0);
+], UJSShgGroupDTO.prototype, "fed_amt", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "cash_at_bank", void 0);
+], UJSShgGroupDTO.prototype, "cashatbank", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UJSShgGroupDTO.prototype, "amount", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UJSShgGroupDTO.prototype, "totalMember", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "transactionstatus", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "month", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Date)
+], UJSShgGroupDTO.prototype, "monthlymeeting", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], UJSShgGroupDTO.prototype, "total_member", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], UJSShgGroupDTO.prototype, "last_meeting_date", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
 ], UJSShgGroupDTO.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "TotalmonthlySaving", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "totalMeeting", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "savingAmt", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "totalInternalLoan", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "totalInternalLoanRecover", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "totalInternalLoanInterest", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "totalExpanses", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "TotalBankLoan", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "totalbankloanrecover", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UJSShgGroupDTO.prototype, "TotalBankLoanInterest", void 0);
 //# sourceMappingURL=UJSShgGroupDTO.js.map
