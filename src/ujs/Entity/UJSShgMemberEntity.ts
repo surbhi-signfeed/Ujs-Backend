@@ -17,8 +17,7 @@ export class UJSShgMemberEntity {
     @Column({ nullable: true })
     member_name_eng: string;
 
-    @Column({ nullable: true })
-    group_id: number;
+ 
 
     @Column({ nullable: true })
     group_name: string;

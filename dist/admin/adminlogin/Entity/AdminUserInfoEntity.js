@@ -35,6 +35,6 @@ __decorate([
     __metadata("design:type", Number)
 ], AdminUserInfoEntity.prototype, "role", void 0);
 exports.AdminUserInfoEntity = AdminUserInfoEntity = __decorate([
-    (0, typeorm_1.Entity)('users')
+    (0, typeorm_1.Entity)('user')
 ], AdminUserInfoEntity);
 //# sourceMappingURL=AdminUserInfoEntity.js.map

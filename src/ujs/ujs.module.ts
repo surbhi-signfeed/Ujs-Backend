@@ -40,10 +40,15 @@ import { UJSShgLoanEntity } from './Entity/UJSShgLoanEntity';
 import { UJSShgMeetingTrackEntity } from './Entity/UJSShgMeetingTrackEntity';
 import { UJSShgOtherIncomeEntity } from './Entity/UJSShgOtherIncomeEntity';
 import { UJSShgTillNowDataEntity } from './Entity/UJSShgTillNowDataEntity';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity,UJSShgGroupDataUploadMonthEntity,UJSShgMemeberSavingEntity, UJSShgGroupDetailsInfoEntity,UJSShgGroupSummaryEntity,UJSShgInternalLoanSummaryEntity,UJSShgLoanEntity,UJSShgMeetingTrackEntity,UJSShgOtherIncomeEntity,UJSShgTillNowDataEntity])],
+  imports: [ServeStaticModule.forRoot({
+    rootPath: join(__dirname, '..', 'uploads'), // Path to your uploads directory
+    serveRoot: '/ujs/uploads', // URL prefix to access the images (adjust this as needed)
+  }),
+    TypeOrmModule.forFeature([ UJSDepartmentEntity,UJSShgGroupEntity,UJSShgMemberEntity,UJSUsersEntity,UJSRoleEntity,UJSRolePermissionEntity,UJSBackupShgGroupDataUploadMonthEntity,UJSBranchEntity,UJSFailedJobEntity,UJSMigrationEntity,UJSPersonalAccessTokenEntity,UJSSHGExpansesEntity,UJSSHGLoanRepaymentEntity,UJSStateEntity,UJSShgTraningEntity,UJSShgActiveModelFarmerEntity,UJSShgAttendanceEntity,UJSShgContactEntity,UJSShgContactEntity,UJSShgDataLockEntity,UJSBankLoanAllotmentEntity,UJSBankLoanEntity,UJSBankEntity,UJSShgAuditingEntity,UJSShgDataUploadEntity,UJSShgDigiSakhiEntity,UJSShgFpoEntity,UJSSHGFedrationReportEntity,UJSSHGFedrationEntity,UJSShgMomEntity,UJSShgGroupDataUploadMonthEntity,UJSShgMemeberSavingEntity, UJSShgGroupDetailsInfoEntity,UJSShgGroupSummaryEntity,UJSShgInternalLoanSummaryEntity,UJSShgLoanEntity,UJSShgMeetingTrackEntity,UJSShgOtherIncomeEntity,UJSShgTillNowDataEntity])],
   controllers: [UjsController],
   providers: [UjsService, Logger]
 })

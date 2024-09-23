@@ -4,7 +4,6 @@ export declare class UJSShgMemberEntity {
     shg_id: string;
     member_name: string;
     member_name_eng: string;
-    group_id: number;
     group_name: string;
     animator_id: number;
     animator_name: string;

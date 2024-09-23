@@ -1,5 +1,5 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-@Entity('users')
+@Entity('user')
 export class AdminUserInfoEntity {
   @PrimaryGeneratedColumn()
   id: number;

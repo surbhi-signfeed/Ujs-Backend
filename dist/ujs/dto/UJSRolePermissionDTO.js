@@ -16,6 +16,6 @@ class UJSRolePermissionDTO {
 exports.UJSRolePermissionDTO = UJSRolePermissionDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], UJSRolePermissionDTO.prototype, "per_id", void 0);
 //# sourceMappingURL=UJSRolePermissionDTO.js.map

@@ -151,6 +151,6 @@ __decorate([
     __metadata("design:type", Date)
 ], UJSUsersEntity.prototype, "appLoginDate", void 0);
 exports.UJSUsersEntity = UJSUsersEntity = __decorate([
-    (0, typeorm_1.Entity)('users')
+    (0, typeorm_1.Entity)('user')
 ], UJSUsersEntity);
 //# sourceMappingURL=UJSUsersEntity.js.map

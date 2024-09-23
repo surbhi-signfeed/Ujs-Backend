@@ -41,6 +41,7 @@ import { UJSShgLoanDTO } from "./dto/UJSShgLoanDTO";
 import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
 import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
 import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
+import { Multer } from "multer";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -100,7 +101,7 @@ export declare class UjsController {
         message: string;
         status: number;
     }>;
-    UJSUserAdd(request: Request, ujsUserDTO: UJSUsersDTO): Promise<{
+    UJSUserAdd(student_img: Multer.File, request: Request, ujsUserDTO: UJSUsersDTO): Promise<{
         message: string;
         status: number;
         UserList?: undefined;
@@ -125,6 +126,20 @@ export declare class UjsController {
     }>;
     listRole(request: Request): Promise<{
         shgRole: import("./Entity/UJSRoleEntity").UJSRoleEntity[];
+        message: string;
+        status: number;
+    }>;
+    listRoleAll(request: Request): Promise<{
+        shgRole: any[];
+        message: string;
+        status: number;
+    }>;
+    listRolePermissionList(id: string, request: Request): Promise<{
+        message: string;
+        status: number;
+        data?: undefined;
+    } | {
+        data: unknown[];
         message: string;
         status: number;
     }>;

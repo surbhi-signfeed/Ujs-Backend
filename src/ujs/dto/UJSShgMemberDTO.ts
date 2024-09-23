@@ -4,7 +4,7 @@ export class UJSShgMemberDTO {
     @IsNotEmpty()
     id: number;
 
-    @IsNotEmpty()
+
     row_arrangement: number;
 
     @IsOptional()
@@ -16,8 +16,7 @@ export class UJSShgMemberDTO {
     @IsOptional()
     member_name_eng: string;
 
-    @IsOptional()
-    group_id: number;
+  
 
     @IsOptional()
     group_name: string;

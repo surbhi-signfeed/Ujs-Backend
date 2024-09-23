@@ -16,29 +16,44 @@ class UJSUsersDTO {
 exports.UJSUsersDTO = UJSUsersDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "id", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UJSUsersDTO.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "email_verified_at", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UJSUsersDTO.prototype, "password", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], UJSUsersDTO.prototype, "photo", void 0);
-__decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], UJSUsersDTO.prototype, "active", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], UJSUsersDTO.prototype, "created_by", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], UJSUsersDTO.prototype, "role", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], UJSUsersDTO.prototype, "emp_code", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], UJSUsersDTO.prototype, "user_app", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], UJSUsersDTO.prototype, "admin_app", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Date)
+], UJSUsersDTO.prototype, "email_verified_at", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UJSUsersDTO.prototype, "photo", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
@@ -56,10 +71,6 @@ __decorate([
     __metadata("design:type", Date)
 ], UJSUsersDTO.prototype, "updated_at", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "created_by", void 0);
-__decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UJSUsersDTO.prototype, "updated_by", void 0);
@@ -68,25 +79,9 @@ __decorate([
     __metadata("design:type", Number)
 ], UJSUsersDTO.prototype, "department", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "role", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], UJSUsersDTO.prototype, "emp_code", void 0);
-__decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSUsersDTO.prototype, "mobile", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "user_app", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "admin_app", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)

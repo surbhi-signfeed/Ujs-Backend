@@ -36,10 +36,6 @@ __decorate([
 ], UJSShgMemberEntity.prototype, "member_name_eng", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", Number)
-], UJSShgMemberEntity.prototype, "group_id", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], UJSShgMemberEntity.prototype, "group_name", void 0);
 __decorate([

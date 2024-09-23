@@ -79,6 +79,7 @@ import { UJSShgOtherIncomeEntity } from "./Entity/UJSShgOtherIncomeEntity";
 import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
 import { UJSShgTillNowDataEntity } from "./Entity/UJSShgTillNowDataEntity";
 import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
+import { Multer } from "multer";
 export declare class UjsService {
     private readonly logger;
     private readonly connection;
@@ -120,6 +121,7 @@ export declare class UjsService {
     private readonly UJSShgMeetingTrackRepository;
     private readonly UJSShgOtherIncomeRepository;
     private readonly UJSShgTillNowDataRepository;
+    private _logger;
     constructor(logger: Logger, connection: Connection, UJSDepartmentRepository: Repository<UJSDepartmentEntity>, UJSSghGroupRepository: Repository<UJSShgGroupEntity>, UJSShgMemberRepository: Repository<UJSShgMemberEntity>, UJSUserRepository: Repository<UJSUsersEntity>, UJSRoleRepository: Repository<UJSRoleEntity>, UJSRolePermissionRepository: Repository<UJSRolePermissionEntity>, UJSBackupShgGroupDataUploadMonthRepository: Repository<UJSBackupShgGroupDataUploadMonthEntity>, UJSBranchRepository: Repository<UJSBranchEntity>, UJSFailedJobRepository: Repository<UJSFailedJobEntity>, UJSMigrationRepository: Repository<UJSMigrationEntity>, UJSPersonalAccessTokenRepository: Repository<UJSPersonalAccessTokenEntity>, UJSSHGExpansesRepository: Repository<UJSSHGExpansesEntity>, UJSSHGLoanRepaymentRepository: Repository<UJSSHGLoanRepaymentEntity>, UJSStateRepository: Repository<UJSStateEntity>, UJSShgTraningRepository: Repository<UJSShgTraningEntity>, UJSShgActiveModelFarmerRepository: Repository<UJSShgActiveModelFarmerEntity>, UJSShgAttendanceRepository: Repository<UJSShgAttendanceEntity>, UJSShgContactRepository: Repository<UJSShgContactEntity>, UJSShgDataLockRepository: Repository<UJSShgDataLockEntity>, UJSShgBankLoanAllotmentRepository: Repository<UJSBankLoanAllotmentEntity>, UJSShgBankLoanRepository: Repository<UJSBankLoanEntity>, UJSShgBankRepository: Repository<UJSBankEntity>, UJSShgAuditingRepository: Repository<UJSShgAuditingEntity>, UJSShgDataUploadRepository: Repository<UJSShgDataUploadEntity>, UJSShgDigiSakhiRepository: Repository<UJSShgDigiSakhiEntity>, UJSShgFpoRepository: Repository<UJSShgFpoEntity>, UJSShgFedrationReportRepository: Repository<UJSSHGFedrationReportEntity>, UJSShgFedrationRepository: Repository<UJSSHGFedrationEntity>, UJSShgMomRepository: Repository<UJSShgMomEntity>, UJSShgGroupDataUploadMonthERepository: Repository<UJSShgGroupDataUploadMonthEntity>, UJSShgMemberSavingRepository: Repository<UJSShgMemeberSavingEntity>, UJSShgGroupDetailsInfoRepository: Repository<UJSShgGroupDetailsInfoEntity>, UJSShgGroupSummaryRepository: Repository<UJSShgGroupSummaryEntity>, UJSShgInternalLoanSummaryRepository: Repository<UJSShgInternalLoanSummaryEntity>, UJSShgLoanRepository: Repository<UJSShgLoanEntity>, UJSShgMeetingTrackRepository: Repository<UJSShgMeetingTrackEntity>, UJSShgOtherIncomeRepository: Repository<UJSShgOtherIncomeEntity>, UJSShgTillNowDataRepository: Repository<UJSShgTillNowDataEntity>);
     UJSDepartmentAdd(request: any, ujsDepartmentDTO: UJSDepartmentDTO): Promise<{
         message: string;
@@ -176,7 +178,7 @@ export declare class UjsService {
         message: string;
         status: number;
     }>;
-    UJSUserAdd(request: any, ujsUserDTO: UJSUsersDTO): Promise<{
+    UJSUserAdd(request: any, ujsUserDTO: UJSUsersDTO, student_img: Multer.File): Promise<{
         message: string;
         status: number;
         UserList?: undefined;
@@ -185,6 +187,10 @@ export declare class UjsService {
         message: string;
         status: number;
     }>;
+    generateRandomString(length: number): string;
+    validateFileType(file: Multer.File): boolean;
+    validateFileSize(file: Multer.File): boolean;
+    private saveFileToDirectory;
     UJSUserList(request: any): Promise<{
         shgUser: UJSUsersEntity[];
         message: string;
@@ -201,6 +207,20 @@ export declare class UjsService {
     }>;
     UJSRoleList(request: any): Promise<{
         shgRole: UJSRoleEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSRoleAllList(request: any): Promise<{
+        shgRole: any[];
+        message: string;
+        status: number;
+    }>;
+    UJSRolePermissionList(id: string): Promise<{
+        message: string;
+        status: number;
+        data?: undefined;
+    } | {
+        data: unknown[];
         message: string;
         status: number;
     }>;

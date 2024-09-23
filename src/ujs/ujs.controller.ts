@@ -7,6 +7,9 @@ import {
   Post,
   Req,
   UseGuards,
+  UploadedFile,
+  UseInterceptors,
+  Param,
 } from "@nestjs/common";
 import { JwtAuthGuard } from "src/admin/auth/jwt-auth.guard";
 import { UjsService } from "./ujs.service";
@@ -51,6 +54,8 @@ import { UJSShgLoanDTO } from "./dto/UJSShgLoanDTO";
 import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
 import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
 import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
+import { FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
+import { Multer } from "multer";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -131,13 +136,16 @@ return this.ujsService.UJSShgMemberList(request);
 }
 // ------------------------Users -----------------------------------------
 // add Users
+
 @Post("AddUsers")
   @UseGuards(JwtAuthGuard)
+  @UseInterceptors(FileInterceptor('student_img'))
   async UJSUserAdd(
+    @UploadedFile() student_img: Multer.File,
     @Req() request: Request,
     @Body() ujsUserDTO: UJSUsersDTO
   ) {
-    return this.ujsService.UJSUserAdd(request, ujsUserDTO);
+    return this.ujsService.UJSUserAdd(request, ujsUserDTO,student_img);
   }
   // list user
 @Get('ListUser')
@@ -162,6 +170,19 @@ return this.ujsService.UJSUserList(request);
 async listRole(@Req() request: Request) {
 return this.ujsService.UJSRoleList(request);
 }
+@Get('ListAllRolePermission')
+@UseGuards(JwtAuthGuard)
+async listRoleAll(@Req() request: Request) {
+return this.ujsService.UJSRoleAllList(request);
+}
+// list of permission detail
+@Get('ListRolePermission/:id')
+@UseGuards(JwtAuthGuard)
+async listRolePermissionList(@Param('id') id: string, @Req() request: Request) {
+  return this.ujsService.UJSRolePermissionList(id);  // Only 'id' is passed here, not 'request'
+}
+
+
 // ------------------------migration -----------------------------------------
 // add migration
 @Post("AddMigration")

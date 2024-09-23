@@ -1,9 +1,32 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
@@ -54,6 +77,10 @@ const UJSShgLoanEntity_1 = require("./Entity/UJSShgLoanEntity");
 const UJSShgMeetingTrackEntity_1 = require("./Entity/UJSShgMeetingTrackEntity");
 const UJSShgOtherIncomeEntity_1 = require("./Entity/UJSShgOtherIncomeEntity");
 const UJSShgTillNowDataEntity_1 = require("./Entity/UJSShgTillNowDataEntity");
+const common_2 = require("@nestjs/common");
+const fs = __importStar(require("fs-extra"));
+const path = __importStar(require("path"));
+const crypto = __importStar(require("crypto"));
 let UjsService = class UjsService {
     constructor(logger, connection, UJSDepartmentRepository, UJSSghGroupRepository, UJSShgMemberRepository, UJSUserRepository, UJSRoleRepository, UJSRolePermissionRepository, UJSBackupShgGroupDataUploadMonthRepository, UJSBranchRepository, UJSFailedJobRepository, UJSMigrationRepository, UJSPersonalAccessTokenRepository, UJSSHGExpansesRepository, UJSSHGLoanRepaymentRepository, UJSStateRepository, UJSShgTraningRepository, UJSShgActiveModelFarmerRepository, UJSShgAttendanceRepository, UJSShgContactRepository, UJSShgDataLockRepository, UJSShgBankLoanAllotmentRepository, UJSShgBankLoanRepository, UJSShgBankRepository, UJSShgAuditingRepository, UJSShgDataUploadRepository, UJSShgDigiSakhiRepository, UJSShgFpoRepository, UJSShgFedrationReportRepository, UJSShgFedrationRepository, UJSShgMomRepository, UJSShgGroupDataUploadMonthERepository, UJSShgMemberSavingRepository, UJSShgGroupDetailsInfoRepository, UJSShgGroupSummaryRepository, UJSShgInternalLoanSummaryRepository, UJSShgLoanRepository, UJSShgMeetingTrackRepository, UJSShgOtherIncomeRepository, UJSShgTillNowDataRepository) {
         this.logger = logger;
@@ -218,7 +245,7 @@ let UjsService = class UjsService {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkMember = await this.UJSShgMemberRepository.findOne({
             where: {
-                group_name: ujsShgMemberDTO.group_name,
+                member_name: ujsShgMemberDTO.member_name,
             },
         });
         if (checkMember) {
@@ -229,12 +256,9 @@ let UjsService = class UjsService {
         }
         else {
             const addUJSShgMember = new UJSShgMemberEntity_1.UJSShgMemberEntity();
-            addUJSShgMember.id = ujsShgMemberDTO.id;
-            addUJSShgMember.row_arrangement = ujsShgMemberDTO.row_arrangement;
             addUJSShgMember.shg_id = ujsShgMemberDTO.shg_id;
             addUJSShgMember.member_name = ujsShgMemberDTO.member_name;
             addUJSShgMember.member_name_eng = ujsShgMemberDTO.member_name_eng;
-            addUJSShgMember.group_id = ujsShgMemberDTO.group_id;
             addUJSShgMember.group_name = ujsShgMemberDTO.group_name;
             addUJSShgMember.animator_id = ujsShgMemberDTO.animator_id;
             addUJSShgMember.animator_name = ujsShgMemberDTO.animator_name;
@@ -286,12 +310,10 @@ let UjsService = class UjsService {
         let shgMemberList = await this.UJSShgMemberRepository.find({});
         return { shgMember: shgMemberList, message: "success", status: 200 };
     }
-    async UJSUserAdd(request, ujsUserDTO) {
+    async UJSUserAdd(request, ujsUserDTO, student_img) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkUser = await this.UJSUserRepository.findOne({
-            where: {
-                name: ujsUserDTO.name,
-            },
+            where: { name: ujsUserDTO.name },
         });
         if (checkUser) {
             return {
@@ -299,45 +321,79 @@ let UjsService = class UjsService {
                 status: 400,
             };
         }
-        else {
-            const addUJSUser = new UJSUsersEntity_1.UJSUsersEntity();
-            addUJSUser.id = ujsUserDTO.id;
-            addUJSUser.name = ujsUserDTO.name;
-            addUJSUser.email = ujsUserDTO.email;
-            addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
-            addUJSUser.password = ujsUserDTO.password;
-            addUJSUser.photo = ujsUserDTO.photo;
-            addUJSUser.active = ujsUserDTO.active;
-            addUJSUser.deleted_at = ujsUserDTO.deleted_at;
-            addUJSUser.remember_token = ujsUserDTO.remember_token;
-            addUJSUser.created_at = ujsUserDTO.created_at;
-            addUJSUser.updated_at = ujsUserDTO.updated_at;
-            addUJSUser.created_by = ujsUserDTO.created_by;
-            addUJSUser.updated_by = ujsUserDTO.updated_by;
-            addUJSUser.department = ujsUserDTO.department;
-            addUJSUser.role = ujsUserDTO.role;
-            addUJSUser.emp_code = ujsUserDTO.emp_code;
-            addUJSUser.mobile = ujsUserDTO.mobile;
-            addUJSUser.user_app = ujsUserDTO.user_app;
-            addUJSUser.admin_app = ujsUserDTO.admin_app;
-            addUJSUser.address = ujsUserDTO.address;
-            addUJSUser.dob = ujsUserDTO.dob;
-            addUJSUser.gender = ujsUserDTO.gender;
-            addUJSUser.fathername = ujsUserDTO.fathername;
-            addUJSUser.mothername = ujsUserDTO.mothername;
-            addUJSUser.student_email = ujsUserDTO.student_email;
-            addUJSUser.organization = ujsUserDTO.organization;
-            addUJSUser.EmergencyContact = ujsUserDTO.EmergencyContact;
-            addUJSUser.adhaarnumber = ujsUserDTO.adhaarnumber;
-            addUJSUser.blood_group = ujsUserDTO.blood_group;
-            addUJSUser.student_img = ujsUserDTO.student_img;
-            addUJSUser.student_signature = ujsUserDTO.student_signature;
-            addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
-            addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
-            addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
-            await this.UJSUserRepository.save(addUJSUser);
-            return { UserList: addUJSUser, message: "success", status: 200 };
+        const addUJSUser = new UJSUsersEntity_1.UJSUsersEntity();
+        addUJSUser.id = ujsUserDTO.id;
+        addUJSUser.name = ujsUserDTO.name;
+        addUJSUser.email = ujsUserDTO.email;
+        addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
+        addUJSUser.password = ujsUserDTO.password;
+        addUJSUser.photo = ujsUserDTO.photo;
+        addUJSUser.active = ujsUserDTO.active;
+        addUJSUser.deleted_at = ujsUserDTO.deleted_at;
+        addUJSUser.remember_token = ujsUserDTO.remember_token;
+        addUJSUser.created_at = ujsUserDTO.created_at;
+        addUJSUser.updated_at = ujsUserDTO.updated_at;
+        addUJSUser.created_by = ujsUserDTO.created_by;
+        addUJSUser.updated_by = ujsUserDTO.updated_by;
+        addUJSUser.department = ujsUserDTO.department;
+        addUJSUser.role = ujsUserDTO.role;
+        addUJSUser.emp_code = ujsUserDTO.emp_code;
+        addUJSUser.mobile = ujsUserDTO.mobile;
+        addUJSUser.user_app = ujsUserDTO.user_app;
+        addUJSUser.admin_app = ujsUserDTO.admin_app;
+        addUJSUser.address = ujsUserDTO.address;
+        addUJSUser.dob = ujsUserDTO.dob;
+        addUJSUser.gender = ujsUserDTO.gender;
+        addUJSUser.fathername = ujsUserDTO.fathername;
+        addUJSUser.mothername = ujsUserDTO.mothername;
+        addUJSUser.student_email = ujsUserDTO.student_email;
+        addUJSUser.organization = ujsUserDTO.organization;
+        addUJSUser.EmergencyContact = ujsUserDTO.EmergencyContact;
+        addUJSUser.adhaarnumber = ujsUserDTO.adhaarnumber;
+        addUJSUser.blood_group = ujsUserDTO.blood_group;
+        addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
+        addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
+        addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
+        if (student_img) {
+            console.log("kj", student_img);
+            if (!this.validateFileType(student_img) || !this.validateFileSize(student_img)) {
+                throw new common_2.BadRequestException("Invalid file type or size.");
+            }
+            const randomString = this.generateRandomString(8);
+            const fileNameWithoutExtension = path.basename(student_img.originalname, path.extname(student_img.originalname));
+            const fileExtension = path.extname(student_img.originalname);
+            const filename = `${fileNameWithoutExtension}_${randomString}${fileExtension}`;
+            const savedFilePath = await this.saveFileToDirectory(student_img, filename);
+            console.log("ss", savedFilePath);
+            addUJSUser.student_img = filename;
         }
+        await this.UJSUserRepository.save(addUJSUser);
+        return { UserList: addUJSUser, message: "success", status: 200 };
+    }
+    generateRandomString(length) {
+        if (length % 2 !== 0) {
+            throw new Error("Length must be even for hex encoding.");
+        }
+        const bytes = crypto.randomBytes(length / 2);
+        return bytes.toString("hex");
+    }
+    validateFileType(file) {
+        const allowedTypes = ["image/jpeg", "image/png"];
+        return allowedTypes.includes(file.mimetype);
+    }
+    validateFileSize(file) {
+        const maxSize = 50 * 1024 * 1024;
+        return file.size <= maxSize;
+    }
+    async saveFileToDirectory(file, filename) {
+        const uploadDir = process.env.UPLOAD_DIR;
+        if (!uploadDir) {
+            this._logger.error("UPLOAD_DIR is not defined");
+            throw new Error("Upload directory is not configured");
+        }
+        const filePath = path.join(process.env.UPLOAD_DIR, filename);
+        fs.writeFileSync(filePath, file.buffer);
+        return filePath;
     }
     async UJSUserList(request) {
         let shgUserList = await this.UJSUserRepository.find({});
@@ -379,6 +435,49 @@ let UjsService = class UjsService {
     async UJSRoleList(request) {
         let shgRoleList = await this.UJSRoleRepository.find({});
         return { shgRole: shgRoleList, message: "success", status: 200 };
+    }
+    async UJSRoleAllList(request) {
+        const shgRoleList = await this.UJSRoleRepository
+            .createQueryBuilder('role')
+            .leftJoinAndSelect('permission_detail', 'permission_detail', 'role.roll_id = permission_detail.roll_id')
+            .select([
+            'role.roll_id as roll_id',
+            'role.role_name as role_name',
+            'role.status as role_status',
+            `GROUP_CONCAT(CASE WHEN permission_detail.active = 1 THEN permission_detail.permission_name ELSE CONCAT(permission_detail.permission_name, ' (inactive)') END) as permissions`
+        ])
+            .groupBy('role.roll_id')
+            .getRawMany();
+        const formattedRoleList = shgRoleList.map(role => ({
+            ...role,
+            permissions: role.permissions ? role.permissions.split(',') : []
+        }));
+        return { shgRole: formattedRoleList, message: "success", status: 200 };
+    }
+    async UJSRolePermissionList(id) {
+        const numericId = Number(id);
+        if (isNaN(numericId)) {
+            return { message: "Invalid ID provided", status: 400 };
+        }
+        let shgRoleList = await this.UJSRolePermissionRepository.find({
+            where: { roll_id: numericId },
+        });
+        if (shgRoleList.length === 0) {
+            return { message: "No data found for the provided ID", status: 404 };
+        }
+        const groupedData = shgRoleList.reduce((acc, item) => {
+            const { roll_id, permission_name, active } = item;
+            if (!acc[roll_id]) {
+                acc[roll_id] = {
+                    roll_id,
+                    permissions: [],
+                };
+            }
+            acc[roll_id].permissions.push({ permission_name, active });
+            return acc;
+        }, {});
+        const result = Object.values(groupedData);
+        return { data: result, message: "success", status: 200 };
     }
     async UJSMigrationAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UjsController = void 0;
 const common_1 = require("@nestjs/common");
@@ -55,6 +56,8 @@ const UJSShgLoanDTO_1 = require("./dto/UJSShgLoanDTO");
 const UJSShgMeetingTrackDTO_1 = require("./dto/UJSShgMeetingTrackDTO");
 const UJSShgOtherIncomeDTO_1 = require("./dto/UJSShgOtherIncomeDTO");
 const UJSShgTillNowDataDTO_1 = require("./dto/UJSShgTillNowDataDTO");
+const platform_express_1 = require("@nestjs/platform-express");
+const multer_1 = require("multer");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -84,8 +87,8 @@ let UjsController = class UjsController {
     async listShgMember(request) {
         return this.ujsService.UJSShgMemberList(request);
     }
-    async UJSUserAdd(request, ujsUserDTO) {
-        return this.ujsService.UJSUserAdd(request, ujsUserDTO);
+    async UJSUserAdd(student_img, request, ujsUserDTO) {
+        return this.ujsService.UJSUserAdd(request, ujsUserDTO, student_img);
     }
     async listUser(request) {
         return this.ujsService.UJSUserList(request);
@@ -95,6 +98,12 @@ let UjsController = class UjsController {
     }
     async listRole(request) {
         return this.ujsService.UJSRoleList(request);
+    }
+    async listRoleAll(request) {
+        return this.ujsService.UJSRoleAllList(request);
+    }
+    async listRolePermissionList(id, request) {
+        return this.ujsService.UJSRolePermissionList(id);
     }
     async UJSMigrationAdd(request, ujsMigrationDTO) {
         return this.ujsService.UJSMigrationAdd(request, ujsMigrationDTO);
@@ -362,10 +371,12 @@ __decorate([
 __decorate([
     (0, common_1.Post)("AddUsers"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('student_img')),
+    __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, UJSUsersDTO_1.UJSUsersDTO]),
+    __metadata("design:paramtypes", [typeof (_a = typeof multer_1.Multer !== "undefined" && multer_1.Multer.File) === "function" ? _a : Object, Object, UJSUsersDTO_1.UJSUsersDTO]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "UJSUserAdd", null);
 __decorate([
@@ -394,6 +405,23 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listRole", null);
+__decorate([
+    (0, common_1.Get)('ListAllRolePermission'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listRoleAll", null);
+__decorate([
+    (0, common_1.Get)('ListRolePermission/:id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listRolePermissionList", null);
 __decorate([
     (0, common_1.Post)("AddMigration"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

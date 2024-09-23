@@ -85,8 +85,16 @@ import { UJSShgOtherIncomeEntity } from "./Entity/UJSShgOtherIncomeEntity";
 import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
 import { UJSShgTillNowDataEntity } from "./Entity/UJSShgTillNowDataEntity";
 import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
+import { BadRequestException } from '@nestjs/common';
+
+import { Multer } from "multer";
+import * as fs from "fs-extra";
+import * as path from "path";
+import * as appRoot from "app-root-path";
+import * as crypto from "crypto";
 @Injectable()
 export class UjsService {
+  private _logger: any;
 
   constructor(
     @Inject(Logger) private readonly logger: Logger,
@@ -167,9 +175,11 @@ export class UjsService {
     private readonly UJSShgOtherIncomeRepository: Repository<UJSShgOtherIncomeEntity>,
     @InjectRepository(UJSShgTillNowDataEntity)
     private readonly UJSShgTillNowDataRepository: Repository<UJSShgTillNowDataEntity>,
+    
   ) {
 
   }
+  
   // --------------------------department--------------------------------
   // add department
   async UJSDepartmentAdd(request, ujsDepartmentDTO: UJSDepartmentDTO) {
@@ -343,7 +353,7 @@ export class UjsService {
     let checkMember =
       await this.UJSShgMemberRepository.findOne({
         where: {
-          group_name: ujsShgMemberDTO.group_name,
+          member_name: ujsShgMemberDTO.member_name,
 
         },
       });
@@ -355,12 +365,12 @@ export class UjsService {
     } else {
       const addUJSShgMember: UJSShgMemberEntity =
         new UJSShgMemberEntity();
-        addUJSShgMember.id = ujsShgMemberDTO.id;
-        addUJSShgMember.row_arrangement = ujsShgMemberDTO.row_arrangement;
+        // addUJSShgMember.id = ujsShgMemberDTO.id;
+        // addUJSShgMember.row_arrangement = ujsShgMemberDTO.row_arrangement;
         addUJSShgMember.shg_id = ujsShgMemberDTO.shg_id;
         addUJSShgMember.member_name = ujsShgMemberDTO.member_name;
         addUJSShgMember.member_name_eng = ujsShgMemberDTO.member_name_eng;
-        addUJSShgMember.group_id = ujsShgMemberDTO.group_id;
+       
         addUJSShgMember.group_name = ujsShgMemberDTO.group_name;
         addUJSShgMember.animator_id = ujsShgMemberDTO.animator_id;
         addUJSShgMember.animator_name = ujsShgMemberDTO.animator_name;
@@ -419,67 +429,115 @@ export class UjsService {
   }
   // --------------------------user--------------------------------
   // add user
-  async UJSUserAdd(request, ujsUserDTO: UJSUsersDTO) {
-    const ipAddress =
-      request.headers["x-forwarded-for"] || request.connection.remoteAddress;
-
-
-
-    let checkUser =
-      await this.UJSUserRepository.findOne({
-        where: {
-          name: ujsUserDTO.name,
-
-        },
-      });
+  async UJSUserAdd(request, ujsUserDTO: UJSUsersDTO, student_img: Multer.File) {
+    const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+    let checkUser = await this.UJSUserRepository.findOne({
+      where: { name: ujsUserDTO.name },
+    });
+  
     if (checkUser) {
       return {
         message: "User Already Exist",
         status: 400,
       };
-    } else {
-      const addUJSUser: UJSUsersEntity =
-        new UJSUsersEntity();
-        addUJSUser.id = ujsUserDTO.id;
-        addUJSUser.name = ujsUserDTO.name;
-        addUJSUser.email = ujsUserDTO.email;
-        addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
-        addUJSUser.password = ujsUserDTO.password;
-        addUJSUser.photo = ujsUserDTO.photo;
-        addUJSUser.active = ujsUserDTO.active;
-        addUJSUser.deleted_at = ujsUserDTO.deleted_at;
-        addUJSUser.remember_token = ujsUserDTO.remember_token;
-        addUJSUser.created_at = ujsUserDTO.created_at;
-        addUJSUser.updated_at = ujsUserDTO.updated_at;
-        addUJSUser.created_by = ujsUserDTO.created_by;
-        addUJSUser.updated_by = ujsUserDTO.updated_by;
-        addUJSUser.department = ujsUserDTO.department;
-        addUJSUser.role = ujsUserDTO.role;
-        addUJSUser.emp_code = ujsUserDTO.emp_code;
-        addUJSUser.mobile = ujsUserDTO.mobile;
-        addUJSUser.user_app = ujsUserDTO.user_app;
-        addUJSUser.admin_app = ujsUserDTO.admin_app;
-        addUJSUser.address = ujsUserDTO.address;
-        addUJSUser.dob = ujsUserDTO.dob;
-        addUJSUser.gender = ujsUserDTO.gender;
-        addUJSUser.fathername = ujsUserDTO.fathername;
-        addUJSUser.mothername = ujsUserDTO.mothername;
-        addUJSUser.student_email = ujsUserDTO.student_email;
-        addUJSUser.organization = ujsUserDTO.organization;
-        addUJSUser.EmergencyContact = ujsUserDTO.EmergencyContact;
-        addUJSUser.adhaarnumber = ujsUserDTO.adhaarnumber;
-        addUJSUser.blood_group = ujsUserDTO.blood_group;
-        addUJSUser.student_img  = ujsUserDTO.student_img;
-        addUJSUser.student_signature = ujsUserDTO.student_signature;
-        addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
-        addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
-        addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
-        
-
-      await this.UJSUserRepository.save(addUJSUser);
-      return { UserList: addUJSUser, message: "success", status: 200 };
     }
+  
+    const addUJSUser: UJSUsersEntity = new UJSUsersEntity();
+    addUJSUser.id = ujsUserDTO.id;
+    addUJSUser.name = ujsUserDTO.name;
+    addUJSUser.email = ujsUserDTO.email;
+    addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
+    addUJSUser.password = ujsUserDTO.password;
+    addUJSUser.photo = ujsUserDTO.photo;
+    addUJSUser.active = ujsUserDTO.active;
+    addUJSUser.deleted_at = ujsUserDTO.deleted_at;
+    addUJSUser.remember_token = ujsUserDTO.remember_token;
+    addUJSUser.created_at = ujsUserDTO.created_at;
+    addUJSUser.updated_at = ujsUserDTO.updated_at;
+    addUJSUser.created_by = ujsUserDTO.created_by;
+    addUJSUser.updated_by = ujsUserDTO.updated_by;
+    addUJSUser.department = ujsUserDTO.department;
+    addUJSUser.role = ujsUserDTO.role;
+    addUJSUser.emp_code = ujsUserDTO.emp_code;
+    addUJSUser.mobile = ujsUserDTO.mobile;
+    addUJSUser.user_app = ujsUserDTO.user_app;
+    addUJSUser.admin_app = ujsUserDTO.admin_app;
+    addUJSUser.address = ujsUserDTO.address;
+    addUJSUser.dob = ujsUserDTO.dob;
+    addUJSUser.gender = ujsUserDTO.gender;
+    addUJSUser.fathername = ujsUserDTO.fathername;
+    addUJSUser.mothername = ujsUserDTO.mothername;
+    addUJSUser.student_email = ujsUserDTO.student_email;
+    addUJSUser.organization = ujsUserDTO.organization;
+    addUJSUser.EmergencyContact = ujsUserDTO.EmergencyContact;
+    addUJSUser.adhaarnumber = ujsUserDTO.adhaarnumber;
+    addUJSUser.blood_group = ujsUserDTO.blood_group;
+    addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
+    addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
+    addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
+  
+    // Handle file upload (student_img)
+    if (student_img) {
+      console.log("kj",student_img)
+      // Validate file type and size
+      if (!this.validateFileType(student_img) || !this.validateFileSize(student_img)) {
+        throw new BadRequestException("Invalid file type or size.");
+      }
+  
+      // Generate a unique filename for the image
+      const randomString = this.generateRandomString(8);
+      const fileNameWithoutExtension = path.basename(student_img.originalname, path.extname(student_img.originalname));
+      const fileExtension = path.extname(student_img.originalname);
+      const filename = `${fileNameWithoutExtension}_${randomString}${fileExtension}`;
+      
+  
+      // Save the file to the uploads directory
+      const savedFilePath = await this.saveFileToDirectory(student_img, filename);
+      console.log("ss",savedFilePath)
+      // Update the student's image field with the stored file path
+      addUJSUser.student_img = filename;
+    }
+  
+    await this.UJSUserRepository.save(addUJSUser);
+    return { UserList: addUJSUser, message: "success", status: 200 };
   }
+  
+  generateRandomString(length: number): string {
+    if (length % 2 !== 0) {
+      throw new Error("Length must be even for hex encoding.");
+    }
+    const bytes = crypto.randomBytes(length / 2);
+    return bytes.toString("hex");
+  }
+  
+  validateFileType(file: Multer.File): boolean {
+    const allowedTypes = ["image/jpeg", "image/png"];
+    return allowedTypes.includes(file.mimetype);
+  }
+  
+  validateFileSize(file: Multer.File): boolean {
+    const maxSize = 50 * 1024 * 1024; // 5MB
+    return file.size <= maxSize;
+  }
+  
+
+private async saveFileToDirectory(
+  file: Multer.File,
+  filename: string
+): Promise<string> {
+  const uploadDir = process.env.UPLOAD_DIR;
+  if (!uploadDir) {
+    this._logger.error("UPLOAD_DIR is not defined");
+    throw new Error("Upload directory is not configured");
+  }
+  const filePath = path.join(process.env.UPLOAD_DIR, filename);
+  fs.writeFileSync(filePath, file.buffer);
+  return filePath;
+}
+
+
+
   // list user
 
   async UJSUserList(request) {
@@ -550,6 +608,67 @@ export class UjsService {
     );
     return { shgRole: shgRoleList, message: "success", status: 200 };
   }
+  async UJSRoleAllList(request) {
+    const shgRoleList = await this.UJSRoleRepository
+      .createQueryBuilder('role')
+      .leftJoinAndSelect('permission_detail', 'permission_detail', 'role.roll_id = permission_detail.roll_id')
+      .select([
+        'role.roll_id as roll_id',
+        'role.role_name as role_name',
+        'role.status as role_status',
+        `GROUP_CONCAT(CASE WHEN permission_detail.active = 1 THEN permission_detail.permission_name ELSE CONCAT(permission_detail.permission_name, ' (inactive)') END) as permissions`
+      ])
+      .groupBy('role.roll_id')
+      .getRawMany();
+  
+    // Convert 'permissions' from a comma-separated string to an array
+    const formattedRoleList = shgRoleList.map(role => ({
+      ...role,
+      permissions: role.permissions ? role.permissions.split(',') : []
+    }));
+  
+    return { shgRole: formattedRoleList, message: "success", status: 200 };
+  }
+  
+  
+  // permission details
+  async UJSRolePermissionList(id: string) {  
+    const numericId = Number(id);  // Convert the 'id' to a number
+    
+    if (isNaN(numericId)) {
+      return { message: "Invalid ID provided", status: 400 };  // Handle the case where the ID is not a valid number
+    }
+  
+    // Find all records that match the given numeric id
+    let shgRoleList = await this.UJSRolePermissionRepository.find({
+      where: { roll_id: numericId },  // Use the converted number 'numericId'
+    });
+  
+    if (shgRoleList.length === 0) {
+      return { message: "No data found for the provided ID", status: 404 };
+    }
+  
+    const groupedData = shgRoleList.reduce((acc, item) => {
+      const { roll_id, permission_name, active } = item;
+  
+      if (!acc[roll_id]) {
+        acc[roll_id] = {
+          roll_id,
+          permissions: [],
+        };
+      }
+  
+      acc[roll_id].permissions.push({ permission_name, active });
+      return acc;
+    }, {});
+  
+    const result = Object.values(groupedData);
+  
+    return { data: result, message: "success", status: 200 };
+  }
+  
+   
+  
   // --------------------------Migration--------------------------------
   // add Migration
   async UJSMigrationAdd(request, ujsDepartmentDTO: UJSMigrationDTO) {

@@ -19,10 +19,6 @@ __decorate([
     __metadata("design:type", Number)
 ], UJSShgMemberDTO.prototype, "id", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], UJSShgMemberDTO.prototype, "row_arrangement", void 0);
-__decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSShgMemberDTO.prototype, "shg_id", void 0);
@@ -34,10 +30,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UJSShgMemberDTO.prototype, "member_name_eng", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], UJSShgMemberDTO.prototype, "group_id", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)

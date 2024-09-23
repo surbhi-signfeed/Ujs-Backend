@@ -1,26 +1,34 @@
 import { IsNotEmpty,IsOptional } from "class-validator";
 export class UJSUsersDTO {
-    @IsNotEmpty()
-    @IsNotEmpty()
+ 
     id: number;
-
     @IsNotEmpty()
     name: string;
+    @IsNotEmpty()
+    password: string;
+    @IsNotEmpty()
+    active: number;
+    @IsNotEmpty()
+    created_by: number;
+    @IsNotEmpty()
+    role: number;
 
-    
+    @IsNotEmpty()
+    emp_code: string;
+    @IsNotEmpty()
+    user_app: number;
+
+    @IsNotEmpty()
+    admin_app: number;
     email: string;
 
     @IsOptional()
     email_verified_at: Date;
 
-    @IsNotEmpty()
-    password: string;
 
     @IsOptional()
     photo: string;
 
-    @IsNotEmpty()
-    active: number;
 
     @IsOptional()
     deleted_at: Date;
@@ -34,30 +42,16 @@ export class UJSUsersDTO {
     @IsOptional()
     updated_at: Date;
 
-    @IsNotEmpty()
-    created_by: number;
-
+    
     @IsOptional()
     updated_by: number;
 
     @IsOptional()
     department: number;
 
-    @IsNotEmpty()
-    role: number;
-
-    @IsNotEmpty()
-    emp_code: string;
-
+   
     @IsOptional()
     mobile: string;
-
-    @IsNotEmpty()
-    user_app: number;
-
-    @IsNotEmpty()
-    admin_app: number;
-
     @IsOptional()
     address: string;
 
