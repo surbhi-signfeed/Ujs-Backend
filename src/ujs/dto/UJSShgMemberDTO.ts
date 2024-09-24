@@ -7,8 +7,8 @@ export class UJSShgMemberDTO {
 
     row_arrangement: number;
 
-    @IsOptional()
-    shg_id: string;
+    // @IsOptional()
+    // shg_id: string;
 
     @IsOptional()
     member_name: string;

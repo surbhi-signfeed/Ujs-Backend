@@ -31,7 +31,8 @@ let AuthController = class AuthController {
         return {
             accessToken,
             id: user.id,
-            role: user.role
+            role: user.role,
+            status: 200
         };
     }
 };

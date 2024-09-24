@@ -9,5 +9,6 @@ export declare class AuthController {
         accessToken?: string;
         id: number;
         role: number;
+        status: number;
     }>;
 }

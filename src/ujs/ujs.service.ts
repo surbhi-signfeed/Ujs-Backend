@@ -272,6 +272,7 @@ export class UjsService {
   // -----------------------------shg group-----------------------------------
   // add shg group
   async UJSShgGroupAdd(request, ujsShgGroupDTO: UJSShgGroupDTO) {
+    const currentDateTime = new Date();
     const ipAddress =
       request.headers["x-forwarded-for"] || request.connection.remoteAddress;
 
@@ -293,7 +294,7 @@ export class UjsService {
       const addUJSShgGroup: UJSShgGroupEntity =
         new UJSShgGroupEntity();
         addUJSShgGroup.id = ujsShgGroupDTO.id;
-        addUJSShgGroup.shg_id = ujsShgGroupDTO.shg_id;
+        // addUJSShgGroup.shg_id = ujsShgGroupDTO.shg_id;
         addUJSShgGroup.group_name = ujsShgGroupDTO.group_name;
         addUJSShgGroup.group_leader = ujsShgGroupDTO.group_leader;
         addUJSShgGroup.state = ujsShgGroupDTO.state;
@@ -316,7 +317,7 @@ export class UjsService {
         addUJSShgGroup.month = ujsShgGroupDTO.month;
         addUJSShgGroup.monthlymeeting = ujsShgGroupDTO.monthlymeeting;
         addUJSShgGroup.status = ujsShgGroupDTO.status;
-        addUJSShgGroup.updatedAt = ujsShgGroupDTO.updatedAt;
+        addUJSShgGroup.updatedAt = currentDateTime;;
         addUJSShgGroup.TotalmonthlySaving = ujsShgGroupDTO.TotalmonthlySaving;
         addUJSShgGroup.totalMeeting = ujsShgGroupDTO.totalMeeting;
         addUJSShgGroup.savingAmt = ujsShgGroupDTO.savingAmt;
@@ -367,7 +368,7 @@ export class UjsService {
         new UJSShgMemberEntity();
         // addUJSShgMember.id = ujsShgMemberDTO.id;
         // addUJSShgMember.row_arrangement = ujsShgMemberDTO.row_arrangement;
-        addUJSShgMember.shg_id = ujsShgMemberDTO.shg_id;
+        // addUJSShgMember.shg_id = ujsShgMemberDTO.shg_id;
         addUJSShgMember.member_name = ujsShgMemberDTO.member_name;
         addUJSShgMember.member_name_eng = ujsShgMemberDTO.member_name_eng;
        

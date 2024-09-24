@@ -1,6 +1,5 @@
 export declare class UJSShgGroupDTO {
     id: number;
-    shg_id: string;
     group_name: string;
     group_leader: string;
     state: string;

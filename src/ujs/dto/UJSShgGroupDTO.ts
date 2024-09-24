@@ -4,9 +4,9 @@ export class UJSShgGroupDTO {
     @IsNotEmpty()
     id: number;
 
-    @IsOptional()
+    // @IsOptional()
    
-    shg_id: string;
+    // shg_id: string;
 
     @IsOptional()
    

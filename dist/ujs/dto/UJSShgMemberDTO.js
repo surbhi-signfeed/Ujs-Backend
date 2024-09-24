@@ -21,10 +21,6 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSShgMemberDTO.prototype, "shg_id", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
 ], UJSShgMemberDTO.prototype, "member_name", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),

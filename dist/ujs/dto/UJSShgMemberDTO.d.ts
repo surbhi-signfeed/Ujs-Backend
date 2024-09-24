@@ -1,7 +1,6 @@
 export declare class UJSShgMemberDTO {
     id: number;
     row_arrangement: number;
-    shg_id: string;
     member_name: string;
     member_name_eng: string;
     group_name: string;

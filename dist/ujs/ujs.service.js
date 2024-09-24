@@ -184,6 +184,7 @@ let UjsService = class UjsService {
         }
     }
     async UJSShgGroupAdd(request, ujsShgGroupDTO) {
+        const currentDateTime = new Date();
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkGroup = await this.UJSSghGroupRepository.findOne({
             where: {
@@ -199,7 +200,6 @@ let UjsService = class UjsService {
         else {
             const addUJSShgGroup = new UJSShgGroupEntity_1.UJSShgGroupEntity();
             addUJSShgGroup.id = ujsShgGroupDTO.id;
-            addUJSShgGroup.shg_id = ujsShgGroupDTO.shg_id;
             addUJSShgGroup.group_name = ujsShgGroupDTO.group_name;
             addUJSShgGroup.group_leader = ujsShgGroupDTO.group_leader;
             addUJSShgGroup.state = ujsShgGroupDTO.state;
@@ -222,7 +222,8 @@ let UjsService = class UjsService {
             addUJSShgGroup.month = ujsShgGroupDTO.month;
             addUJSShgGroup.monthlymeeting = ujsShgGroupDTO.monthlymeeting;
             addUJSShgGroup.status = ujsShgGroupDTO.status;
-            addUJSShgGroup.updatedAt = ujsShgGroupDTO.updatedAt;
+            addUJSShgGroup.updatedAt = currentDateTime;
+            ;
             addUJSShgGroup.TotalmonthlySaving = ujsShgGroupDTO.TotalmonthlySaving;
             addUJSShgGroup.totalMeeting = ujsShgGroupDTO.totalMeeting;
             addUJSShgGroup.savingAmt = ujsShgGroupDTO.savingAmt;
@@ -256,7 +257,6 @@ let UjsService = class UjsService {
         }
         else {
             const addUJSShgMember = new UJSShgMemberEntity_1.UJSShgMemberEntity();
-            addUJSShgMember.shg_id = ujsShgMemberDTO.shg_id;
             addUJSShgMember.member_name = ujsShgMemberDTO.member_name;
             addUJSShgMember.member_name_eng = ujsShgMemberDTO.member_name_eng;
             addUJSShgMember.group_name = ujsShgMemberDTO.group_name;
