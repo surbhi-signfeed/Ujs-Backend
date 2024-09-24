@@ -242,6 +242,71 @@ let UjsService = class UjsService {
         let shgGroupList = await this.UJSSghGroupRepository.find({});
         return { shgGroup: shgGroupList, message: "success", status: 200 };
     }
+    async UJSShgGroupUpdate(request, ujsShgGroupUpdateDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        const currentDateTime = new Date();
+        let checkGroup = await this.UJSSghGroupRepository.findOne({
+            where: {
+                id: ujsShgGroupUpdateDTO.id,
+            },
+        });
+        if (checkGroup) {
+            checkGroup.group_name = ujsShgGroupUpdateDTO.group_name;
+            checkGroup.group_leader = ujsShgGroupUpdateDTO.group_leader;
+            checkGroup.state = ujsShgGroupUpdateDTO.state;
+            checkGroup.district = ujsShgGroupUpdateDTO.district;
+            checkGroup.location = ujsShgGroupUpdateDTO.location;
+            checkGroup.village = ujsShgGroupUpdateDTO.village;
+            checkGroup.block_taluk = ujsShgGroupUpdateDTO.block_taluk;
+            checkGroup.pincode = ujsShgGroupUpdateDTO.pincode;
+            checkGroup.animator_id = ujsShgGroupUpdateDTO.animator_id;
+            checkGroup.animator = ujsShgGroupUpdateDTO.animator;
+            checkGroup.bank_name = ujsShgGroupUpdateDTO.bank_name;
+            checkGroup.bank_branch = ujsShgGroupUpdateDTO.bank_branch;
+            checkGroup.bank_ac = ujsShgGroupUpdateDTO.bank_ac;
+            checkGroup.formationDate = ujsShgGroupUpdateDTO.formationDate;
+            checkGroup.fed_amt = ujsShgGroupUpdateDTO.fed_amt;
+            checkGroup.cashatbank = ujsShgGroupUpdateDTO.cashatbank;
+            checkGroup.amount = ujsShgGroupUpdateDTO.amount;
+            checkGroup.totalMember = ujsShgGroupUpdateDTO.totalMember;
+            checkGroup.transactionstatus = ujsShgGroupUpdateDTO.transactionstatus;
+            checkGroup.month = ujsShgGroupUpdateDTO.month;
+            checkGroup.monthlymeeting = ujsShgGroupUpdateDTO.monthlymeeting;
+            checkGroup.status = ujsShgGroupUpdateDTO.status;
+            checkGroup.updatedAt = currentDateTime;
+            checkGroup.TotalmonthlySaving = ujsShgGroupUpdateDTO.TotalmonthlySaving;
+            checkGroup.totalMeeting = ujsShgGroupUpdateDTO.totalMeeting;
+            checkGroup.savingAmt = ujsShgGroupUpdateDTO.savingAmt;
+            checkGroup.totalInternalLoan = ujsShgGroupUpdateDTO.totalInternalLoan;
+            checkGroup.totalInternalLoanRecover = ujsShgGroupUpdateDTO.totalInternalLoanRecover;
+            checkGroup.totalInternalLoanInterest = ujsShgGroupUpdateDTO.totalInternalLoanInterest;
+            checkGroup.totalExpanses = ujsShgGroupUpdateDTO.totalExpanses;
+            checkGroup.TotalBankLoan = ujsShgGroupUpdateDTO.TotalBankLoan;
+            checkGroup.totalbankloanrecover = ujsShgGroupUpdateDTO.totalbankloanrecover;
+            checkGroup.TotalBankLoanInterest = ujsShgGroupUpdateDTO.TotalBankLoanInterest;
+            await this.UJSSghGroupRepository.save(checkGroup);
+            return { Group: checkGroup, message: "success", status: 200 };
+        }
+        else {
+            return { message: "Group ID Does Not Exist", status: 400 };
+        }
+    }
+    async UJSShgGroupDelete(request, ujsShgGroupDeleteDTO) {
+        let checkShgGroupDelete = await this.UJSSghGroupRepository.findOne({
+            where: {
+                id: ujsShgGroupDeleteDTO.id,
+            },
+        });
+        if (checkShgGroupDelete) {
+            let checkUjsShgGroupDelete;
+            checkUjsShgGroupDelete = this.connection.query(`delete from shg_groups where id='${ujsShgGroupDeleteDTO.id}'`);
+            await this.UJSSghGroupRepository.delete(checkShgGroupDelete);
+            return { message: "success", status: 200 };
+        }
+        else {
+            return { message: "ShgGroup Does Not Exist", status: 400 };
+        }
+    }
     async UJSShgMemberAdd(request, ujsShgMemberDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkMember = await this.UJSShgMemberRepository.findOne({
@@ -309,6 +374,81 @@ let UjsService = class UjsService {
     async UJSShgMemberList(request) {
         let shgMemberList = await this.UJSShgMemberRepository.find({});
         return { shgMember: shgMemberList, message: "success", status: 200 };
+    }
+    async UJSShgMemberUpdate(request, ujsShgMemberUpdateDTO) {
+        let checkMember = await this.UJSShgMemberRepository.findOne({
+            where: {
+                id: ujsShgMemberUpdateDTO.id,
+            },
+        });
+        if (checkMember) {
+            checkMember.member_name = ujsShgMemberUpdateDTO.member_name;
+            checkMember.member_name_eng = ujsShgMemberUpdateDTO.member_name_eng;
+            checkMember.group_name = ujsShgMemberUpdateDTO.group_name;
+            checkMember.animator_id = ujsShgMemberUpdateDTO.animator_id;
+            checkMember.animator_name = ujsShgMemberUpdateDTO.animator_name;
+            checkMember.leader_name = ujsShgMemberUpdateDTO.leader_name;
+            checkMember.HusbandFather_Name = ujsShgMemberUpdateDTO.HusbandFather_Name;
+            checkMember.village = ujsShgMemberUpdateDTO.village;
+            checkMember.mobile = ujsShgMemberUpdateDTO.mobile;
+            checkMember.whatsapp_number = ujsShgMemberUpdateDTO.whatsapp_number;
+            checkMember.email = ujsShgMemberUpdateDTO.email;
+            checkMember.adhaar_number = ujsShgMemberUpdateDTO.adhaar_number;
+            checkMember.gender = ujsShgMemberUpdateDTO.gender;
+            checkMember.dob = ujsShgMemberUpdateDTO.dob;
+            checkMember.education = ujsShgMemberUpdateDTO.education;
+            checkMember.primary_occu = ujsShgMemberUpdateDTO.primary_occu;
+            checkMember.religion = ujsShgMemberUpdateDTO.religion;
+            checkMember.house_num = ujsShgMemberUpdateDTO.house_num;
+            checkMember.block_taluk = ujsShgMemberUpdateDTO.block_taluk;
+            checkMember.gram_punchayat = ujsShgMemberUpdateDTO.gram_punchayat;
+            checkMember.state = ujsShgMemberUpdateDTO.state;
+            checkMember.district = ujsShgMemberUpdateDTO.district;
+            checkMember.pincode = ujsShgMemberUpdateDTO.pincode;
+            checkMember.bank_name = ujsShgMemberUpdateDTO.bank_name;
+            checkMember.branch_name = ujsShgMemberUpdateDTO.branch_name;
+            checkMember.bank_ac = ujsShgMemberUpdateDTO.bank_ac;
+            checkMember.bank_ifsc = ujsShgMemberUpdateDTO.bank_ifsc;
+            checkMember.aadhar_seeding_status = ujsShgMemberUpdateDTO.aadhar_seeding_status;
+            checkMember.voter_num = ujsShgMemberUpdateDTO.voter_num;
+            checkMember.mngrega_num = ujsShgMemberUpdateDTO.mngrega_num;
+            checkMember.sub_cat = ujsShgMemberUpdateDTO.sub_cat;
+            checkMember.loan_taken = ujsShgMemberUpdateDTO.loan_taken;
+            checkMember.mfi_bank_loan = ujsShgMemberUpdateDTO.mfi_bank_loan;
+            checkMember.annual_income = ujsShgMemberUpdateDTO.annual_income;
+            checkMember.diff_abled = ujsShgMemberUpdateDTO.diff_abled;
+            checkMember.total_household_member = ujsShgMemberUpdateDTO.total_household_member;
+            checkMember.member_status = ujsShgMemberUpdateDTO.member_status;
+            checkMember.social_strata = ujsShgMemberUpdateDTO.social_strata;
+            checkMember.house_hold_above = ujsShgMemberUpdateDTO.house_hold_above;
+            checkMember.status = ujsShgMemberUpdateDTO.status;
+            checkMember.monthlySaving = ujsShgMemberUpdateDTO.monthlySaving;
+            checkMember.fedrationSaving = ujsShgMemberUpdateDTO.fedrationSaving;
+            checkMember.updated_at = ujsShgMemberUpdateDTO.updated_at;
+            checkMember.openingBal = ujsShgMemberUpdateDTO.openingBal;
+            checkMember.fix_loan = ujsShgMemberUpdateDTO.fix_loan;
+            await this.UJSShgMemberRepository.save(checkMember);
+            return { Member: checkMember, message: "success", status: 200 };
+        }
+        else {
+            return { message: "Member ID Does Not Exist", status: 400 };
+        }
+    }
+    async UJSShgMemberDelete(request, ujsShgMemberDeleteDTO) {
+        let checkShgMemberDelete = await this.UJSShgMemberRepository.findOne({
+            where: {
+                id: ujsShgMemberDeleteDTO.id,
+            },
+        });
+        if (checkShgMemberDelete) {
+            let checkUjsShgMemberDelete;
+            checkUjsShgMemberDelete = this.connection.query(`delete from shg_members where id='${ujsShgMemberDeleteDTO.id}'`);
+            await this.UJSShgMemberRepository.delete(checkShgMemberDelete);
+            return { message: "success", status: 200 };
+        }
+        else {
+            return { message: "ShgMember Does Not Exist", status: 400 };
+        }
     }
     async UJSUserAdd(request, ujsUserDTO, student_img) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
@@ -997,6 +1137,56 @@ let UjsService = class UjsService {
         let bankLoanList = await this.UJSShgBankLoanRepository.find({});
         return { bankLoan: bankLoanList, message: "success", status: 200 };
     }
+    async UJSBankLoanUpdate(request, ujsBankLoanUpdateDTO) {
+        let checkBankLoan = await this.UJSShgBankLoanRepository.findOne({
+            where: {
+                id: ujsBankLoanUpdateDTO.id,
+            },
+        });
+        if (checkBankLoan) {
+            checkBankLoan.loan_no = ujsBankLoanUpdateDTO.loan_no;
+            checkBankLoan.bank_name = ujsBankLoanUpdateDTO.bank_name;
+            checkBankLoan.meeting_id = ujsBankLoanUpdateDTO.meeting_id;
+            checkBankLoan.group_id = ujsBankLoanUpdateDTO.group_id;
+            checkBankLoan.member_id = ujsBankLoanUpdateDTO.member_id;
+            checkBankLoan.animator_id = ujsBankLoanUpdateDTO.animator_id;
+            checkBankLoan.member_name = ujsBankLoanUpdateDTO.member_name;
+            checkBankLoan.group_name = ujsBankLoanUpdateDTO.group_name;
+            checkBankLoan.animator_name = ujsBankLoanUpdateDTO.animator_name;
+            checkBankLoan.loan_amt = ujsBankLoanUpdateDTO.loan_amt;
+            checkBankLoan.interest_rate = ujsBankLoanUpdateDTO.interest_rate;
+            checkBankLoan.interest = ujsBankLoanUpdateDTO.interest;
+            checkBankLoan.settle_interest = ujsBankLoanUpdateDTO.settle_interest;
+            checkBankLoan.loan_period = ujsBankLoanUpdateDTO.loan_period;
+            checkBankLoan.loan_date = ujsBankLoanUpdateDTO.loan_date;
+            checkBankLoan.loan_type = ujsBankLoanUpdateDTO.loan_type;
+            checkBankLoan.settle_amount = ujsBankLoanUpdateDTO.settle_amount;
+            checkBankLoan.total_emi = ujsBankLoanUpdateDTO.total_emi;
+            checkBankLoan.current_emi = ujsBankLoanUpdateDTO.current_emi;
+            checkBankLoan.meetingDate = ujsBankLoanUpdateDTO.meetingDate;
+            await this.UJSShgBankLoanRepository.save(checkBankLoan);
+            return { BankLoan: checkBankLoan, message: "success", status: 200 };
+        }
+        else {
+            return { message: "BankLoan ID Does Not Exist", status: 400 };
+        }
+    }
+    async UJSBankLoanDelete(request, ujsBankLoanDeleteDTO) {
+        let checkBankLoan = await this.UJSShgBankLoanRepository.findOne({
+            where: {
+                id: ujsBankLoanDeleteDTO.id,
+            },
+        });
+        if (checkBankLoan) {
+            let checkUjsBankLoan;
+            checkUjsBankLoan = this.connection.query(`delete from shg_bank_loan where id='${ujsBankLoanDeleteDTO.id}'`);
+            await this.UJSShgBankLoanRepository.delete(checkBankLoan);
+            return { message: "success", status: 200 };
+        }
+        else {
+            return { message: "Id Does Not Exist", status: 400 };
+        }
+    }
     async UJSShgBankAdd(request, ujsShgbankDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkbank = await this.UJSShgBankRepository.findOne({
@@ -1423,6 +1613,45 @@ let UjsService = class UjsService {
     async UJSShgInternalLoanSummaryList(request) {
         let InternalLoanSummaryList = await this.UJSShgInternalLoanSummaryRepository.find({});
         return { InternalLoanSummary: InternalLoanSummaryList, message: "success", status: 200 };
+    }
+    async UJSShgInternalLoanUpdate(request, ujsInternalLoanUpdateDTO) {
+        let checkInternalLoan = await this.UJSShgInternalLoanSummaryRepository.findOne({
+            where: {
+                id: ujsInternalLoanUpdateDTO.id,
+            },
+        });
+        if (checkInternalLoan) {
+            checkInternalLoan.shg_id = ujsInternalLoanUpdateDTO.shg_id;
+            checkInternalLoan.group_id = ujsInternalLoanUpdateDTO.group_id;
+            checkInternalLoan.group_name = ujsInternalLoanUpdateDTO.group_name;
+            checkInternalLoan.loan_amt = ujsInternalLoanUpdateDTO.loan_amt;
+            checkInternalLoan.tenure = ujsInternalLoanUpdateDTO.tenure;
+            checkInternalLoan.interest = ujsInternalLoanUpdateDTO.interest;
+            checkInternalLoan.recover_amt = ujsInternalLoanUpdateDTO.recover_amt;
+            checkInternalLoan.datetime = ujsInternalLoanUpdateDTO.datetime;
+            checkInternalLoan.status = ujsInternalLoanUpdateDTO.status;
+            await this.UJSShgInternalLoanSummaryRepository.save(checkInternalLoan);
+            return { InternalLoan: checkInternalLoan, message: "success", status: 200 };
+        }
+        else {
+            return { message: "ID Does Not Exist", status: 400 };
+        }
+    }
+    async UJSShgInternalLoanDelete(request, ujsShgInternalLoanDeleteDTO) {
+        let checkInternalLoan = await this.UJSShgInternalLoanSummaryRepository.findOne({
+            where: {
+                id: ujsShgInternalLoanDeleteDTO.id,
+            },
+        });
+        if (checkInternalLoan) {
+            let checkUjsInternalLoan;
+            checkUjsInternalLoan = this.connection.query(`delete from shg_internal_loan_summary where id='${ujsShgInternalLoanDeleteDTO.id}'`);
+            await this.UJSShgInternalLoanSummaryRepository.delete(checkInternalLoan);
+            return { message: "success", status: 200 };
+        }
+        else {
+            return { message: "Id Does Not Exist", status: 400 };
+        }
     }
     async UJSShgLoanAdd(request, ujsShgLoanDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;

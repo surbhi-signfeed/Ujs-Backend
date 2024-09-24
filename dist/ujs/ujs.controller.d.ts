@@ -42,6 +42,14 @@ import { UJSShgMeetingTrackDTO } from "./dto/UJSShgMeetingTrackDTO";
 import { UJSShgOtherIncomeDTO } from "./dto/UJSShgOtherIncomeDTO";
 import { UJSShgTillNowDataDTO } from "./dto/UJSShgTillNowDataDTO";
 import { Multer } from "multer";
+import { UJSShgGroupUpdateDTO } from "./dto/UJSShgGroupUpdateDTO";
+import { UJSShgGroupDeleteDTO } from "./dto/UJSShgGroupDeleteDTO";
+import { UJSShgMemberUpdateDTO } from "./dto/UJSShgMemberUpdateDTO";
+import { UJSShgMemberDeleteDTO } from "./dto/UJSShgMemberDeleteDTO";
+import { UJSShgInternalLoanUpdateDTO } from "./dto/UJSInternalLoanUpdateDTO";
+import { UJSShgInternalLoanDeleteDTO } from "./dto/UJSInternalLoanDeleteDTO";
+import { UJSBankLoanUpdateDTO } from "./dto/UJSSBankLoanUpdateDTO";
+import { UJSBankLoanDeleteDTO } from "./dto/UJSSBankLoanDeleteDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -87,6 +95,19 @@ export declare class UjsController {
         message: string;
         status: number;
     }>;
+    UJSShgGroupUpdate(request: Request, ujsShgGroupUpdateDTO: UJSShgGroupUpdateDTO): Promise<{
+        Group: import("./Entity/UJSShgGroupEntity").UJSShgGroupEntity;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        Group?: undefined;
+    }>;
+    UJSShgGroupDelete(request: Request, ujsSjhGroupDeleteDTO: UJSShgGroupDeleteDTO): Promise<{
+        message: string;
+        status: number;
+    }>;
     UJSShgMemberAdd(request: Request, ujsShgMemberDTO: UJSShgMemberDTO): Promise<{
         message: string;
         status: number;
@@ -98,6 +119,19 @@ export declare class UjsController {
     }>;
     listShgMember(request: Request): Promise<{
         shgMember: import("./Entity/UJSShgMemberEntity").UJSShgMemberEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgMemberUpdate(request: Request, ujsShgMemberUpdateDTO: UJSShgMemberUpdateDTO): Promise<{
+        Member: import("./Entity/UJSShgMemberEntity").UJSShgMemberEntity;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        Member?: undefined;
+    }>;
+    UJSShgMemberDelete(request: Request, ujsSjhMemberDeleteDTO: UJSShgMemberDeleteDTO): Promise<{
         message: string;
         status: number;
     }>;
@@ -353,6 +387,19 @@ export declare class UjsController {
         message: string;
         status: number;
     }>;
+    UJSShgBankLoanUpdate(request: Request, ujsShgBankLoanUpdateDTO: UJSBankLoanUpdateDTO): Promise<{
+        BankLoan: import("./Entity/UJSBankLoanEntity").UJSBankLoanEntity;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        BankLoan?: undefined;
+    }>;
+    UJSShgBankLoanDelete(request: Request, ujsShgBankLoanDeleteDTO: UJSBankLoanDeleteDTO): Promise<{
+        message: string;
+        status: number;
+    }>;
     UJSShgBankAdd(request: Request, ujsShgBankDTO: UJSBankDTO): Promise<{
         message: string;
         status: number;
@@ -524,6 +571,19 @@ export declare class UjsController {
     }>;
     listSInternalLoanSummary(request: Request): Promise<{
         InternalLoanSummary: import("./Entity/UJSShgInternalLoanSummaryEntity").UJSShgInternalLoanSummaryEntity[];
+        message: string;
+        status: number;
+    }>;
+    UJSShgInternalLoanUpdate(request: Request, ujsShgInternalLoanUpdateDTO: UJSShgInternalLoanUpdateDTO): Promise<{
+        InternalLoan: import("./Entity/UJSShgInternalLoanSummaryEntity").UJSShgInternalLoanSummaryEntity;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        InternalLoan?: undefined;
+    }>;
+    UJSShgInternalLoanDelete(request: Request, ujsShgInternalLoanDeleteDTO: UJSShgInternalLoanDeleteDTO): Promise<{
         message: string;
         status: number;
     }>;

@@ -58,6 +58,14 @@ const UJSShgOtherIncomeDTO_1 = require("./dto/UJSShgOtherIncomeDTO");
 const UJSShgTillNowDataDTO_1 = require("./dto/UJSShgTillNowDataDTO");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
+const UJSShgGroupUpdateDTO_1 = require("./dto/UJSShgGroupUpdateDTO");
+const UJSShgGroupDeleteDTO_1 = require("./dto/UJSShgGroupDeleteDTO");
+const UJSShgMemberUpdateDTO_1 = require("./dto/UJSShgMemberUpdateDTO");
+const UJSShgMemberDeleteDTO_1 = require("./dto/UJSShgMemberDeleteDTO");
+const UJSInternalLoanUpdateDTO_1 = require("./dto/UJSInternalLoanUpdateDTO");
+const UJSInternalLoanDeleteDTO_1 = require("./dto/UJSInternalLoanDeleteDTO");
+const UJSSBankLoanUpdateDTO_1 = require("./dto/UJSSBankLoanUpdateDTO");
+const UJSSBankLoanDeleteDTO_1 = require("./dto/UJSSBankLoanDeleteDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -81,11 +89,23 @@ let UjsController = class UjsController {
     async listShgGroup(request) {
         return this.ujsService.UJSShgGroupList(request);
     }
+    async UJSShgGroupUpdate(request, ujsShgGroupUpdateDTO) {
+        return this.ujsService.UJSShgGroupUpdate(request, ujsShgGroupUpdateDTO);
+    }
+    async UJSShgGroupDelete(request, ujsSjhGroupDeleteDTO) {
+        return this.ujsService.UJSShgGroupDelete(request, ujsSjhGroupDeleteDTO);
+    }
     async UJSShgMemberAdd(request, ujsShgMemberDTO) {
         return this.ujsService.UJSShgMemberAdd(request, ujsShgMemberDTO);
     }
     async listShgMember(request) {
         return this.ujsService.UJSShgMemberList(request);
+    }
+    async UJSShgMemberUpdate(request, ujsShgMemberUpdateDTO) {
+        return this.ujsService.UJSShgMemberUpdate(request, ujsShgMemberUpdateDTO);
+    }
+    async UJSShgMemberDelete(request, ujsSjhMemberDeleteDTO) {
+        return this.ujsService.UJSShgMemberDelete(request, ujsSjhMemberDeleteDTO);
     }
     async UJSUserAdd(student_img, request, ujsUserDTO) {
         return this.ujsService.UJSUserAdd(request, ujsUserDTO, student_img);
@@ -195,6 +215,12 @@ let UjsController = class UjsController {
     async listShgBankLoan(request) {
         return this.ujsService.UJSShgBankLoanList(request);
     }
+    async UJSShgBankLoanUpdate(request, ujsShgBankLoanUpdateDTO) {
+        return this.ujsService.UJSBankLoanUpdate(request, ujsShgBankLoanUpdateDTO);
+    }
+    async UJSShgBankLoanDelete(request, ujsShgBankLoanDeleteDTO) {
+        return this.ujsService.UJSBankLoanDelete(request, ujsShgBankLoanDeleteDTO);
+    }
     async UJSShgBankAdd(request, ujsShgBankDTO) {
         return this.ujsService.UJSShgBankAdd(request, ujsShgBankDTO);
     }
@@ -272,6 +298,12 @@ let UjsController = class UjsController {
     }
     async listSInternalLoanSummary(request) {
         return this.ujsService.UJSShgInternalLoanSummaryList(request);
+    }
+    async UJSShgInternalLoanUpdate(request, ujsShgInternalLoanUpdateDTO) {
+        return this.ujsService.UJSShgInternalLoanUpdate(request, ujsShgInternalLoanUpdateDTO);
+    }
+    async UJSShgInternalLoanDelete(request, ujsShgInternalLoanDeleteDTO) {
+        return this.ujsService.UJSShgInternalLoanDelete(request, ujsShgInternalLoanDeleteDTO);
     }
     async UJSShgLoanAdd(request, ujsShggLoanDTO) {
         return this.ujsService.UJSShgLoanAdd(request, ujsShggLoanDTO);
@@ -352,6 +384,24 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgGroup", null);
 __decorate([
+    (0, common_1.Post)("UpdateShgGroup"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgGroupUpdateDTO_1.UJSShgGroupUpdateDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgGroupUpdate", null);
+__decorate([
+    (0, common_1.Post)("DeleteShgGroup"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgGroupDeleteDTO_1.UJSShgGroupDeleteDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgGroupDelete", null);
+__decorate([
     (0, common_1.Post)("AddShgMember"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Req)()),
@@ -368,6 +418,24 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgMember", null);
+__decorate([
+    (0, common_1.Post)("UpdateShgMember"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgMemberUpdateDTO_1.UJSShgMemberUpdateDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgMemberUpdate", null);
+__decorate([
+    (0, common_1.Post)("DeleteShgMember"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSShgMemberDeleteDTO_1.UJSShgMemberDeleteDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgMemberDelete", null);
 __decorate([
     (0, common_1.Post)("AddUsers"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -678,6 +746,24 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgBankLoan", null);
 __decorate([
+    (0, common_1.Post)("UpdateShgBankLoan"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSBankLoanUpdateDTO_1.UJSBankLoanUpdateDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgBankLoanUpdate", null);
+__decorate([
+    (0, common_1.Post)("DeleteShgBankLoan"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSSBankLoanDeleteDTO_1.UJSBankLoanDeleteDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgBankLoanDelete", null);
+__decorate([
     (0, common_1.Post)("AddShgBank"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Req)()),
@@ -898,6 +984,24 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listSInternalLoanSummary", null);
+__decorate([
+    (0, common_1.Post)("UpdateShgInternalLoan"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSInternalLoanUpdateDTO_1.UJSShgInternalLoanUpdateDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgInternalLoanUpdate", null);
+__decorate([
+    (0, common_1.Post)("DeleteShgInternalLoan"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSInternalLoanDeleteDTO_1.UJSShgInternalLoanDeleteDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgInternalLoanDelete", null);
 __decorate([
     (0, common_1.Post)("AddShgLoan"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
