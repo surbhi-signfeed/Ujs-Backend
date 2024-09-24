@@ -125,6 +125,9 @@ let UjsController = class UjsController {
     async listRolePermissionList(id, request) {
         return this.ujsService.UJSRolePermissionList(id);
     }
+    async UJSShgRolePermissionUpdate(request, ujsRoleDTO, ujsRolePermissionDTOs) {
+        return this.ujsService.UJSRolePermissionUpdate(request, ujsRoleDTO, ujsRolePermissionDTOs);
+    }
     async UJSMigrationAdd(request, ujsMigrationDTO) {
         return this.ujsService.UJSMigrationAdd(request, ujsMigrationDTO);
     }
@@ -490,6 +493,16 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listRolePermissionList", null);
+__decorate([
+    (0, common_1.Post)("UpdateRolePermsission"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)('permissions')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSRoleDTO_1.UJSRoleDTO, Array]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgRolePermissionUpdate", null);
 __decorate([
     (0, common_1.Post)("AddMigration"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

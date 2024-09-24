@@ -177,6 +177,15 @@ export declare class UjsController {
         message: string;
         status: number;
     }>;
+    UJSShgRolePermissionUpdate(request: Request, ujsRoleDTO: UJSRoleDTO, ujsRolePermissionDTOs: UJSRolePermissionDTO[]): Promise<{
+        message: string;
+        status: number;
+        role?: undefined;
+    } | {
+        message: string;
+        status: number;
+        role: import("./Entity/UJSRoleEntity").UJSRoleEntity;
+    }>;
     UJSMigrationAdd(request: Request, ujsMigrationDTO: UJSMigrationDTO): Promise<{
         message: string;
         status: number;

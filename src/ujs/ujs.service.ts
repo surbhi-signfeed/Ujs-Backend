@@ -804,8 +804,6 @@ private async saveFileToDirectory(
   
     return { shgRole: formattedRoleList, message: "success", status: 200 };
   }
-  
-  
   // permission details
   async UJSRolePermissionList(id: string) {  
     const numericId = Number(id);  // Convert the 'id' to a number
@@ -842,7 +840,69 @@ private async saveFileToDirectory(
     return { data: result, message: "success", status: 200 };
   }
   
-   
+  async UJSRolePermissionUpdate(
+    request,
+    ujsRoleDTO: UJSRoleDTO, 
+    permissionDTOs: UJSRolePermissionDTO[]
+  ) {
+    const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+  
+    // Find the role by roll_id
+    let checkRole = await this.UJSRoleRepository.findOne({
+      where: { roll_id: ujsRoleDTO.roll_id },
+    });
+  
+    if (!checkRole) {
+      return { message: "Role ID Does Not Exist", status: 400 };
+    }
+  
+    // Update the role details
+    checkRole.role_name = ujsRoleDTO.role_name;
+    checkRole.status = ujsRoleDTO.status;
+    await this.UJSRoleRepository.save(checkRole);
+  
+    // Retrieve all existing permissions for the role
+    const existingPermissions = await this.UJSRolePermissionRepository.find({
+      where: { roll_id: ujsRoleDTO.roll_id },
+    });
+  
+    // Iterate over the new permissions (permissionDTOs) to update or create new ones
+    for (const permissionDTO of permissionDTOs) {
+      const existingPermission = existingPermissions.find(
+        (perm) => perm.permission_name === permissionDTO.permission_name
+      );
+  
+      if (existingPermission) {
+        // If permission already exists and active is false, remove it from the database
+        if (!permissionDTO.active) {
+          await this.UJSRolePermissionRepository.remove(existingPermission);
+        } else {
+          // Otherwise, update the permission's active state
+          existingPermission.active = permissionDTO.active;
+          await this.UJSRolePermissionRepository.save(existingPermission);
+        }
+      } else {
+        // If the permission does not exist and active is false, send a message that the user doesn't have access to it
+        if (!permissionDTO.active) {
+          return { message: `You don't have access to permission '${permissionDTO.permission_name}'`, status: 403 };
+        }
+  
+        // If the permission does not exist and active is true, add the new permission
+        if (permissionDTO.active) {
+          const newPermission: UJSRolePermissionEntity = new UJSRolePermissionEntity();
+          newPermission.roll_id = checkRole.roll_id;  // Use the updated role's roll_id
+          newPermission.permission_name = permissionDTO.permission_name;
+          newPermission.active = permissionDTO.active;
+  
+          await this.UJSRolePermissionRepository.save(newPermission);
+        }
+      }
+    }
+  
+    return { message: "Role and Permissions updated successfully", status: 200, role: checkRole };
+  }
+  
+  
   
   // --------------------------Migration--------------------------------
   // add Migration

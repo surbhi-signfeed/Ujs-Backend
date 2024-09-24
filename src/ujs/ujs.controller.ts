@@ -238,7 +238,20 @@ export class UjsController {
     return this.ujsService.UJSRolePermissionList(id);  // Only 'id' is passed here, not 'request'
   }
 
-
+  // update role
+  @Post("UpdateRolePermsission")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgRolePermissionUpdate(
+    @Req() request: Request,
+    @Body() ujsRoleDTO: UJSRoleDTO,
+    @Body('permissions') ujsRolePermissionDTOs: UJSRolePermissionDTO[]
+  ) {
+    return this.ujsService.UJSRolePermissionUpdate(
+      request,
+      ujsRoleDTO,
+      ujsRolePermissionDTOs
+    );
+  }
   // ------------------------migration -----------------------------------------
   // add migration
   @Post("AddMigration")

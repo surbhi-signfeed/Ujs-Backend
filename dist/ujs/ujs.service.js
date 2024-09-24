@@ -619,6 +619,46 @@ let UjsService = class UjsService {
         const result = Object.values(groupedData);
         return { data: result, message: "success", status: 200 };
     }
+    async UJSRolePermissionUpdate(request, ujsRoleDTO, permissionDTOs) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkRole = await this.UJSRoleRepository.findOne({
+            where: { roll_id: ujsRoleDTO.roll_id },
+        });
+        if (!checkRole) {
+            return { message: "Role ID Does Not Exist", status: 400 };
+        }
+        checkRole.role_name = ujsRoleDTO.role_name;
+        checkRole.status = ujsRoleDTO.status;
+        await this.UJSRoleRepository.save(checkRole);
+        const existingPermissions = await this.UJSRolePermissionRepository.find({
+            where: { roll_id: ujsRoleDTO.roll_id },
+        });
+        for (const permissionDTO of permissionDTOs) {
+            const existingPermission = existingPermissions.find((perm) => perm.permission_name === permissionDTO.permission_name);
+            if (existingPermission) {
+                if (!permissionDTO.active) {
+                    await this.UJSRolePermissionRepository.remove(existingPermission);
+                }
+                else {
+                    existingPermission.active = permissionDTO.active;
+                    await this.UJSRolePermissionRepository.save(existingPermission);
+                }
+            }
+            else {
+                if (!permissionDTO.active) {
+                    return { message: `You don't have access to permission '${permissionDTO.permission_name}'`, status: 403 };
+                }
+                if (permissionDTO.active) {
+                    const newPermission = new UJSRolePermissionEntity_1.UJSRolePermissionEntity();
+                    newPermission.roll_id = checkRole.roll_id;
+                    newPermission.permission_name = permissionDTO.permission_name;
+                    newPermission.active = permissionDTO.active;
+                    await this.UJSRolePermissionRepository.save(newPermission);
+                }
+            }
+        }
+        return { message: "Role and Permissions updated successfully", status: 200, role: checkRole };
+    }
     async UJSMigrationAdd(request, ujsDepartmentDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkMigration = await this.UJSMigrationRepository.findOne({

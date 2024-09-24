@@ -258,6 +258,15 @@ export declare class UjsService {
         message: string;
         status: number;
     }>;
+    UJSRolePermissionUpdate(request: any, ujsRoleDTO: UJSRoleDTO, permissionDTOs: UJSRolePermissionDTO[]): Promise<{
+        message: string;
+        status: number;
+        role?: undefined;
+    } | {
+        message: string;
+        status: number;
+        role: UJSRoleEntity;
+    }>;
     UJSMigrationAdd(request: any, ujsDepartmentDTO: UJSMigrationDTO): Promise<{
         message: string;
         status: number;
