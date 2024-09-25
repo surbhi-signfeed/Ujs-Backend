@@ -126,6 +126,12 @@ export class UjsController {
   async listShgGroup(@Req() request: Request) {
     return this.ujsService.UJSShgGroupList(request);
   }
+   // list Shg Group for meeting summary table
+   @Get('ListShgMeetingSummary')
+   @UseGuards(JwtAuthGuard)
+   async listShgMeeting(@Req() request: Request) {
+     return this.ujsService.UJSShgMeetingList(request);
+   }
   // update shg group
   @Post("UpdateShgGroup")
   @UseGuards(JwtAuthGuard)

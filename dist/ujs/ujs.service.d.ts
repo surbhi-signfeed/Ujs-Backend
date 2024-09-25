@@ -172,6 +172,15 @@ export declare class UjsService {
         message: string;
         status: number;
     }>;
+    UJSShgMeetingList(request: any): Promise<{
+        shgMeetingSummary: any;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        shgMeetingSummary?: undefined;
+    }>;
     UJSShgGroupUpdate(request: any, ujsShgGroupUpdateDTO: UJSShgGroupUpdateDTO): Promise<{
         Group: UJSShgGroupEntity;
         message: string;

@@ -242,6 +242,34 @@ let UjsService = class UjsService {
         let shgGroupList = await this.UJSSghGroupRepository.find({});
         return { shgGroup: shgGroupList, message: "success", status: 200 };
     }
+    async UJSShgMeetingList(request) {
+        try {
+            const sqlQuery = `
+        SELECT 
+            d.id AS Id,
+            g.group_name AS groupName,
+            g.block_taluk AS blockTaluka,
+            d.meeting_date AS meetingDate
+        FROM 
+            shg_groups g
+        LEFT JOIN 
+            shg_group_data_upload_month d ON g.id = d.group_id;
+      `;
+            const shgGroupList = await this.UJSSghGroupRepository.query(sqlQuery);
+            return {
+                shgMeetingSummary: shgGroupList,
+                message: "success",
+                status: 200,
+            };
+        }
+        catch (error) {
+            console.error("Error fetching SHG group list:", error);
+            return {
+                message: "Error fetching data",
+                status: 500,
+            };
+        }
+    }
     async UJSShgGroupUpdate(request, ujsShgGroupUpdateDTO) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         const currentDateTime = new Date();
@@ -636,26 +664,21 @@ let UjsService = class UjsService {
         for (const permissionDTO of permissionDTOs) {
             const existingPermission = existingPermissions.find((perm) => perm.permission_name === permissionDTO.permission_name);
             if (existingPermission) {
-                if (!permissionDTO.active) {
-                    await this.UJSRolePermissionRepository.remove(existingPermission);
-                }
-                else {
-                    existingPermission.active = permissionDTO.active;
-                    await this.UJSRolePermissionRepository.save(existingPermission);
-                }
+                existingPermission.active = permissionDTO.active;
+                await this.UJSRolePermissionRepository.save(existingPermission);
             }
             else {
-                if (!permissionDTO.active) {
-                    return { message: `You don't have access to permission '${permissionDTO.permission_name}'`, status: 403 };
-                }
-                if (permissionDTO.active) {
-                    const newPermission = new UJSRolePermissionEntity_1.UJSRolePermissionEntity();
-                    newPermission.roll_id = checkRole.roll_id;
-                    newPermission.permission_name = permissionDTO.permission_name;
-                    newPermission.active = permissionDTO.active;
-                    await this.UJSRolePermissionRepository.save(newPermission);
-                }
+                const newPermission = new UJSRolePermissionEntity_1.UJSRolePermissionEntity();
+                newPermission.roll_id = checkRole.roll_id;
+                newPermission.permission_name = permissionDTO.permission_name;
+                newPermission.active = permissionDTO.active;
+                await this.UJSRolePermissionRepository.save(newPermission);
             }
+        }
+        const permissionNamesInUpdate = permissionDTOs.map((perm) => perm.permission_name);
+        const permissionsToRemove = existingPermissions.filter((perm) => !permissionNamesInUpdate.includes(perm.permission_name));
+        for (const permission of permissionsToRemove) {
+            await this.UJSRolePermissionRepository.remove(permission);
         }
         return { message: "Role and Permissions updated successfully", status: 200, role: checkRole };
     }

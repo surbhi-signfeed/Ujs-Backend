@@ -95,6 +95,15 @@ export declare class UjsController {
         message: string;
         status: number;
     }>;
+    listShgMeeting(request: Request): Promise<{
+        shgMeetingSummary: any;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        shgMeetingSummary?: undefined;
+    }>;
     UJSShgGroupUpdate(request: Request, ujsShgGroupUpdateDTO: UJSShgGroupUpdateDTO): Promise<{
         Group: import("./Entity/UJSShgGroupEntity").UJSShgGroupEntity;
         message: string;

@@ -89,6 +89,9 @@ let UjsController = class UjsController {
     async listShgGroup(request) {
         return this.ujsService.UJSShgGroupList(request);
     }
+    async listShgMeeting(request) {
+        return this.ujsService.UJSShgMeetingList(request);
+    }
     async UJSShgGroupUpdate(request, ujsShgGroupUpdateDTO) {
         return this.ujsService.UJSShgGroupUpdate(request, ujsShgGroupUpdateDTO);
     }
@@ -386,6 +389,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listShgGroup", null);
+__decorate([
+    (0, common_1.Get)('ListShgMeetingSummary'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listShgMeeting", null);
 __decorate([
     (0, common_1.Post)("UpdateShgGroup"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
