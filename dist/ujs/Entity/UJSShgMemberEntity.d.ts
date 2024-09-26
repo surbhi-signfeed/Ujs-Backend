@@ -41,7 +41,7 @@ export declare class UJSShgMemberEntity {
     member_status: string;
     social_strata: string;
     house_hold_above: string;
-    status: number;
+    status: boolean;
     monthlySaving: number;
     fedrationSaving: number;
     updated_at: Date;

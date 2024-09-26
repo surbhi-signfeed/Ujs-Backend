@@ -64,6 +64,7 @@ import { UJSShgInternalLoanUpdateDTO } from "./dto/UJSInternalLoanUpdateDTO";
 import { UJSShgInternalLoanDeleteDTO } from "./dto/UJSInternalLoanDeleteDTO";
 import { UJSBankLoanUpdateDTO } from "./dto/UJSSBankLoanUpdateDTO";
 import { UJSBankLoanDeleteDTO } from "./dto/UJSSBankLoanDeleteDTO";
+import { UJSUsersUpdateDTO } from "./dto/UJSUsersUpdateDTO";
 @Controller("ujs")
 export class UjsController {
   constructor(
@@ -214,6 +215,24 @@ export class UjsController {
   @UseGuards(JwtAuthGuard)
   async listUser(@Req() request: Request) {
     return this.ujsService.UJSUserList(request);
+  }
+  // list of suer with role
+  @Get('ListOfUserRole')
+  @UseGuards(JwtAuthGuard)
+  async listUserRole(@Req() request: Request) {
+    return this.ujsService.UJSUserRoleList(request);
+  }
+  // update dedpartment
+  @Post("UpdateUser")
+  @UseGuards(JwtAuthGuard)
+  async UJSShgUserUpdate(
+    @Req() request: Request,
+    @Body() ujsUserUpdateDTO: UJSUsersUpdateDTO
+  ) {
+    return this.ujsService.UJSShgUserUpdate(
+      request,
+      ujsUserUpdateDTO
+    );
   }
   // --------------------role------------------------------------------
   // add create

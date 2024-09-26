@@ -40,7 +40,7 @@ __decorate([
 ], UJSUsersEntity.prototype, "photo", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", Boolean)
 ], UJSUsersEntity.prototype, "active", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
@@ -60,7 +60,7 @@ __decorate([
 ], UJSUsersEntity.prototype, "updated_at", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", Date)
 ], UJSUsersEntity.prototype, "created_by", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
@@ -150,6 +150,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Date)
 ], UJSUsersEntity.prototype, "appLoginDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'text', nullable: true }),
+    __metadata("design:type", String)
+], UJSUsersEntity.prototype, "shgGroup", void 0);
 exports.UJSUsersEntity = UJSUsersEntity = __decorate([
     (0, typeorm_1.Entity)('user')
 ], UJSUsersEntity);

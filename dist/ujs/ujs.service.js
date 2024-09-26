@@ -221,7 +221,7 @@ let UjsService = class UjsService {
             addUJSShgGroup.transactionstatus = ujsShgGroupDTO.transactionstatus;
             addUJSShgGroup.month = ujsShgGroupDTO.month;
             addUJSShgGroup.monthlymeeting = ujsShgGroupDTO.monthlymeeting;
-            addUJSShgGroup.status = ujsShgGroupDTO.status;
+            addUJSShgGroup.status = true;
             addUJSShgGroup.updatedAt = currentDateTime;
             ;
             addUJSShgGroup.TotalmonthlySaving = ujsShgGroupDTO.TotalmonthlySaving;
@@ -389,7 +389,7 @@ let UjsService = class UjsService {
             addUJSShgMember.member_status = ujsShgMemberDTO.member_status;
             addUJSShgMember.social_strata = ujsShgMemberDTO.social_strata;
             addUJSShgMember.house_hold_above = ujsShgMemberDTO.house_hold_above;
-            addUJSShgMember.status = ujsShgMemberDTO.status;
+            addUJSShgMember.status = true;
             addUJSShgMember.monthlySaving = ujsShgMemberDTO.monthlySaving;
             addUJSShgMember.fedrationSaving = ujsShgMemberDTO.fedrationSaving;
             addUJSShgMember.updated_at = ujsShgMemberDTO.updated_at;
@@ -481,7 +481,7 @@ let UjsService = class UjsService {
     async UJSUserAdd(request, ujsUserDTO, student_img) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
         let checkUser = await this.UJSUserRepository.findOne({
-            where: { name: ujsUserDTO.name },
+            where: { email: ujsUserDTO.email },
         });
         if (checkUser) {
             return {
@@ -496,7 +496,7 @@ let UjsService = class UjsService {
         addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
         addUJSUser.password = ujsUserDTO.password;
         addUJSUser.photo = ujsUserDTO.photo;
-        addUJSUser.active = ujsUserDTO.active;
+        addUJSUser.active = true;
         addUJSUser.deleted_at = ujsUserDTO.deleted_at;
         addUJSUser.remember_token = ujsUserDTO.remember_token;
         addUJSUser.created_at = ujsUserDTO.created_at;
@@ -522,6 +522,7 @@ let UjsService = class UjsService {
         addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
         addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
         addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
+        addUJSUser.shgGroup = ujsUserDTO.shgGroup;
         if (student_img) {
             console.log("kj", student_img);
             if (!this.validateFileType(student_img) || !this.validateFileSize(student_img)) {
@@ -566,6 +567,90 @@ let UjsService = class UjsService {
     async UJSUserList(request) {
         let shgUserList = await this.UJSUserRepository.find({});
         return { shgUser: shgUserList, message: "success", status: 200 };
+    }
+    async UJSUserRoleList(request) {
+        try {
+            const sqlQuery = `
+          SELECT 
+              g.id AS Id,
+              g.name AS name,
+             g.email AS email,
+             g.emp_code AS emp_code,
+             g.active AS active,
+             g.mobile AS mobile,
+             g.password AS password,
+             g.role AS role,
+             g.shgGroup AS shgGroup,
+              d.role_name AS role_name
+          FROM 
+              user g
+          LEFT JOIN 
+              role d ON g.role = d.roll_id;
+        `;
+            const userList = await this.UJSUserRepository.query(sqlQuery);
+            return {
+                user: userList,
+                message: "success",
+                status: 200,
+            };
+        }
+        catch (error) {
+            console.error("Error fetching SHG group list:", error);
+            return {
+                message: "Error fetching data",
+                status: 500,
+            };
+        }
+    }
+    async UJSShgUserUpdate(request, ujsUsersUpdateDTO) {
+        const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+        let checkUsers = await this.UJSUserRepository.findOne({
+            where: {
+                id: ujsUsersUpdateDTO.id,
+            },
+        });
+        if (checkUsers) {
+            checkUsers.id = ujsUsersUpdateDTO.id;
+            checkUsers.name = ujsUsersUpdateDTO.name;
+            checkUsers.password = ujsUsersUpdateDTO.password;
+            checkUsers.active = ujsUsersUpdateDTO.active;
+            checkUsers.created_by = ujsUsersUpdateDTO.created_by;
+            checkUsers.role = ujsUsersUpdateDTO.role;
+            checkUsers.emp_code = ujsUsersUpdateDTO.emp_code;
+            checkUsers.user_app = ujsUsersUpdateDTO.user_app;
+            checkUsers.admin_app = ujsUsersUpdateDTO.admin_app;
+            checkUsers.email = ujsUsersUpdateDTO.email;
+            checkUsers.email_verified_at = ujsUsersUpdateDTO.email_verified_at;
+            checkUsers.photo = ujsUsersUpdateDTO.photo;
+            checkUsers.deleted_at = ujsUsersUpdateDTO.deleted_at;
+            checkUsers.remember_token = ujsUsersUpdateDTO.remember_token;
+            checkUsers.created_at = ujsUsersUpdateDTO.created_at;
+            checkUsers.updated_at = ujsUsersUpdateDTO.updated_at;
+            checkUsers.updated_by = ujsUsersUpdateDTO.updated_by;
+            checkUsers.department = ujsUsersUpdateDTO.department;
+            checkUsers.mobile = ujsUsersUpdateDTO.mobile;
+            checkUsers.address = ujsUsersUpdateDTO.address;
+            checkUsers.dob = ujsUsersUpdateDTO.dob;
+            checkUsers.gender = ujsUsersUpdateDTO.gender;
+            checkUsers.fathername = ujsUsersUpdateDTO.fathername;
+            checkUsers.mothername = ujsUsersUpdateDTO.mothername;
+            checkUsers.student_email = ujsUsersUpdateDTO.student_email;
+            checkUsers.organization = ujsUsersUpdateDTO.organization;
+            checkUsers.EmergencyContact = ujsUsersUpdateDTO.EmergencyContact;
+            checkUsers.adhaarnumber = ujsUsersUpdateDTO.adhaarnumber;
+            checkUsers.blood_group = ujsUsersUpdateDTO.blood_group;
+            checkUsers.student_img = ujsUsersUpdateDTO.student_img;
+            checkUsers.student_signature = ujsUsersUpdateDTO.student_signature;
+            checkUsers.mobiletoken = ujsUsersUpdateDTO.mobiletoken;
+            checkUsers.loggedInStatus = ujsUsersUpdateDTO.loggedInStatus;
+            checkUsers.appLoginDate = ujsUsersUpdateDTO.appLoginDate;
+            checkUsers.shgGroup = ujsUsersUpdateDTO.shgGroup;
+            await this.UJSUserRepository.save(checkUsers);
+            return { Users: checkUsers, message: "success", status: 200 };
+        }
+        else {
+            return { message: "User ID Does Not Exist", status: 400 };
+        }
     }
     async UJSRoleAdd(request, ujsRoleDTO, permissionDTOs) {
         const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;

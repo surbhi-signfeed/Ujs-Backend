@@ -9,137 +9,137 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UJSUsersDTO = void 0;
+exports.UJSUsersUpdateDTO = void 0;
 const class_validator_1 = require("class-validator");
-class UJSUsersDTO {
+class UJSUsersUpdateDTO {
 }
-exports.UJSUsersDTO = UJSUsersDTO;
+exports.UJSUsersUpdateDTO = UJSUsersUpdateDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "name", void 0);
+], UJSUsersUpdateDTO.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "password", void 0);
+], UJSUsersUpdateDTO.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Boolean)
-], UJSUsersDTO.prototype, "active", void 0);
+], UJSUsersUpdateDTO.prototype, "active", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "role", void 0);
+], UJSUsersUpdateDTO.prototype, "role", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "emp_code", void 0);
+], UJSUsersUpdateDTO.prototype, "emp_code", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "user_app", void 0);
+], UJSUsersUpdateDTO.prototype, "user_app", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "admin_app", void 0);
+], UJSUsersUpdateDTO.prototype, "admin_app", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "email_verified_at", void 0);
+], UJSUsersUpdateDTO.prototype, "email_verified_at", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "photo", void 0);
+], UJSUsersUpdateDTO.prototype, "photo", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "deleted_at", void 0);
+], UJSUsersUpdateDTO.prototype, "deleted_at", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "remember_token", void 0);
+], UJSUsersUpdateDTO.prototype, "remember_token", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "created_at", void 0);
+], UJSUsersUpdateDTO.prototype, "created_at", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "updated_at", void 0);
+], UJSUsersUpdateDTO.prototype, "updated_at", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "updated_by", void 0);
+], UJSUsersUpdateDTO.prototype, "updated_by", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "department", void 0);
+], UJSUsersUpdateDTO.prototype, "department", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "mobile", void 0);
+], UJSUsersUpdateDTO.prototype, "mobile", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "address", void 0);
+], UJSUsersUpdateDTO.prototype, "address", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "dob", void 0);
+], UJSUsersUpdateDTO.prototype, "dob", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "gender", void 0);
+], UJSUsersUpdateDTO.prototype, "gender", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "fathername", void 0);
+], UJSUsersUpdateDTO.prototype, "fathername", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "mothername", void 0);
+], UJSUsersUpdateDTO.prototype, "mothername", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "student_email", void 0);
+], UJSUsersUpdateDTO.prototype, "student_email", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "organization", void 0);
+], UJSUsersUpdateDTO.prototype, "organization", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "EmergencyContact", void 0);
+], UJSUsersUpdateDTO.prototype, "EmergencyContact", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "adhaarnumber", void 0);
+], UJSUsersUpdateDTO.prototype, "adhaarnumber", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "blood_group", void 0);
+], UJSUsersUpdateDTO.prototype, "blood_group", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "student_img", void 0);
+], UJSUsersUpdateDTO.prototype, "student_img", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "student_signature", void 0);
+], UJSUsersUpdateDTO.prototype, "student_signature", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "mobiletoken", void 0);
+], UJSUsersUpdateDTO.prototype, "mobiletoken", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], UJSUsersDTO.prototype, "loggedInStatus", void 0);
+], UJSUsersUpdateDTO.prototype, "loggedInStatus", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
-], UJSUsersDTO.prototype, "appLoginDate", void 0);
+], UJSUsersUpdateDTO.prototype, "appLoginDate", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UJSUsersDTO.prototype, "shgGroup", void 0);
-//# sourceMappingURL=UJSUsersDTO.js.map
+], UJSUsersUpdateDTO.prototype, "shgGroup", void 0);
+//# sourceMappingURL=UJSUsersUpdateDTO.js.map

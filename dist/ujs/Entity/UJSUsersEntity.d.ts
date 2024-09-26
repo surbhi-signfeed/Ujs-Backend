@@ -5,12 +5,12 @@ export declare class UJSUsersEntity {
     email_verified_at: Date;
     password: string;
     photo: string;
-    active: number;
+    active: boolean;
     deleted_at: Date;
     remember_token: string;
     created_at: Date;
     updated_at: Date;
-    created_by: number;
+    created_by: Date;
     updated_by: number;
     department: number;
     role: number;
@@ -33,4 +33,5 @@ export declare class UJSUsersEntity {
     mobiletoken: string;
     loggedInStatus: number;
     appLoginDate: Date;
+    shgGroup: string;
 }

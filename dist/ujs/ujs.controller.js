@@ -66,6 +66,7 @@ const UJSInternalLoanUpdateDTO_1 = require("./dto/UJSInternalLoanUpdateDTO");
 const UJSInternalLoanDeleteDTO_1 = require("./dto/UJSInternalLoanDeleteDTO");
 const UJSSBankLoanUpdateDTO_1 = require("./dto/UJSSBankLoanUpdateDTO");
 const UJSSBankLoanDeleteDTO_1 = require("./dto/UJSSBankLoanDeleteDTO");
+const UJSUsersUpdateDTO_1 = require("./dto/UJSUsersUpdateDTO");
 let UjsController = class UjsController {
     constructor(ujsService, logger) {
         this.ujsService = ujsService;
@@ -115,6 +116,12 @@ let UjsController = class UjsController {
     }
     async listUser(request) {
         return this.ujsService.UJSUserList(request);
+    }
+    async listUserRole(request) {
+        return this.ujsService.UJSUserRoleList(request);
+    }
+    async UJSShgUserUpdate(request, ujsUserUpdateDTO) {
+        return this.ujsService.UJSShgUserUpdate(request, ujsUserUpdateDTO);
     }
     async UJSRoleAdd(request, ujsRoleDTO, ujsRolePermissionDTOs) {
         return this.ujsService.UJSRoleAdd(request, ujsRoleDTO, ujsRolePermissionDTOs);
@@ -469,6 +476,23 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UjsController.prototype, "listUser", null);
+__decorate([
+    (0, common_1.Get)('ListOfUserRole'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "listUserRole", null);
+__decorate([
+    (0, common_1.Post)("UpdateUser"),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, UJSUsersUpdateDTO_1.UJSUsersUpdateDTO]),
+    __metadata("design:returntype", Promise)
+], UjsController.prototype, "UJSShgUserUpdate", null);
 __decorate([
     (0, common_1.Post)("AddRole"),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

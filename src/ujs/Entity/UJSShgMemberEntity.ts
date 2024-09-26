@@ -130,8 +130,8 @@ export class UJSShgMemberEntity {
     @Column({ nullable: true })
     house_hold_above: string;
 
-    @Column({ default: 1 })
-    status: number;
+    @Column({ })
+    status: boolean;
 
     @Column({ nullable: true, type: 'decimal' })
     monthlySaving: number;

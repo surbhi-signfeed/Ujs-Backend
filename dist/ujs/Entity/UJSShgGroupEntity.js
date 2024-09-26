@@ -107,8 +107,8 @@ __decorate([
     __metadata("design:type", Date)
 ], UJSShgGroupEntity.prototype, "monthlymeeting", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: 1 }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ default: true }),
+    __metadata("design:type", Boolean)
 ], UJSShgGroupEntity.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'decimal', nullable: true }),

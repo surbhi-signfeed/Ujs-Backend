@@ -100,6 +100,7 @@ import { UJSBankLoanDeleteDTO } from "./dto/UJSSBankLoanDeleteDTO";
 import { UJSBankLoanUpdateDTO } from "./dto/UJSSBankLoanUpdateDTO";
 import { UJSShgInternalLoanDeleteDTO } from "./dto/UJSInternalLoanDeleteDTO";
 import { UJSShgInternalLoanUpdateDTO } from "./dto/UJSInternalLoanUpdateDTO";
+import { UJSUsersUpdateDTO } from "./dto/UJSUsersUpdateDTO";
 @Injectable()
 export class UjsService {
   private _logger: any;
@@ -324,7 +325,7 @@ export class UjsService {
         addUJSShgGroup.transactionstatus = ujsShgGroupDTO.transactionstatus;
         addUJSShgGroup.month = ujsShgGroupDTO.month;
         addUJSShgGroup.monthlymeeting = ujsShgGroupDTO.monthlymeeting;
-        addUJSShgGroup.status = ujsShgGroupDTO.status;
+        addUJSShgGroup.status = true;
         addUJSShgGroup.updatedAt = currentDateTime;;
         addUJSShgGroup.TotalmonthlySaving = ujsShgGroupDTO.TotalmonthlySaving;
         addUJSShgGroup.totalMeeting = ujsShgGroupDTO.totalMeeting;
@@ -528,7 +529,7 @@ export class UjsService {
         addUJSShgMember.member_status = ujsShgMemberDTO.member_status;
         addUJSShgMember.social_strata = ujsShgMemberDTO.social_strata;
         addUJSShgMember.house_hold_above = ujsShgMemberDTO.house_hold_above;
-        addUJSShgMember.status = ujsShgMemberDTO.status;
+        addUJSShgMember.status = true;
         addUJSShgMember.monthlySaving = ujsShgMemberDTO.monthlySaving;
         addUJSShgMember.fedrationSaving = ujsShgMemberDTO.fedrationSaving;
         addUJSShgMember.updated_at = ujsShgMemberDTO.updated_at;
@@ -641,7 +642,7 @@ export class UjsService {
     const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
   
     let checkUser = await this.UJSUserRepository.findOne({
-      where: { name: ujsUserDTO.name },
+      where: { email: ujsUserDTO.email },
     });
   
     if (checkUser) {
@@ -658,7 +659,7 @@ export class UjsService {
     addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
     addUJSUser.password = ujsUserDTO.password;
     addUJSUser.photo = ujsUserDTO.photo;
-    addUJSUser.active = ujsUserDTO.active;
+    addUJSUser.active = true;
     addUJSUser.deleted_at = ujsUserDTO.deleted_at;
     addUJSUser.remember_token = ujsUserDTO.remember_token;
     addUJSUser.created_at = ujsUserDTO.created_at;
@@ -684,6 +685,7 @@ export class UjsService {
     addUJSUser.mobiletoken = ujsUserDTO.mobiletoken;
     addUJSUser.loggedInStatus = ujsUserDTO.loggedInStatus;
     addUJSUser.appLoginDate = ujsUserDTO.appLoginDate;
+    addUJSUser.shgGroup=ujsUserDTO.shgGroup
   
     // Handle file upload (student_img)
     if (student_img) {
@@ -753,6 +755,103 @@ private async saveFileToDirectory(
       {}
     );
     return { shgUser: shgUserList, message: "success", status: 200 };
+  }
+    // list shg meeting summary
+    async UJSUserRoleList(request) {
+      try {
+        // SQL query with left join
+        const sqlQuery = `
+          SELECT 
+              g.id AS Id,
+              g.name AS name,
+             g.email AS email,
+             g.emp_code AS emp_code,
+             g.active AS active,
+             g.mobile AS mobile,
+             g.password AS password,
+             g.role AS role,
+             g.shgGroup AS shgGroup,
+              d.role_name AS role_name
+          FROM 
+              user g
+          LEFT JOIN 
+              role d ON g.role = d.roll_id;
+        `;
+    
+        // Execute the SQL query
+        const userList = await this.UJSUserRepository.query(sqlQuery);
+    
+        return {
+          user: userList,
+          message: "success",
+          status: 200,
+        };
+      } catch (error) {
+        console.error("Error fetching SHG group list:", error);
+        return {
+          message: "Error fetching data",
+          status: 500,
+        };
+      }
+    }
+     // update user
+  async UJSShgUserUpdate(
+    request,
+    ujsUsersUpdateDTO: UJSUsersUpdateDTO
+  ) {
+    const ipAddress = request.headers["x-forwarded-for"] || request.connection.remoteAddress;
+
+
+    let checkUsers =
+      await this.UJSUserRepository.findOne({
+        where: {
+          id: ujsUsersUpdateDTO.id,
+        },
+      });
+    if (checkUsers) {
+      checkUsers.id = ujsUsersUpdateDTO.id;
+checkUsers.name = ujsUsersUpdateDTO.name;
+checkUsers.password = ujsUsersUpdateDTO.password;
+checkUsers.active = ujsUsersUpdateDTO.active;
+checkUsers.created_by = ujsUsersUpdateDTO.created_by; // Uncomment if you want to use it
+checkUsers.role = ujsUsersUpdateDTO.role;
+checkUsers.emp_code = ujsUsersUpdateDTO.emp_code;
+checkUsers.user_app = ujsUsersUpdateDTO.user_app; // Optional field
+checkUsers.admin_app = ujsUsersUpdateDTO.admin_app;
+checkUsers.email = ujsUsersUpdateDTO.email;
+checkUsers.email_verified_at = ujsUsersUpdateDTO.email_verified_at; // Optional field
+checkUsers.photo = ujsUsersUpdateDTO.photo; // Optional field
+checkUsers.deleted_at = ujsUsersUpdateDTO.deleted_at; // Optional field
+checkUsers.remember_token = ujsUsersUpdateDTO.remember_token; // Optional field
+checkUsers.created_at = ujsUsersUpdateDTO.created_at; // Optional field
+checkUsers.updated_at = ujsUsersUpdateDTO.updated_at; // Optional field
+checkUsers.updated_by = ujsUsersUpdateDTO.updated_by; // Optional field
+checkUsers.department = ujsUsersUpdateDTO.department; // Optional field
+checkUsers.mobile = ujsUsersUpdateDTO.mobile; // Optional field
+checkUsers.address = ujsUsersUpdateDTO.address; // Optional field
+checkUsers.dob = ujsUsersUpdateDTO.dob; // Optional field
+checkUsers.gender = ujsUsersUpdateDTO.gender; // Optional field
+checkUsers.fathername = ujsUsersUpdateDTO.fathername; // Optional field
+checkUsers.mothername = ujsUsersUpdateDTO.mothername; // Optional field
+checkUsers.student_email = ujsUsersUpdateDTO.student_email; // Optional field
+checkUsers.organization = ujsUsersUpdateDTO.organization; // Optional field
+checkUsers.EmergencyContact = ujsUsersUpdateDTO.EmergencyContact; // Optional field
+checkUsers.adhaarnumber = ujsUsersUpdateDTO.adhaarnumber; // Optional field
+checkUsers.blood_group = ujsUsersUpdateDTO.blood_group; // Optional field
+checkUsers.student_img = ujsUsersUpdateDTO.student_img; // Optional field
+checkUsers.student_signature = ujsUsersUpdateDTO.student_signature; // Optional field
+checkUsers.mobiletoken = ujsUsersUpdateDTO.mobiletoken; // Optional field
+checkUsers.loggedInStatus = ujsUsersUpdateDTO.loggedInStatus; // Optional field
+checkUsers.appLoginDate = ujsUsersUpdateDTO.appLoginDate; // Optional field
+checkUsers.shgGroup = ujsUsersUpdateDTO.shgGroup; // Optional field
+
+     
+
+      await this.UJSUserRepository.save(checkUsers);
+      return { Users: checkUsers, message: "success", status: 200 };
+    } else {
+      return { message: "User ID Does Not Exist", status: 400 };
+    }
   }
   // ---------------------------role permission--------------------
   // create role
@@ -873,7 +972,7 @@ private async saveFileToDirectory(
     return { data: result, message: "success", status: 200 };
   }
   
-  // update department
+  // update permission
   async UJSRolePermissionUpdate(
     request,
     ujsRoleDTO: UJSRoleDTO, 

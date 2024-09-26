@@ -22,7 +22,7 @@ export declare class UJSShgGroupUpdateDTO {
     transactionstatus: number;
     month: number;
     monthlymeeting: Date;
-    status: number;
+    status: boolean;
     TotalmonthlySaving: number;
     totalMeeting: number;
     savingAmt: number;

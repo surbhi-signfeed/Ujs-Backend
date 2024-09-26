@@ -50,6 +50,7 @@ import { UJSShgInternalLoanUpdateDTO } from "./dto/UJSInternalLoanUpdateDTO";
 import { UJSShgInternalLoanDeleteDTO } from "./dto/UJSInternalLoanDeleteDTO";
 import { UJSBankLoanUpdateDTO } from "./dto/UJSSBankLoanUpdateDTO";
 import { UJSBankLoanDeleteDTO } from "./dto/UJSSBankLoanDeleteDTO";
+import { UJSUsersUpdateDTO } from "./dto/UJSUsersUpdateDTO";
 export declare class UjsController {
     private readonly ujsService;
     private readonly logger;
@@ -157,6 +158,24 @@ export declare class UjsController {
         shgUser: import("./Entity/UJSUsersEntity").UJSUsersEntity[];
         message: string;
         status: number;
+    }>;
+    listUserRole(request: Request): Promise<{
+        user: any;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        user?: undefined;
+    }>;
+    UJSShgUserUpdate(request: Request, ujsUserUpdateDTO: UJSUsersUpdateDTO): Promise<{
+        Users: import("./Entity/UJSUsersEntity").UJSUsersEntity;
+        message: string;
+        status: number;
+    } | {
+        message: string;
+        status: number;
+        Users?: undefined;
     }>;
     UJSRoleAdd(request: Request, ujsRoleDTO: UJSRoleDTO, ujsRolePermissionDTOs: UJSRolePermissionDTO[]): Promise<{
         message: string;

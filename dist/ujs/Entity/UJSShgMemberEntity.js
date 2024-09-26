@@ -183,8 +183,8 @@ __decorate([
     __metadata("design:type", String)
 ], UJSShgMemberEntity.prototype, "house_hold_above", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: 1 }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({}),
+    __metadata("design:type", Boolean)
 ], UJSShgMemberEntity.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true, type: 'decimal' }),

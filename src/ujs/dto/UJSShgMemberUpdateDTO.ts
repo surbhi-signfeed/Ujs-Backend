@@ -130,7 +130,7 @@ export class UJSShgMemberUpdateDTO {
     house_hold_above: string;
 
     @IsNotEmpty()
-    status: number;
+    status: boolean;
 
     @IsOptional()
     monthlySaving: number;

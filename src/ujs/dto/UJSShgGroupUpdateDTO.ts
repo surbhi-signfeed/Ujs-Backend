@@ -97,7 +97,7 @@ export class UJSShgGroupUpdateDTO {
 
     @IsNotEmpty()
    
-    status: number;
+    status: boolean;
 
     @IsOptional()
     

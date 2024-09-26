@@ -1,4 +1,4 @@
-export declare class UJSUsersDTO {
+export declare class UJSUsersUpdateDTO {
     id: number;
     name: string;
     password: string;

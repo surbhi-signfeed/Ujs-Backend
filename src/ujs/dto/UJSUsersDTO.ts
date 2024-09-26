@@ -7,15 +7,15 @@ export class UJSUsersDTO {
     @IsNotEmpty()
     password: string;
     @IsNotEmpty()
-    active: number;
-    @IsNotEmpty()
-    created_by: number;
+    active: boolean;
+    // @IsNotEmpty()
+    created_by: Date;
     @IsNotEmpty()
     role: number;
 
     @IsNotEmpty()
     emp_code: string;
-    @IsNotEmpty()
+    @IsOptional()
     user_app: number;
 
     @IsNotEmpty()
@@ -96,4 +96,6 @@ export class UJSUsersDTO {
 
     @IsOptional()
     appLoginDate: Date;
+    @IsOptional()
+    shgGroup: string;
 }

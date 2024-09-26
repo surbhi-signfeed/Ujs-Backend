@@ -21,7 +21,7 @@ export class UJSUsersEntity {
     photo: string;
 
     @Column()
-    active: number;
+    active: boolean;
 
     @Column({ nullable: true })
     deleted_at: Date;
@@ -36,7 +36,7 @@ export class UJSUsersEntity {
     updated_at: Date;
 
     @Column()
-    created_by: number;
+    created_by: Date;
 
     @Column({ nullable: true })
     updated_by: number;
@@ -103,6 +103,7 @@ export class UJSUsersEntity {
 
     @Column({ nullable: true })
     appLoginDate: Date;
-
+    @Column({ type: 'text', nullable: true })
+    shgGroup: string;
     
 }

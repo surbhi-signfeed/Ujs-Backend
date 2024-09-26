@@ -71,8 +71,8 @@ export class UJSShgGroupEntity {
     @Column({ type: 'date', nullable: true })
     monthlymeeting: Date;
 
-    @Column({ default: 1 })
-    status: number;
+    @Column({ default: true })
+    status: boolean;
 
     @Column({ type: 'decimal', nullable: true })
     TotalmonthlySaving: number;
