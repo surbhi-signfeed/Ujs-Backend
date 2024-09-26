@@ -90,8 +90,8 @@ import { BadRequestException } from '@nestjs/common';
 import { Multer } from "multer";
 import * as fs from "fs-extra";
 import * as path from "path";
-import * as appRoot from "app-root-path";
 import * as crypto from "crypto";
+import * as bcrypt from 'bcrypt';
 import { UJSShgGroupUpdateDTO } from "./dto/UJSShgGroupUpdateDTO";
 import { UJSShgGroupDeleteDTO } from "./dto/UJSShgGroupDeleteDTO";
 import { UJSShgMemberUpdateDTO } from "./dto/UJSShgMemberUpdateDTO";
@@ -657,7 +657,10 @@ export class UjsService {
     addUJSUser.name = ujsUserDTO.name;
     addUJSUser.email = ujsUserDTO.email;
     addUJSUser.email_verified_at = ujsUserDTO.email_verified_at;
-    addUJSUser.password = ujsUserDTO.password;
+     // Encrypt the password using bcrypt before storing it
+  const saltRounds = 10; // You can adjust this value, but 10 is a good balance between security and performance
+  const hashedPassword = await bcrypt.hash(ujsUserDTO.password, saltRounds);
+  addUJSUser.password = hashedPassword; // 
     addUJSUser.photo = ujsUserDTO.photo;
     addUJSUser.active = true;
     addUJSUser.deleted_at = ujsUserDTO.deleted_at;
